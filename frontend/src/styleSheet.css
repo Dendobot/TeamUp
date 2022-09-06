@@ -19,8 +19,8 @@ body {
   * {
     @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
     font-family: "Montserrat", serif;
-    --primaryBlue: #0671B7
-    --secondaryBlue: #E0F3FF
+    --primaryBlue: #0671B7;
+    --secondaryBlue: #E0F3FF;
   }
   
 
@@ -41,6 +41,11 @@ body {
   p {
     font-size: 16px;
   }
+
+  h5{
+    font-size: 18;
+    font-weight: bold;
+  }
   
   ul {
     font-size: 16px;
@@ -57,7 +62,8 @@ body {
 
   .container {
     flex-wrap: wrap;
-    flex-direction:column;
+    flex-direction: column;
+    
   }
 
   .navBarLinks{
@@ -73,7 +79,57 @@ body {
   }
 
   .footer{
-    background-color:#E0F3FF;
+    background-color: var(--secondaryBlue);
+  }
+
+  .letsGetText{
+    color: var(--primaryBlue);
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  .cooking{
+    color: var(--primaryBlue);
+    font-size: 85px;
+    font-weight: bolder;
+  }
+
+  .center-horiz {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .center-vert {
+    margin-top:auto;
+    margin-bottom: auto;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 80vh;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .centerthis {
+    align-self: center;
+    justify-self: center;
+  }
+
+  .sign-up-button{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 200px;
+    height: 54px;
+    left: 85px;
+    top: 689px;
+    color: white;
+    background: #0671B7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
   }
 
 
