@@ -1,9 +1,13 @@
 import React from "react";
+import  Navigation  from "../components/Navigation";
 
 function SignIn() {
   return (
-    <div >
+    <div>
+      <Navigation />
+    <div className="signin">
       
+    </div>
     </div>
   );
 }
