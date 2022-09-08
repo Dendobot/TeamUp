@@ -1,25 +1,12 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "./styleSheet.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import {
-  Home,
-  About,
-  SignIn
-} from "./components";
 
+import App from "./App";
 
-ReactDOM.render(
-  <Router>
-    <Routes>
-      <Route path="/home" element={<Home />} > </Route>
-      <Route path="/about" element={<About />} > </Route>
-      <Route path="/signin" element={<SignIn />} > </Route>
-      
-    </Routes>
-  </Router>,
-
-  document.getElementById("root")
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+root.render(
+    <App />
 );
-
-

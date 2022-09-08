@@ -1,11 +1,10 @@
 import React from "react";
 import SignUpButton from "../components/SignUpButton"
-import Navigation from "../components/Navigation";
 import Footer from "../components/Footer"
+
 function Home() {
   return (
     <div>
-    <Navigation />
     <div className="home">
       <div className="grid-container ">
       <div >
@@ -19,7 +18,6 @@ function Home() {
         <img src={`https://file.rendit.io/n/rZRVDlqtBdNumaJBs8iy.png`}alt="landig page"/>
     </div>
     </div>
-    <Footer/>
     </div>
   );
 }
