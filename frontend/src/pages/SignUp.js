@@ -49,16 +49,12 @@ function SignUp() {
                       <label className="form-label" for="form3Example4cd">Repeat your password</label>
                     </div>
                   </div>
-
+                  <div class=" d-flex justify-content-center">
                   <RegSingUpButton/>
-
-                  <div class="form-check d-flex justify-content-center mb-5">
-                    <label class="form-check-label" for="form2Example3">
-                    Already have an account?  <a href="../signin">Log in here</a>
-                    </label>
                   </div>
 
                 </form>
+                
 
               </div>
             </div>
@@ -68,6 +64,12 @@ function SignUp() {
     
   </div>
 </section>
+  <div class="form-check d-flex justify-content-center mb-5">
+                      <label class="form-check-label" for="form2Example3">
+                      Already have an account?  <a href="../signin">Log in here</a>
+                      </label>
+                    </div>
+<img className= "tableimg" src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}alt="sign up page"/>
     </div>
   );
 }
