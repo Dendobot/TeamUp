@@ -21,6 +21,7 @@ body {
     font-family: "Montserrat", serif;
     --primaryBlue: #0671B7;
     --secondaryBlue: #E0F3FF;
+    --lightBlue:  #F9FDFF;
   }
   
 
@@ -41,6 +42,7 @@ body {
   p {
     font-size: 16px;
   }
+
 
   h5{
     font-size: 18;
@@ -79,19 +81,26 @@ body {
   }
 
   .footer{
-    background-color: var(--secondaryBlue);
+    background-color: var(--lightBlue);
   }
 
   .letsGetText{
     color: var(--primaryBlue);
     font-size: 50px;
     font-weight: bold;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+   
   }
 
   .cooking{
     color: var(--primaryBlue);
     font-size: 85px;
     font-weight: bolder;
+    display: flex;
+    justify-content: left;
+    align-items: center;
   }
 
   .center-horiz {
@@ -124,12 +133,37 @@ body {
     padding: 10px;
     width: 200px;
     height: 54px;
-    left: 85px;
-    top: 689px;
     color: white;
     background: #0671B7;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
+  }
+
+  .bottomBar{
+    background-color: var(--secondaryBlue);
+  }
+
+  .EasilyLandingPage{
+    font-weight: 600;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .topLightimg{
+    position: absolute;
+    left: 371.7px;
+    top: -10.87px;
+  }
+
+  .signUpText{
+    font-size: 34;
+    font-weight: bold;
+    color: var(--primaryBlue);
+  }
+
+  .secondarColor{
+    background-color: var(--secondaryBlue);
   }
 
 

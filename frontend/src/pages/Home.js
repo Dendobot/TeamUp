@@ -1,22 +1,23 @@
 import React from "react";
 import SignUpButton from "../components/SignUpButton"
-import Footer from "../components/Footer"
+import BottomBar from "../components/BottomBar"
 
 function Home() {
   return (
     <div>
     <div className="home">
       <div className="grid-container ">
-      <div >
-        <div className="center-vert">
+      <div className="landingPageText">
         <div className="letsGetText">Let’s get</div>
         <div className="cooking">cooking!</div>
-        <h3>Easily store recipes to<br/>recreate at any time with<br/>Foodie</h3>
+        <h3 className="EasilyLandingPage">Easily store recipes to</h3>
+        <h3 className="EasilyLandingPage">recreate at any time with</h3>
+        <h3 className="EasilyLandingPage">Foodie</h3>
         <SignUpButton></SignUpButton>
-        </div>
       </div>
-        <img src={`https://file.rendit.io/n/rZRVDlqtBdNumaJBs8iy.png`}alt="landig page"/>
+      <img src={`https://file.rendit.io/n/rZRVDlqtBdNumaJBs8iy.png`}alt="landig page"/>
     </div>
+    <BottomBar></BottomBar>
     </div>
     </div>
   );
