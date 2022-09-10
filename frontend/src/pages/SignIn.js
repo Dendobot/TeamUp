@@ -50,7 +50,7 @@ function SignIn() {
   </section>
     <div class="form-check d-flex justify-content-center mb-5">
                         <label class="form-check-label" for="form2Example3">
-                        Don't have an account?  <a href="../signup">Sign up here</a>
+                        Don't have an account?  <a class = "underline" href="../signup">Sign up here</a>
                         </label>
                       </div>
   <img className= "tableimg" src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}alt="sign in page"/>

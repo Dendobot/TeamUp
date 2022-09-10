@@ -1,5 +1,5 @@
+import { TextField } from "@mui/material";
 import React from "react";
-
 import {RegButton} from "../components/RegButton"
 
 function SignUp() {
@@ -22,7 +22,7 @@ function SignUp() {
                     <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div className="form-outline flex-fill mb-0">
                       <label className="form-label" for="form3Example1c">Name</label>
-                      <input type="text" id="form3Example1c" className="form-control secondarColor" />
+                      <input type="email" id="form3Example2c" className="form-control secondarColor" />
                     </div>
                   </div>
 
@@ -66,7 +66,7 @@ function SignUp() {
 </section>
   <div class="form-check d-flex justify-content-center mb-5">
                       <label class="form-check-label" for="form2Example3">
-                      Already have an account?  <a href="../signin">Log in here</a>
+                      Already have an account?  <a class = "underline" href="../signin">Log in here</a>
                       </label>
                     </div>
 <img className= "tableimg" src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}alt="sign up page"/>
