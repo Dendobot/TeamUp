@@ -50,7 +50,7 @@ function SignUp() {
                     </div>
                   </div>
                   <div class=" d-flex justify-content-center">
-                  <RegButton text = 'Sign me up!'/>
+                  <RegButton text = 'Sign up' button_type = 'sign-up-button mb-4'/>
                   </div>
 
                 </form>

@@ -1,6 +1,6 @@
 import React from "react";
-import SignUpButton from "../components/SignUpButton"
 import BottomBar from "../components/BottomBar"
+import { RegButton } from "../components/RegButton";
 
 function Home() {
   return (
@@ -13,9 +13,9 @@ function Home() {
         <h3 className="EasilyLandingPage">Easily store recipes to</h3>
         <h3 className="EasilyLandingPage">recreate at any time with</h3>
         <h3 className="EasilyLandingPage">Foodie</h3>
-        <SignUpButton></SignUpButton>
+        <RegButton text = 'Sign me up!' button_type = 'sign-up-button'/>
       </div>
-      <img src={`https://file.rendit.io/n/rZRVDlqtBdNumaJBs8iy.png`}alt="landig page"/>
+      <img src={`https://file.rendit.io/n/rZRVDlqtBdNumaJBs8iy.png`}alt="landing page"/>
     </div>
     <BottomBar></BottomBar>
     </div>

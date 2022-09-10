@@ -5,7 +5,7 @@ export class RegButton extends React.Component {
   render() {
     return (
       <>
-        <div className='sign-up-button mb-4' type="submit"> <h5> {this.props.text}</h5></div>
+        <div className={this.props.button_type} type="submit"> <h5> {this.props.text}</h5></div>
         
       </>
     );
