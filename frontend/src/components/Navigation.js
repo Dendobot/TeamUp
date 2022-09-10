@@ -26,13 +26,13 @@ function Navigation() {
                 </li>
                 <li className="nav-item navBarLinks">
                   <NavLink className="nav-link " to="/signin">
-                    Sing in
+                    Sign in
                   </NavLink>
                 </li>
 
                 <li className="nav-item navBarLinks">
                   <NavLink className="nav-link " to="/signup">
-                    Sing up
+                    Sign up
                   </NavLink>
                 </li>
               </ul>

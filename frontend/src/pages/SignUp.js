@@ -1,6 +1,6 @@
 import React from "react";
 
-import RegSingUpButton from "../components/RegSingUpButton"
+import RegSignUpButton from "../components/RegSignUpButton"
 
 function SignUp() {
   return (
@@ -50,7 +50,7 @@ function SignUp() {
                     </div>
                   </div>
                   <div class=" d-flex justify-content-center">
-                  <RegSingUpButton/>
+                  <RegSignUpButton/>
                   </div>
 
                 </form>
