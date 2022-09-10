@@ -1,5 +1,6 @@
 import React from "react";
 import {RegButton} from "../components/RegButton"
+import { TextField } from "@mui/material";
 
 
 function SignIn() {
@@ -13,7 +14,6 @@ function SignIn() {
             <div className="card-body p-md-5">
               <div className="row justify-content-center">
                 <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-  
                   <h1 className="signUpText mb-5 mx-1 mt-4">Sign in</h1>
   
                   <form className="mx-1 mx-md-4">
@@ -21,16 +21,14 @@ function SignIn() {
                     <div className="d-flex flex-row align-items-center mb-4">
                       <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div className="form-outline flex-fill mb-0">
-                        <label className="form-label" for="form3Example1c">Email</label>
-                        <input type="text" id="form3Example1c" className="form-control secondarColor" />
+                        <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Name" variant="outlined" size = "normal"/>
                       </div>
                     </div>
   
                     <div className="d-flex flex-row align-items-center mb-4">
                       <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div className="form-outline flex-fill mb-0">
-                        <label className="form-label" for="form3Example1c">Password</label>
-                        <input type="email" id="form3Example2c" className="form-control secondarColor" />
+                      <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Password" variant="outlined" size = "normal"/>
                       </div>
                     </div>
 
