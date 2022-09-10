@@ -21,32 +21,32 @@ function SignUp() {
                   <div className="d-flex flex-row align-items-center mb-4">
                     <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div className="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" className="form-control secondarColor" />
                       <label className="form-label" for="form3Example1c">Name</label>
+                      <input type="text" id="form3Example1c" className="form-control secondarColor" />
                     </div>
                   </div>
 
                   <div className="d-flex flex-row align-items-center mb-4">
                     <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div className="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example2c" className="form-control secondarColor" />
                       <label className="form-label" for="form3Example1c">Email</label>
+                      <input type="email" id="form3Example2c" className="form-control secondarColor" />
                     </div>
                   </div>
 
                   <div className="d-flex flex-row align-items-center mb-4">
                     <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div className="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example3c" className="form-control secondarColor" />
                       <label className="form-label" for="form3Example4c">Password</label>
+                      <input type="password" id="form3Example3c" className="form-control secondarColor" />
                     </div>
                   </div>
 
                   <div className="d-flex flex-row align-items-center mb-4">
                     <i className="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div className="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example3cd" className="form-control secondarColor" />
                       <label className="form-label" for="form3Example4cd">Repeat your password</label>
+                      <input type="password" id="form3Example3cd" className="form-control secondarColor" />
                     </div>
                   </div>
                   <div class=" d-flex justify-content-center">
