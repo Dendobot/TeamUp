@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema({
     default: Date.now
   },
   recipes: {
+    // list of recipe ids
     type: [String],
     required: false
   },

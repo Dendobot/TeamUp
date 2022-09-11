@@ -138,5 +138,43 @@
     ],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "93cdf8fd-b901-479e-a362-d08e18fcf569",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:5000/users/register",
+    "url": "https://localhost:5000/users/register",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-08T04:02:09.815Z",
+    "modified": "2022-09-08T04:02:09.845Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  user: \"Hello\",\n  pwd: \"Hello\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "a29406ed-54bf-4002-accb-f940839b5b9f",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:5000/users/register",
+    "url": "https://localhost:5000/users/register",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-09-08T04:02:16.007Z",
+    "modified": "2022-09-08T04:02:16.021Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  user: \"Hello\",\n  pwd: \"Hello\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

@@ -1,30 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/user.js");
-const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-
-
 router.use(bodyParser.json()); //Handles JSON requests
 router.use(bodyParser.urlencoded({ extended: false }));
 
 
-//login handle
-router.get('/login', async (req, res) => {
-
-  //res.render('login')
-});
-router.get('/register', (req, res) => {
-  //res.render('register')
-  console.log(req.body.hello);
-  res.send("haah");
-});
 //Register handle
-
 router.post('/register', async (req, res) => {
   console.log('register request recieved\nuser: ' + req.body.user + ' password: ' + req.body.pwd);
 
