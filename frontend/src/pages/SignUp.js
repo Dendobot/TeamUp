@@ -6,10 +6,10 @@ import Navigation from "../components/Navigation"
 function SignUp() {
   return (
     <div>
-      <Navigation />
+      
       <img className= "topLightimg" src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}alt="sign up page"/>
       <img className= "tableimg" src={`https://file.rendit.io/n/gn4fjsG9mBii7yYE2WMk.png`}alt="sign up page"/>
-      
+      <Navigation />
       <section class="vh-90">
     <div className="row d-flex justify-content-center align-items-center h-90">
       <div className="col-lg-12 col-xl-11">

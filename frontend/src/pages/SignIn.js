@@ -9,8 +9,9 @@ import Navigation from "../components/Navigation"
 function SignUp() {
   return (
       <div>
-        <Navigation />
         <img className= "topLightimg" src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}alt="sign in page"/>
+        <Navigation />
+        
         <section class="vh-90">
       <div className="row d-flex justify-content-center align-items-center h-90">
         <div className="col-lg-12 col-xl-11">
