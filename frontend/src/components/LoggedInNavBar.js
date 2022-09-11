@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function Navigation() {
+function LoggedInNavBar() {
   return (
     <nav class="navbar navbar-expand-lg navbar-light ">
       <div className="left">
@@ -14,25 +14,25 @@ function Navigation() {
           <div className="navbar-collapse collapse right" id="navbarNav">
           <ul className="navbar-nav ml-auto">
                 <li className="nav-item navBarLinks">
-                  <NavLink className="nav-link " to="/landingPage">
-                    Home
+                  <NavLink className="nav-link " to="/home">
+                  Your recipes
                     <span className="sr-only">(current)</span>
                   </NavLink>
                 </li>
                 <li className="nav-item navBarLinks">
-                  <NavLink className="nav-link" to="/about">
-                    About
+                  <NavLink className="nav-link" to="/addRecipe">
+                  Add Recipe
                   </NavLink>
                 </li>
                 <li className="nav-item navBarLinks">
-                  <NavLink className="nav-link" to="/signin">
-                    Sign in
+                  <NavLink className="nav-link " to="/Profile">
+                  Profile
                   </NavLink>
                 </li>
 
                 <li className="nav-item navBarLinks">
-                  <NavLink className="nav-link" to="/signup">
-                    Sign up
+                  <NavLink className="nav-link " to="/landingPage">
+                  Logout
                   </NavLink>
                 </li>
               </ul>
@@ -43,7 +43,7 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+export default LoggedInNavBar;
 
 
 

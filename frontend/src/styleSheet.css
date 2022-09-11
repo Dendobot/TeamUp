@@ -134,7 +134,7 @@ body {
     width: 200px;
     height: 54px;
     color: white;
-    background: #0671B7;
+    background: var(--primaryBlue);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
   }
@@ -168,8 +168,35 @@ body {
 
   .tableimg{
     position: absolute;
-    left: 900px;
-    top: 550px;
+    left: 405px;
+    top: 560px;
+  }
+
+  .uploadePhoto{
+    width: 346px;
+    height: 289px;
+    background: #FFFFFF;
+    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
+    border-radius: 25px;
+  }
+
+  .bgColor{
+    position: relative;
+
+
+    background: #EFF9FF;
+  }
+
+  .photoBox{
+    width: 315.73px;
+    height: 263.65px;
+    border-radius: 25px;
+  }
+
+ 
+
+  .addRecHeadings{
+    color: var(--primaryBlue);
   }
 
   

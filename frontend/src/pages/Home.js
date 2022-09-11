@@ -2,9 +2,11 @@ import React from "react";
 import BottomBar from "../components/BottomBar"
 import { RegButton } from "../components/RegButton";
 
+import Navigation from "../components/Navigation";
 function Home() {
   return (
     <div>
+      <Navigation />
     <div className="home">
       <div className="grid-container ">
       <div className="landingPageText">

@@ -4,11 +4,12 @@ import {TextField} from "@mui/material";
 import InputAdornment from '@mui/material/InputAdornment';
 import FaceIcon from '@mui/icons-material/Face';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import Navigation from "../components/Navigation"
 
-
-function SignIn() {
+function SignUp() {
   return (
       <div>
+        <Navigation />
         <img className= "topLightimg" src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}alt="sign in page"/>
         <section class="vh-90">
       <div className="row d-flex justify-content-center align-items-center h-90">
@@ -70,4 +71,4 @@ function SignIn() {
     );
 }
 
-export default SignIn;
+export default SignUp;

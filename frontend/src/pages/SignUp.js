@@ -1,12 +1,15 @@
 
 import React from "react";
 import {RegButton} from "../components/RegButton"
+import Navigation from "../components/Navigation"
 
 function SignUp() {
   return (
     <div>
+      <Navigation />
       <img className= "topLightimg" src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}alt="sign up page"/>
-      <img className= "tableimg" src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}alt="sign up page"/>
+      <img className= "tableimg" src={`https://file.rendit.io/n/gn4fjsG9mBii7yYE2WMk.png`}alt="sign up page"/>
+      
       <section class="vh-90">
     <div className="row d-flex justify-content-center align-items-center h-90">
       <div className="col-lg-12 col-xl-11">
@@ -20,7 +23,6 @@ function SignUp() {
                 <form className="mx-1 mx-md-4">
 
                   <div className="d-flex flex-row align-items-center mb-4">
-                    <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div className="form-outline flex-fill mb-0">
                       <label className="form-label" for="form3Example1c">Name</label>
                       <input type="email" id="form3Example2c" className="form-control secondarColor" />
@@ -28,7 +30,6 @@ function SignUp() {
                   </div>
 
                   <div className="d-flex flex-row align-items-center mb-4">
-                    <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div className="form-outline flex-fill mb-0">
                       <label className="form-label" for="form3Example1c">Email</label>
                       <input type="email" id="form3Example2c" className="form-control secondarColor" />
@@ -36,7 +37,6 @@ function SignUp() {
                   </div>
 
                   <div className="d-flex flex-row align-items-center mb-4">
-                    <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div className="form-outline flex-fill mb-0">
                       <label className="form-label" for="form3Example4c">Password</label>
                       <input type="password" id="form3Example3c" className="form-control secondarColor" />
@@ -44,7 +44,6 @@ function SignUp() {
                   </div>
 
                   <div className="d-flex flex-row align-items-center mb-4">
-                    <i className="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div className="form-outline flex-fill mb-0">
                       <label className="form-label" for="form3Example4cd">Repeat your password</label>
                       <input type="password" id="form3Example3cd" className="form-control secondarColor" />
