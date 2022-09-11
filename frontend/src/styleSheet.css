@@ -1,0 +1,203 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  * {
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+    --primaryBlue: #0671B7;
+    --secondaryBlue: #E0F3FF;
+    --lightBlue:  #F9FDFF;
+  }
+  
+
+  h1 {
+    font-size: 34;
+  }
+  
+  h2 {
+    font-size: 20;
+    font-weight: bold;
+  }
+  
+  h3 {
+    font-size: 20;
+    font-weight: 600;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+
+
+  h5{
+    font-size: 18;
+    font-weight: bold;
+  }
+  
+  ul {
+    font-size: 16px;
+  }
+  
+  .centered-text {
+    text-align: center;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.349);
+  }
+
+  .underline {
+    text-decoration: underline;
+  }
+
+  .container {
+    flex-wrap: wrap;
+    flex-direction: column;
+    
+  }
+
+  .navBarLinks{
+    margin-left: 3rem;
+    font-size: large;
+  }
+
+  .left{
+    margin-left: 8rem;
+  }
+  .right{
+    margin-right: 8rem;
+  }
+
+  .footer{
+    background-color: var(--lightBlue);
+  }
+
+  .letsGetText{
+    color: var(--primaryBlue);
+    font-size: 50px;
+    font-weight: bold;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+   
+  }
+
+  .cooking{
+    color: var(--primaryBlue);
+    font-size: 85px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .center-horiz {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .center-vert {
+    margin-top:auto;
+    margin-bottom: auto;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 80vh;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .centerthis {
+    align-self: center;
+    justify-self: center;
+  }
+
+  .sign-up-button{
+    padding: 10px;
+    width: 200px;
+    height: 54px;
+    color: white;
+    background: var(--primaryBlue);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+  }
+
+  .bottomBar{
+    background-color: var(--secondaryBlue);
+  }
+
+  .EasilyLandingPage{
+    font-weight: 600;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .topLightimg {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .signUpText{
+    font-size: 34;
+    font-weight: bold;
+    color: var(--primaryBlue);
+  }
+
+  .secondarColor{
+    background-color: var(--secondaryBlue);
+  }
+
+  .tableimg{
+    position: absolute;
+    left: 405px;
+    top: 560px;
+  }
+
+  .uploadePhoto{
+    width: 346px;
+    height: 289px;
+    background: #FFFFFF;
+    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
+    border-radius: 25px;
+  }
+
+  .bgColor{
+    position: relative;
+
+
+    background: #EFF9FF;
+  }
+
+  .photoBox{
+    width: 315.73px;
+    height: 263.65px;
+    border-radius: 25px;
+  }
+
+ 
+
+  .addRecHeadings{
+    color: var(--primaryBlue);
+  }
+
+  
