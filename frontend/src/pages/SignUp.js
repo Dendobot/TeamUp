@@ -6,6 +6,7 @@ function SignUp() {
   return (
     <div>
       <img className= "topLightimg" src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}alt="sign up page"/>
+      <img className= "tableimg" src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}alt="sign up page"/>
       <section class="vh-90">
     <div className="row d-flex justify-content-center align-items-center h-90">
       <div className="col-lg-12 col-xl-11">
@@ -60,12 +61,12 @@ function SignUp() {
       </div>
   </div>
 </section>
-  <div class="form-check d-flex justify-content-center mb-5">
-                      <label class="form-check-label" for="form2Example3">
-                      Already have an account?  <a class = "underline" href="../signin">Log in here</a>
-                      </label>
-                    </div>
-<img className= "tableimg" src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}alt="sign up page"/>
+<div class="form-check d-flex justify-content-center mb-4">
+    <label class="form-check-label" for="form2Example3">
+          Already have an account?  <a class = "underline" href="../signin">Log in here</a>
+    </label>
+</div>
+
     </div>
   );
 }
