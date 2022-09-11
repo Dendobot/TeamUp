@@ -3,10 +3,10 @@ import React from "react";
 function Footer() {
   return (
     <div className="footer">
-      <footer class="py-5 footer fixed-bottom">
+      <footer class="py-1 footer fixed-bottom">
         <div class="container">
           <p class="m-0 text-center ">
-                Keep your family recipes, favourites and go-to recipes all in one place
+                      made with ❤️ by TeamUp
           </p>
         </div>
       </footer>

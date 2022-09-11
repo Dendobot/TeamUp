@@ -18,9 +18,9 @@ body {
 
   * {
     @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
-    font-family: "Montserrat", serif;
     --primaryBlue: #0671B7;
     --secondaryBlue: #E0F3FF;
+    --lightBlue:  #F9FDFF;
   }
   
 
@@ -42,6 +42,7 @@ body {
     font-size: 16px;
   }
 
+
   h5{
     font-size: 18;
     font-weight: bold;
@@ -58,6 +59,10 @@ body {
   a:hover {
     text-decoration: none;
     color: rgba(0, 0, 0, 0.349);
+  }
+
+  .underline {
+    text-decoration: underline;
   }
 
   .container {
@@ -79,19 +84,26 @@ body {
   }
 
   .footer{
-    background-color: var(--secondaryBlue);
+    background-color: var(--lightBlue);
   }
 
   .letsGetText{
     color: var(--primaryBlue);
     font-size: 50px;
     font-weight: bold;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+   
   }
 
   .cooking{
     color: var(--primaryBlue);
     font-size: 85px;
     font-weight: bolder;
+    display: flex;
+    justify-content: left;
+    align-items: center;
   }
 
   .center-horiz {
@@ -117,20 +129,75 @@ body {
   }
 
   .sign-up-button{
-    margin-top: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 10px;
     width: 200px;
     height: 54px;
-    left: 85px;
-    top: 689px;
     color: white;
-    background: #0671B7;
+    background: var(--primaryBlue);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
   }
 
+  .bottomBar{
+    background-color: var(--secondaryBlue);
+  }
+
+  .EasilyLandingPage{
+    font-weight: 600;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .topLightimg {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .signUpText{
+    font-size: 34;
+    font-weight: bold;
+    color: var(--primaryBlue);
+  }
+
+  .secondarColor{
+    background-color: var(--secondaryBlue);
+  }
+
+  .tableimg{
+    position: absolute;
+    left: 405px;
+    top: 560px;
+  }
+
+  .uploadePhoto{
+    width: 346px;
+    height: 289px;
+    background: #FFFFFF;
+    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
+    border-radius: 25px;
+  }
+
+  .bgColor{
+    position: relative;
+
+
+    background: #EFF9FF;
+  }
+
+  .photoBox{
+    width: 315.73px;
+    height: 263.65px;
+    border-radius: 25px;
+  }
+
+ 
+
+  .addRecHeadings{
+    color: var(--primaryBlue);
+  }
 
   
