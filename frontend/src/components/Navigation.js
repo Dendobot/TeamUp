@@ -14,7 +14,7 @@ function Navigation() {
           <div className="navbar-collapse collapse right" id="navbarNav">
           <ul className="navbar-nav ml-auto">
                 <li className="nav-item navBarLinks">
-                  <NavLink className="nav-link " to="/home">
+                  <NavLink className="nav-link" to="/home">
                     Home
                     <span className="sr-only">(current)</span>
                   </NavLink>
@@ -25,13 +25,13 @@ function Navigation() {
                   </NavLink>
                 </li>
                 <li className="nav-item navBarLinks">
-                  <NavLink className="nav-link " to="/signin">
+                  <NavLink className="nav-link" to="/signin">
                     Sign in
                   </NavLink>
                 </li>
 
                 <li className="nav-item navBarLinks">
-                  <NavLink className="nav-link " to="/signup">
+                  <NavLink className="nav-link" to="/signup">
                     Sign up
                   </NavLink>
                 </li>

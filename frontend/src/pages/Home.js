@@ -13,7 +13,7 @@ function Home() {
         <h3 className="EasilyLandingPage">Easily store recipes to</h3>
         <h3 className="EasilyLandingPage">recreate at any time with</h3>
         <h3 className="EasilyLandingPage">Foodie</h3>
-        <RegButton text = 'Sign me up!' button_type = 'sign-up-button'/>
+        <RegButton text = 'Sign me up!'/>
       </div>
       <img src={`https://file.rendit.io/n/rZRVDlqtBdNumaJBs8iy.png`}alt="landing page"/>
     </div>

@@ -4,7 +4,7 @@ import {RegButton} from "../components/RegButton"
 
 function SignUp() {
   return (
-    <div >
+    <div>
       <img className= "topLightimg" src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}alt="sign up page"/>
       <section class="vh-90">
     <div className="row d-flex justify-content-center align-items-center h-90">
@@ -50,18 +50,14 @@ function SignUp() {
                     </div>
                   </div>
                   <div class=" d-flex justify-content-center">
-                  <RegButton text = 'Sign up' button_type = 'sign-up-button mb-4'/>
+                  <RegButton text = 'Sign up'/>
                   </div>
-
                 </form>
-                
-
               </div>
             </div>
           </div>
         </div>
       </div>
-    
   </div>
 </section>
   <div class="form-check d-flex justify-content-center mb-5">

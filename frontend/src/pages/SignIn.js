@@ -1,11 +1,14 @@
 import React from "react";
 import {RegButton} from "../components/RegButton"
-import { TextField } from "@mui/material";
+import {TextField} from "@mui/material";
+import InputAdornment from '@mui/material/InputAdornment';
+import FaceIcon from '@mui/icons-material/Face';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 function SignIn() {
   return (
-      <div >
+      <div>
         <img className= "topLightimg" src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}alt="sign in page"/>
         <section class="vh-90">
       <div className="row d-flex justify-content-center align-items-center h-90">
@@ -21,32 +24,43 @@ function SignIn() {
                     <div className="d-flex flex-row align-items-center mb-4">
                       <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div className="form-outline flex-fill mb-0">
-                        <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Name" variant="outlined" size = "normal"/>
+                        <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Email" InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <FaceIcon />
+            </InputAdornment>
+          ),
+        }}
+        variant="outlined" size = "normal"/>
                       </div>
                     </div>
   
                     <div className="d-flex flex-row align-items-center mb-4">
                       <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div className="form-outline flex-fill mb-0">
-                      <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Password" variant="outlined" size = "normal"/>
+                      <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Password" InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <VisibilityOffIcon />
+            </InputAdornment>
+          ),
+        }}
+        variant="outlined" size = "normal"/>
                       </div>
                     </div>
 
                     <div class=" d-flex justify-content-center">
-                    <RegButton text = 'Sign in' button_type = 'sign-up-button mb-4'/>
+                    <RegButton text = 'Sign in'/>
                     </div>
-  
                   </form>
-    
                 </div>
               </div>
             </div>
           </div>
         </div>
-      
     </div>
   </section>
-    <div class="form-check d-flex justify-content-center mb-5">
+    <div class="form-check d-flex justify-content-center mb-4">
                         <label class="form-check-label" for="form2Example3">
                         Don't have an account?  <a class = "underline" href="../signup">Sign up here</a>
                         </label>
