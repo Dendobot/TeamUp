@@ -68,7 +68,7 @@ function SignUp() {
 
                   <div className="d-flex flex-row align-items-center mb-4">
                     <div className="form-outline flex-fill mb-0">
-                    <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Repeat Password" InputProps={{
+                    <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Repeat password" InputProps={{
           startAdornment: (
             <InputAdornment position="start">
               <VisibilityOffIcon />
