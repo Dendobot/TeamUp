@@ -1,6 +1,11 @@
 
 import React from "react";
 import {RegButton} from "../components/RegButton"
+import {TextField} from "@mui/material";
+import InputAdornment from '@mui/material/InputAdornment';
+import FaceIcon from '@mui/icons-material/Face';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import EmailIcon from '@mui/icons-material/Email';
 import Navigation from "../components/Navigation"
 
 function SignUp() {
@@ -24,29 +29,53 @@ function SignUp() {
 
                   <div className="d-flex flex-row align-items-center mb-4">
                     <div className="form-outline flex-fill mb-0">
-                      <label className="form-label" for="form3Example1c">Name</label>
-                      <input type="email" id="form3Example2c" className="form-control secondarColor" />
+                    <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Name" InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <FaceIcon />
+            </InputAdornment>
+          ),
+        }}
+        variant="outlined" size = "normal"/>
+                      </div>
+                  </div>
+
+                  <div className="d-flex flex-row align-items-center mb-4">
+                    <div className="form-outline flex-fill mb-0">
+                    <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Email" InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <EmailIcon />
+            </InputAdornment>
+          ),
+        }}
+        variant="outlined" size = "normal"/>
                     </div>
                   </div>
 
                   <div className="d-flex flex-row align-items-center mb-4">
                     <div className="form-outline flex-fill mb-0">
-                      <label className="form-label" for="form3Example1c">Email</label>
-                      <input type="email" id="form3Example2c" className="form-control secondarColor" />
+                    <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Password" InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <VisibilityOffIcon />
+            </InputAdornment>
+          ),
+        }}
+        variant="outlined" size = "normal"/>
                     </div>
                   </div>
 
                   <div className="d-flex flex-row align-items-center mb-4">
                     <div className="form-outline flex-fill mb-0">
-                      <label className="form-label" for="form3Example4c">Password</label>
-                      <input type="password" id="form3Example3c" className="form-control secondarColor" />
-                    </div>
-                  </div>
-
-                  <div className="d-flex flex-row align-items-center mb-4">
-                    <div className="form-outline flex-fill mb-0">
-                      <label className="form-label" for="form3Example4cd">Repeat your password</label>
-                      <input type="password" id="form3Example3cd" className="form-control secondarColor" />
+                    <TextField className = "secondarColor" fullWidth id="outlined-basic" label = "Repeat Password" InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <VisibilityOffIcon />
+            </InputAdornment>
+          ),
+        }}
+        variant="outlined" size = "normal"/>
                     </div>
                   </div>
                   <div class=" d-flex justify-content-center">
