@@ -161,6 +161,7 @@ body {
     font-size: 34;
     font-weight: bold;
     color: var(--primaryBlue);
+    text-align: center;
   }
 
   .secondarColor{
@@ -169,8 +170,10 @@ body {
 
   .tableimg{
     position: absolute;
-    left: 405px;
-    top: 560px;
+    top: 110%;
+    left: 76%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 
   .uploadePhoto{
