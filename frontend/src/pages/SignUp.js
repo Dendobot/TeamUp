@@ -20,8 +20,9 @@ const validationSchema = yup.object({
     .string("Enter your password")
     .min(8, "Password should be of minimum 8 characters length")
     .required("Password is required"),
-    confirmPassword: yup.string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
 function SignUp() {
@@ -50,7 +51,6 @@ function SignUp() {
         src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}
         alt="sign up page"
       />
-
       <Navigation />
       <section class="vh-90">
         <div className="row d-flex justify-content-center align-items-center h-90">
@@ -183,19 +183,19 @@ function SignUp() {
           </div>
         </div>
       </section>
-      <div class="form-check d-flex justify-content-center mb-4">
-        <label class="form-check-label" for="form2Example3">
-          Already have an account?
-          <a class="underline" href="../signin">
-            Log in here
-          </a>
-        </label>
-      </div>
       <img
         className="tableimg"
         src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}
         alt="sign in page"
       />
+      <div class="form-check d-flex justify-content-center mb-4">
+        <label class="form-check-label" for="form2Example3">
+          Already have an account?
+          <a class="underline" href="../signin">
+            Sign in here
+          </a>
+        </label>
+      </div>
     </div>
   );
 }
