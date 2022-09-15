@@ -3,7 +3,7 @@ import BottomBar from "../components/BottomBar"
 import { RegButton } from "../components/RegButton";
 
 import Navigation from "../components/Navigation";
-function Home() {
+function Landing() {
   return (
     <div>
       <Navigation />
@@ -15,7 +15,7 @@ function Home() {
         <h3 className="EasilyLandingPage">Easily store recipes to</h3>
         <h3 className="EasilyLandingPage">recreate at any time with</h3>
         <h3 className="EasilyLandingPage">Foodie</h3>
-        <RegButton text = 'Sign me up!'/>
+        <a href="../signup"><RegButton text = 'Sign me up!'/></a>
       </div>
       <img src={`https://file.rendit.io/n/rZRVDlqtBdNumaJBs8iy.png`}alt="landing page"/>
     </div>
@@ -25,4 +25,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Landing;
