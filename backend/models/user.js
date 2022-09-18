@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true
+  },
   username: {
     type: String,
     required: true
@@ -13,7 +17,6 @@ const UserSchema = new mongoose.Schema({
     default: Date.now
   },
   recipes: {
-    // list of recipe ids
     type: [String],
     required: false
   },

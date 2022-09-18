@@ -10,6 +10,15 @@ import { useFormik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { Button } from "@mui/material";
 
+//for backEnd
+import axios from "../api/axios";
+import { useNavigate } from 'react-router-dom';
+const REGISTER_URL = '/users/register';
+
+function hasUpperCase(str) {
+  return str !== str.toLowerCase();
+}
+
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Name is required"),
   email: yup
@@ -17,15 +26,22 @@ const validationSchema = yup.object({
     .email("Enter a valid email")
     .required("Email is required"),
   password: yup
-    .string("Enter your password")
+    .string("Enter your password")    
     .min(8, "Password should be of minimum 8 characters length")
+    .matches(
+      /([A-Z])/,
+      "Must contain one Uppercase character"
+    )
     .required("Password is required"),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
-function SignUp() {
+function SignUp () {
+  //redirecting to login if successfully registered
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
@@ -35,12 +51,40 @@ function SignUp() {
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      //axios to back end
+      try {
+        const response = await axios.post(REGISTER_URL,
+          JSON.stringify({
+            user: values.name,
+            pwd: values.password,
+            email: values.email
+          }),
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true
+          }
+        );
+        console.log(response?.data);
+        console.log(response?.accessToken);
+        console.log(JSON.stringify(response));
+        alert("Success!");
+        navigate("/signin");
+      } catch (err) {
+        if (!err?.response) {
+          alert('No Server Response');
+        } else if (err.response?.status === 409) {
+          alert('Username Taken');
+        } else {
+          alert('Registration Failed');
+        }
+      }
+      //axios to back end
       console.log("you clicked the submit button");
       console.log("name = ", values.name);
-      console.log("name = ", values.email);
-      console.log("name = ", values.password);
-      alert(JSON.stringify(values));
+      console.log("email = ", values.email);
+      console.log("pwd = ", values.password);
+      //alert(JSON.stringify(values));
     },
   });
 

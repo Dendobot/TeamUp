@@ -1,20 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/user.js");
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+
+
 router.use(bodyParser.json()); //Handles JSON requests
 router.use(bodyParser.urlencoded({ extended: false }));
 
 
-//Register handle
-router.post('/register', async (req, res) => {
-  console.log('register request recieved\nuser: ' + req.body.user + ' password: ' + req.body.pwd);
+//login handle
+router.get('/login', async (req, res) => {
 
-  User.findOne({ username: req.body.user }).exec((err, user) => {
+  //res.render('login')
+});
+router.get('/register', (req, res) => {
+  //res.render('register')
+  console.log(req.body.hello);
+  res.send("haah");
+});
+//Register handle
+
+router.post('/register', async (req, res) => {
+  console.log('register request recieved\nuser: ' + req.body.user + ' password: ' + req.body.pwd + 'email' + req.body.email);
+
+  User.findOne({ email: req.body.email }).exec((err, user) => {
     console.log(user);
     if (user) {
       //code 409 to indicate username taken
@@ -25,7 +39,8 @@ router.post('/register', async (req, res) => {
     else {
       const newUser = new User({
         username: req.body.user,
-        password: req.body.pwd
+        password: req.body.pwd,
+        email: req.body.email
       });
 
       bcrypt.genSalt(10, (err, salt) =>
@@ -55,13 +70,13 @@ router.post('/register', async (req, res) => {
 
 //authorise a user and sends a jwt back
 router.post('/auth', async (req, res, next) => {
-  console.log('auth request recieved\nuser: ' + req.body.user + ' password: ' + req.body.pwd);
-  const { user, pwd } = req.body;
-  var username = user;
+  console.log('auth request recieved\nemail: ' + req.body.email + ' password: ' + req.body.pwd);
+  const { email, pwd } = req.body;
+  var useremail = email;
   var password = pwd;
-  if (!username || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
+  if (!useremail || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
 
-  const foundUser = await User.findOne({ username: username }).exec();
+  const foundUser = await User.findOne({ email: useremail }).exec();
   if (foundUser) {
     console.log('found user in db');
   }

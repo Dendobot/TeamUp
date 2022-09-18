@@ -129,7 +129,7 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-09-07T17:32:57.566Z",
-    "modified": "2022-09-07T17:38:59.106Z",
+    "modified": "2022-09-16T05:32:08.007Z",
     "headers": [
       {
         "name": "Cookie",
@@ -148,14 +148,9 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-09-08T04:02:09.815Z",
-    "modified": "2022-09-08T04:02:09.845Z",
+    "modified": "2022-09-16T05:32:44.269Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  user: \"Hello\",\n  pwd: \"Hello\"\n}",
-      "form": []
-    },
     "tests": []
   },
   {
@@ -163,18 +158,65 @@
     "colId": "history",
     "containerId": "",
     "name": "https://localhost:5000/users/register",
-    "url": "https://localhost:5000/users/register",
+    "url": "https://localhost:3500/users/register",
     "method": "POST",
     "sortNum": 0,
     "created": "2022-09-08T04:02:16.007Z",
-    "modified": "2022-09-08T04:02:16.021Z",
+    "modified": "2022-09-16T05:32:21.415Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  user: \"Hello\",\n  pwd: \"Hello\"\n}",
+      "raw": "{\n  \"user\": \"Hello\",\n  \"pwd\": \"Hello\",\n  \"email\": \"dsad@312.com\"\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "52ce8c9e-cc0f-48f4-ae66-4f1018a2bd04",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:3500users/register",
+    "url": "https://localhost:3500users/register",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-16T05:32:50.869Z",
+    "modified": "2022-09-16T05:32:50.885Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "84b22140-22d5-4c44-9df1-ac6f7f59b58d",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:3500/users/register",
+    "url": "http://localhost:3500/users/register",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-09-16T05:32:57.422Z",
+    "modified": "2022-09-16T05:33:40.074Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"user\": \"Hello\",\n  \"pwd\": \"Hello\",\n  \"email\": \"dsad@312.com\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "de10be46-b2ab-47a9-be87-d895965953ba",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3500/users/register",
+    "url": "http://localhost:3500/users/register",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-16T05:33:16.131Z",
+    "modified": "2022-09-16T05:33:16.137Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
