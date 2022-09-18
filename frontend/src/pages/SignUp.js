@@ -15,6 +15,9 @@ import axios from "../api/axios";
 import { useNavigate } from 'react-router-dom';
 const REGISTER_URL = '/users/register';
 
+function hasUpperCase(str) {
+  return str !== str.toLowerCase();
+}
 
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Name is required"),
@@ -25,6 +28,7 @@ const validationSchema = yup.object({
   password: yup
     .string("Enter your password")
     .min(8, "Password should be of minimum 8 characters length")
+    .oneOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ",'One upper case')
     .required("Password is required"),
   confirmPassword: yup
     .string()
