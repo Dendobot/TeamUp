@@ -28,7 +28,7 @@ const validationSchema = yup.object({
   password: yup
     .string("Enter your password")
     .min(8, "Password should be of minimum 8 characters length")
-    .oneOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ",'One upper case')
+    .oneOf(["ABCDEFGHIJKLMNOPQRSTUVWXYZ"],'One upper case')
     .required("Password is required"),
   confirmPassword: yup
     .string()
