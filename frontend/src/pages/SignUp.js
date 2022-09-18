@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import FaceIcon from "@mui/icons-material/Face";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import LockIcon from "@mui/icons-material/Lock";
 import EmailIcon from "@mui/icons-material/Email";
 import Navigation from "../components/Navigation";
-import { useFormik, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button } from "@mui/material";
 
@@ -115,7 +114,7 @@ function SignUp () {
                         value={formik.values.name}
                         onChange={formik.handleChange}
                         error={
-                          formik.touched.email && Boolean(formik.errors.name)
+                          formik.touched.name && Boolean(formik.errors.name)
                         }
                         // helperText={formik.touched.name && formik.errors.name}
                         InputProps={{
@@ -126,7 +125,7 @@ function SignUp () {
                           ),
                         }}
                       />
-                      {Boolean(formik.errors.name) && formik.touched.email && (
+                      {Boolean(formik.errors.name) && formik.touched.name && (
                         <div style={{ color: "#d32f2f" }}>
                           {formik.errors.name}
                         </div>

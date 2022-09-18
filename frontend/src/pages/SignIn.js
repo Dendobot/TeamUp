@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { RegButton } from "../components/RegButton";
 import { TextField } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import FaceIcon from "@mui/icons-material/Face";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import LockIcon from "@mui/icons-material/Lock";
 import Navigation from "../components/Navigation";
+import { useFormik } from "formik";
+import { Button } from "@mui/material";
 
 function SignUp() {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: async (values) => {
+      //axios to back end
+      console.log("you clicked the submit button");
+      console.log("email = ", values.email);
+      console.log("pwd = ", values.password);
+      //alert(JSON.stringify(values));
+    },
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+
   return (
     <div>
       <img
@@ -24,16 +43,20 @@ function SignUp() {
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                     <h1 className="signUpText mb-5 mx-1 mt-4">Sign in</h1>
-
-                    <form className="mx-1 mx-md-4">
+                    <form
+                      className="mx-1 mx-md-4"
+                      onSubmit={formik.handleSubmit}
+                    >
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div className="form-outline flex-fill mb-0">
                           <TextField
                             className="secondarColor"
                             fullWidth
-                            id="outlined-basic"
                             label="Email"
+                            id="email"
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
                             InputProps={{
                               startAdornment: (
                                 <InputAdornment position="start">
@@ -53,12 +76,16 @@ function SignUp() {
                           <TextField
                             className="secondarColor"
                             fullWidth
-                            id="outlined-basic"
+                            id="password"
+                            name="password"
                             label="Password"
+                            type={showPassword ? "text" : "password"}
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
                             InputProps={{
                               startAdornment: (
                                 <InputAdornment position="start">
-                                  <VisibilityOffIcon />
+                              <LockIcon />
                                 </InputAdornment>
                               ),
                             }}
@@ -67,9 +94,10 @@ function SignUp() {
                           />
                         </div>
                       </div>
-
                       <div class=" d-flex justify-content-center">
-                        <RegButton text="Sign in" />
+                        <Button variant="contained" size="large" type="submit">
+                          Sign in
+                        </Button>
                       </div>
                     </form>
                   </div>
