@@ -53,7 +53,7 @@ router.post('/register', async (req, res) => {
             newUser.save()
               .then((value) => {
                 console.log(value);
-                res.status(201).json({ 'success': `New Recipe ${user} created!` });
+                res.status(201).json({ 'success': `New User ${user} created!` });
               })
               .catch(value => {
                 console.log(value);
@@ -113,7 +113,7 @@ router.post('/auth', async (req, res, next) => {
     });
 
     // Send authorization roles and access token to user
-    res.json({ accessToken });
+    res.json({ accessToken, user: foundUser.username });
   } else {
     console.log('no match for pwd');
     res.sendStatus(401);

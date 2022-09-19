@@ -11,12 +11,10 @@ import { Button } from "@mui/material";
 
 //for backEnd
 import axios from "../api/axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 const REGISTER_URL = '/users/register';
 
-function hasUpperCase(str) {
-  return str !== str.toLowerCase();
-}
+
 
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Name is required"),
@@ -25,7 +23,7 @@ const validationSchema = yup.object({
     .email("Enter a valid email")
     .required("Email is required"),
   password: yup
-    .string("Enter your password")    
+    .string("Enter your password")
     .min(8, "Password should be of minimum 8 characters length")
     .matches(
       /([A-Z])/,
@@ -73,7 +71,7 @@ function SignUp () {
         if (!err?.response) {
           alert('No Server Response');
         } else if (err.response?.status === 409) {
-          alert('Username Taken');
+          alert('This email is registered');
         } else {
           alert('Registration Failed');
         }
@@ -234,9 +232,7 @@ function SignUp () {
       <div class="form-check d-flex justify-content-center mb-4">
         <label class="form-check-label" for="form2Example3">
           Already have an account?
-          <a class="underline" href="../signin">
-            Sign in here
-          </a>
+          <Link className="underline" to="/signIn"> Sign In</Link>
         </label>
       </div>
     </div>

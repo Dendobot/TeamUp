@@ -8,13 +8,58 @@ import Navigation from "../components/Navigation";
 import { useFormik } from "formik";
 import { Button } from "@mui/material";
 
-function SignUp() {
+
+
+//backend
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+import axios from '../api/axios';
+const LOGIN_URL = "/users/auth";
+
+
+function SignUp () {
+  //
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  //
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     onSubmit: async (values) => {
+
+      try {
+        const response = await axios.post(LOGIN_URL,
+          JSON.stringify({ email: values.email, pwd: values.password }),
+          {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true
+          }
+        );
+        console.log(response?.data);
+        const accessToken = response?.data?.accessToken;
+        const user = response?.data?.user;
+        console.log('User: ' + user);
+        alert('Logged In');
+        setAuth({ user: user, pwd: values.password, email: values.email, accessToken });
+        navigate(from, { replace: true });
+      } catch (err) {
+        if (!err?.response) {
+          alert('No Server Response');
+        } else if (err.response?.status === 400) {
+          alert('Missing Username or Password');
+        } else if (err.response?.status === 401) {
+          alert('Unauthorized');
+        } else {
+          alert('Login Failed');
+        }
+      }
+
+
       //axios to back end
       console.log("you clicked the submit button");
       console.log("email = ", values.email);
@@ -85,7 +130,7 @@ function SignUp() {
                             InputProps={{
                               startAdornment: (
                                 <InputAdornment position="start">
-                              <LockIcon />
+                                  <LockIcon />
                                 </InputAdornment>
                               ),
                             }}
@@ -110,9 +155,7 @@ function SignUp() {
       <div class="form-check d-flex justify-content-center mb-4">
         <label class="form-check-label" for="form2Example3">
           Don't have an account?
-          <a class="underline" href="../signup">
-            Sign up here
-          </a>
+          <Link className="underline" to="/signup"> Sign Up</Link>
         </label>
       </div>
       <img
