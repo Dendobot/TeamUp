@@ -27,14 +27,25 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
   console.log('register request recieved\nuser: ' + req.body.user + ' password: ' + req.body.pwd + 'email' + req.body.email);
+  var foundUser = await User.findOne({ username: req.body.user }).exec();
+  if (foundUser) {
+    console.log("found");
+    console.log(foundUser);
+    //code 409 to indicate username taken
+    return res.status(444).send({
+      message: 'This is an error!'
+    });
 
+  }
   User.findOne({ email: req.body.email }).exec((err, user) => {
     console.log(user);
     if (user) {
+      console.log("email taken");
       //code 409 to indicate username taken
       return res.status(409).send({
         message: 'This is an error!'
       });
+
     }
     else {
       const newUser = new User({
@@ -146,7 +157,7 @@ router.get('/refresh', async (req, res) => {
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: '10s' }
       );
-      res.json({ accessToken });
+      res.json({ accessToken, user: foundUser.username });
     }
   );
 });

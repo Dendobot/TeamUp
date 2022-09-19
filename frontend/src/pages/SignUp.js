@@ -72,6 +72,8 @@ function SignUp () {
           alert('No Server Response');
         } else if (err.response?.status === 409) {
           alert('This email is registered');
+        } else if (err.response?.status === 444) {
+          alert('This username is registered');
         } else {
           alert('Registration Failed');
         }
