@@ -80,5 +80,5 @@ This respository holds all the necessary code and files required to compile and 
 ## Testing
 
 For instructions on how to run the frontend of the website, please look at the readme file in the [frontend](https://github.com/Dendobot/TeamUp/tree/main/frontend) folder.
-For instruction on how to run the backend of the website, please look at the readme file in the [backend](https://github.com/Dendobot/TeamUp/tree/main/backend) folder.
+For instructions on how to run the backend of the website, please look at the readme file in the [backend](https://github.com/Dendobot/TeamUp/tree/main/backend) folder.
 
