@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { RegButton } from "../components/RegButton";
 import { TextField } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import FaceIcon from "@mui/icons-material/Face";
@@ -74,7 +73,7 @@ function SignUp () {
   return (
     <div>
       <img
-        className="topLightimg"
+        className="top-lightimg "
         src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}
         alt="sign in page"
       />
@@ -87,7 +86,7 @@ function SignUp () {
               <div className="card-body p-md-5">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                    <h1 className="signUpText mb-5 mx-1 mt-4">Sign in</h1>
+                    <h1 className="sign-up-text mb-5 mx-1 mt-4">Sign in</h1>
                     <form
                       className="mx-1 mx-md-4"
                       onSubmit={formik.handleSubmit}
@@ -96,7 +95,7 @@ function SignUp () {
                         <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div className="form-outline flex-fill mb-0">
                           <TextField
-                            className="secondarColor"
+                            className="secondary-color"
                             fullWidth
                             label="Email"
                             id="email"
@@ -119,7 +118,7 @@ function SignUp () {
                         <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div className="form-outline flex-fill mb-0">
                           <TextField
-                            className="secondarColor"
+                            className="secondary-color"
                             fullWidth
                             id="password"
                             name="password"

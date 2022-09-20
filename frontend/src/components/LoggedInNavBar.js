@@ -13,24 +13,24 @@ function LoggedInNavBar() {
           </button>
           <div className="navbar-collapse collapse right" id="navbarNav">
           <ul className="navbar-nav ml-auto">
-                <li className="nav-item navBarLinks">
+                <li className="nav-item nav-bar-links">
                   <NavLink className="nav-link " to="/home">
                   Your recipes
                     <span className="sr-only">(current)</span>
                   </NavLink>
                 </li>
-                <li className="nav-item navBarLinks">
+                <li className="nav-item nav-bar-links">
                   <NavLink className="nav-link" to="/addRecipe">
                   Add Recipe
                   </NavLink>
                 </li>
-                <li className="nav-item navBarLinks">
+                <li className="nav-item nav-bar-links">
                   <NavLink className="nav-link " to="/Profile">
                   Profile
                   </NavLink>
                 </li>
 
-                <li className="nav-item navBarLinks">
+                <li className="nav-item nav-bar-links">
                   <NavLink className="nav-link " to="/landingPage">
                   Logout
                   </NavLink>
