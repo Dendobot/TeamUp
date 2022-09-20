@@ -13,24 +13,18 @@ function Navigation() {
           </button>
           <div className="navbar-collapse collapse right" id="navbarNav">
           <ul className="navbar-nav ml-auto">
-                <li className="nav-item navBarLinks">
-                  <NavLink className="nav-link " to="/landingPage">
-                    Home
-                    <span className="sr-only">(current)</span>
-                  </NavLink>
-                </li>
-                <li className="nav-item navBarLinks">
+                <li className="nav-item nav-bar-links">
                   <NavLink className="nav-link" to="/about">
                     About
                   </NavLink>
                 </li>
-                <li className="nav-item navBarLinks">
+                <li className="nav-item nav-bar-links">
                   <NavLink className="nav-link" to="/signin">
                     Sign in
                   </NavLink>
                 </li>
 
-                <li className="nav-item navBarLinks">
+                <li className="nav-item nav-bar-links">
                   <NavLink className="nav-link" to="/signup">
                     Sign up
                   </NavLink>

@@ -9,7 +9,7 @@ const UploadAndDisplayImage = () => {
     <div class="col-sm">
     
          <input
-        className="uploadePhoto"
+        className="uploade-photo"
         type="file"
         name="myImage"
         onChange={(event) => {
@@ -19,9 +19,9 @@ const UploadAndDisplayImage = () => {
       {selectedImage && (
         <div>
         <br />
-        <div onClick={()=>setSelectedImage(null)} className="uploadePhoto">Remove</div>
+        <div onClick={()=>setSelectedImage(null)} className="uploade-photo">Remove</div>
         <br /><br /> 
-        <img className="photoBox" alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage) } />
+        <img className="photo-box" alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage) } />
         </div>
       )}
      <p className="addRecHeadings"> Note</p>
