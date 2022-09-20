@@ -8,12 +8,25 @@ function Navigation () {
 
   //this signout button will only appear if you are logged in
   var loginButton = <></>;
+  var home = <></>;
+  var about = <></>;
+  var signin = <></>;
+  var signout = <></>;
+  var myRecipes = <></>;
+  var addRecipe = <></>;
   const { auth } = useAuth();
   if (auth?.user) {
     loginButton =
       <SignOutButton />;
+    myRecipes = <NavLink className="nav-link" to="/home">My Recipes</NavLink>
+    addRecipe = <NavLink className="nav-link" to="/addRecipe">Add Recipe</NavLink>
   } else {
     loginButton = <></>;
+    home = <NavLink className="nav-link " to="/landingPage">Home<span className="sr-only">(current)</span></NavLink>
+    about = <NavLink className="nav-link" to="/about">About</NavLink>
+    signin= <NavLink className="nav-link" to="/signin">Sign in</NavLink>
+    signout = <NavLink className="nav-link" to="/signup">Sign up</NavLink>
+
   }
 
 
@@ -29,31 +42,20 @@ function Navigation () {
       <div className="navbar-collapse collapse right" id="navbarNav">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item navBarLinks">
-            <NavLink className="nav-link " to="/landingPage">
-              Home
-              <span className="sr-only">(current)</span>
-            </NavLink>
-          </li>
-          <li className="nav-item navBarLinks">
-            <NavLink className="nav-link" to="/Recipes">
-              Recipes
-            </NavLink>
-          </li>
-          <li className="nav-item navBarLinks">
-            <NavLink className="nav-link" to="/about">
-              About
-            </NavLink>
-          </li>
-          <li className="nav-item navBarLinks">
-            <NavLink className="nav-link" to="/signin">
-              Sign in
-            </NavLink>
+            {home}
+            {myRecipes}
           </li>
 
           <li className="nav-item navBarLinks">
-            <NavLink className="nav-link" to="/signup">
-              Sign up
-            </NavLink>
+            {about}
+            {addRecipe}
+            </li>
+          <li className="nav-item navBarLinks">
+            {signin}
+          </li>
+
+          <li className="nav-item navBarLinks">
+            {signout}
           </li>
           <li className="nav-item navBarLinks">
             {loginButton}
