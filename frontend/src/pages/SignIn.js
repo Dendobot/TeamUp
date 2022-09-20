@@ -7,13 +7,62 @@ import Navigation from "../components/Navigation";
 import { useFormik } from "formik";
 import { Button } from "@mui/material";
 
+//backend
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import axios from "../api/axios";
+const LOGIN_URL = "/users/auth";
+
 function SignUp() {
+  //
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  //
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     onSubmit: async (values) => {
+      try {
+        formik.errors.password = "";
+        const response = await axios.post(
+          LOGIN_URL,
+          JSON.stringify({ email: values.email, pwd: values.password}),
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          }
+        );
+        console.log(response?.data);
+        const accessToken = response?.data?.accessToken;
+        const user = response?.data?.user;
+        console.log("User: " + user);
+        alert("Logged In");
+        setAuth({
+          user: user,
+          pwd: values.password,
+          email: values.email,
+          accessToken,
+        });
+        navigate(from, { replace: true });
+      } catch (err) {
+        console.log("error = ", err.response?.status);
+        if (!err?.response) {
+         formik.errors.password = "No Server Response";
+        } else if (err.response?.status === 400) {
+          formik.errors.password = "Missing Username or Password";
+        } else if (err.response?.status === 401) {
+          formik.errors.password = "Invalid username or Password";
+        } else {
+          formik.errors.password = "Login Failed";
+        }
+      }
+
       //axios to back end
       console.log("you clicked the submit button");
       console.log("email = ", values.email);
@@ -23,7 +72,6 @@ function SignUp() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-
 
   return (
     <div>
@@ -46,53 +94,53 @@ function SignUp() {
                       className="mx-1 mx-md-4"
                       onSubmit={formik.handleSubmit}
                     >
-                      <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-user fa-lg me-3 fa-fw"></i>
-                        <div className="form-outline flex-fill mb-0">
-                          <TextField
-                            className="secondary-color"
-                            fullWidth
-                            label="Email"
-                            id="email"
-                            value={formik.values.email}
-                            onChange={formik.handleChange}
-                            InputProps={{
-                              startAdornment: (
-                                <InputAdornment position="start">
-                                  <FaceIcon />
-                                </InputAdornment>
-                              ),
-                            }}
-                            variant="outlined"
-                            size="normal"
-                          />
-                        </div>
-                      </div>
+                      <span className="d-flex flex-column  mb-4">
+                        <TextField
+                          className="secondary-color"
+                          fullWidth
+                          label="Email"
+                          id="email"
+                          value={formik.values.email}
+                          onChange={formik.handleChange}
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <FaceIcon />
+                              </InputAdornment>
+                            ),
+                          }}
+                          variant="outlined"
+                          size="normal"
+                        />
+                      </span>
 
-                      <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-user fa-lg me-3 fa-fw"></i>
-                        <div className="form-outline flex-fill mb-0">
-                          <TextField
-                            className="secondary-color"
-                            fullWidth
-                            id="password"
-                            name="password"
-                            label="Password"
-                            type={showPassword ? "text" : "password"}
-                            value={formik.values.password}
-                            onChange={formik.handleChange}
-                            InputProps={{
-                              startAdornment: (
-                                <InputAdornment position="start">
-                              <LockIcon />
-                                </InputAdornment>
-                              ),
-                            }}
-                            variant="outlined"
-                            size="normal"
-                          />
-                        </div>
-                      </div>
+                      <span className="d-flex flex-column  mb-4">
+                        <TextField
+                          className="secondary-color"
+                          fullWidth
+                          id="password"
+                          name="password"
+                          label="Password"
+                          type={showPassword ? "text" : "password"}
+                          value={formik.values.password}
+                          onChange={formik.handleChange}
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <LockIcon />
+                              </InputAdornment>
+                            ),
+                          }}
+                          variant="outlined"
+                          size="normal"
+                        />
+                        {Boolean(formik.errors.password) &&
+                            formik.touched.password && (
+                          <div style={{ color: "#d32f2f" }}>
+                            {formik.errors.password}
+                          </div>
+                        )}
+                      </span>
                       <div class=" d-flex justify-content-center">
                         <Button variant="contained" size="large" type="submit">
                           Sign in
@@ -109,9 +157,9 @@ function SignUp() {
       <div class="form-check d-flex justify-content-center mb-4">
         <label class="form-check-label" for="form2Example3">
           Don't have an account?
-          <a class="underline" href="../signup">
-            Sign up here
-          </a>
+          <Link className="underline" to="/signup">
+            Sign Up
+          </Link>
         </label>
       </div>
       <img
