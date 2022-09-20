@@ -3,36 +3,36 @@
 This respository holds all the necessary code and files required to compile and run our website. 
 
 ## File Structure
-
+```bash
 ├── backend
-│   ├── config
+│   └── config
 │   │   ├── allowedOrigins.js
 │   │   ├── corsOptions.js
 │   │   ├── db
 │   │   ├── verifyJWT.js
-│   ├── middleware
-│   │   ├── errorHandler.js
-│   ├── models
+│   └── middleware
+│   │   └── errorHandler.js
+│   └── models
 │   │   ├── clearDataBase
 │   │   ├── placeholder.js
 │   │   ├── recipe.js
-│   │   ├── user.js
-│   ├── routes
+│   │   └── user.js
+│   └── routes
 │   │   ├── admin.js
 │   │   ├── recipe.js
 │   │   ├── users.js
-│   ├── thunder-tests
+│   └── thunder-tests
 │   │   ├── thunderActivity.json
 │   │   ├── thunderclient.json
 │   │   ├── thunderColelction.js
-│   │   ├── thunderEnvironment.js
+│   │   └── thunderEnvironment.js
 │   ├── app.js
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── server.js
 ├── frontend
-│   ├── node_modules
-│   ├── public
+│   └── node_modules
+│   └── public
 │   │   ├── favicon.ico
 │   │   ├── index.html
 │   │   ├── landingPageImg.svg
@@ -41,39 +41,41 @@ This respository holds all the necessary code and files required to compile and 
 │   │   ├── manigest.json
 │   │   ├── robots.txt
 │   ├── src
-│   │   ├── api
+│   │   └── api
 │   │   │   ├── axios.js
-│   │   ├── components
+│   │   └── components
 │   │   │   ├── BottomBar.js
 │   │   │   ├── Footer.js
 │   │   │   ├── LoggedInNavBar.js
 │   │   │   ├── Navigation.js
 │   │   │   ├── UploadAndDisplayImage.js
 │   │   │   ├── index.js
-│   │   │   ├── placeholder.js
-│   │   ├── context
-│   │   │   ├── AuthProvider.js
-│   │   ├── hooks
+│   │   │   └──placeholder.js
+│   │   └── context
+│   │   │   └── AuthProvider.js
+│   │   └── hooks
 │   │   │   ├── userAuth.js
 │   │   │   ├── userAxiosPrivate.js
-│   │   │   ├──userRefreshToken.js
-│   │   ├── pages
+│   │   │   └──userRefreshToken.js
+│   │   └── pages
 │   │   │   ├── About.js
 │   │   │   ├── AddRecipe.js
 │   │   │   ├── Landing.js
 │   │   │   ├── SignIn.js
 │   │   │   ├──SignUp.js
-│   │   │   ├── placeholder.js
-│   │   ├── services
-│   │   │   ├── placeholder.js
+│   │   │   └── placeholder.js
+│   │   └── services
+│   │   │   └── placeholder.js
 │   │   ├── App.js
 │   │   ├── index.js
 │   │   ├── logo.svg
 │   │   ├── styleSheet.css
 │   ├── package.json
 │   ├── package-lock.json
-│   ├── README.md
+│   └── README.md
 └── .gitignore
+
+```
 
 ## Testing
 
