@@ -18,7 +18,7 @@ function Navigation () {
   if (auth?.user) {
     loginButton =
       <SignOutButton />;
-    myRecipes = <NavLink className="nav-link" to="/home">My Recipes</NavLink>
+    myRecipes = <NavLink className="nav-link" to="/myRecipes">My Recipes</NavLink>
     addRecipe = <NavLink className="nav-link" to="/addRecipe">Add Recipe</NavLink>
   } else {
     loginButton = <></>;

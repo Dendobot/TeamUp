@@ -6,3 +6,4 @@ export { default as SignIn } from "../pages/SignIn";
 export { default as SignUp } from "../pages/SignUp";
 export { default as AddRecipe } from "../pages/AddRecipe";
 export { default as Recipes } from "../pages/Recipes";
+export { default as MyRecipes } from "../pages/MyRecipes";
