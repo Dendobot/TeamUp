@@ -1,6 +1,8 @@
 ## TeamUp
 
-This respository holds all the necessary code and files required to compile and run our website. 
+This project is being worked on as a part of COMP30022, a subject titled "IT Project" from the University of Melbourne. In this semester (Semester 2, 2022) our goal was to create a platform where individuals will be able to store any recipes that are special to them or recipes that they may frequent often. 
+
+Currently, the website is deskptop compatible but we are aiming for it to be on mobile as well. 
 
 ## File Structure
 ```bash
@@ -30,6 +32,7 @@ This respository holds all the necessary code and files required to compile and 
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── server.js
+│   ├── README.md
 ├── frontend
 │   └── node_modules
 │   └── public
@@ -74,11 +77,27 @@ This respository holds all the necessary code and files required to compile and 
 │   ├── package-lock.json
 │   └── README.md
 └── .gitignore
+└── README.md
+
 
 ```
 
+## Features
+
+  1. Sign up on website (Has been implemented)
+  2. Login in on Website (Has been implemented)
+  3. View saved recipes (Yet to implement)
+  4. Edit existing recipes (Yet to implement)
+  5. Add new recipes (Yet to implement)
+      - Can upload images of the food
+      - Can tag recipes as vegetarian, gluten-free etc. 
+  6. Delete recipes (Yet to implement)
+
+## Documentation 
+We are storing all the documentation related to this project on our confluence page, which you can find [here](https://comp30022-teamup.atlassian.net/l/cp/GpTEtpdV)
+
 ## Testing
 
-For instructions on how to run the frontend of the website, please look at the readme file in the [frontend](https://github.com/Dendobot/TeamUp/tree/main/frontend) folder.
-For instructions on how to run the backend of the website, please look at the readme file in the [backend](https://github.com/Dendobot/TeamUp/tree/main/backend) folder.
+For instructions on how to run the frontend of the website, please look at the readme file in the [frontend](https://github.com/Dendobot/TeamUp/tree/main/frontend) folder. You will have to go ***cd*** into the frontend folder for testing this aspect.
+For instructions on how to run the backend of the website, please look at the readme file in the [backend](https://github.com/Dendobot/TeamUp/tree/main/backend) folder.You will have to go ***cd*** into the backend folder for testing this aspect.
 
