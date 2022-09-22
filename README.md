@@ -79,7 +79,7 @@ Currently, the website is deskptop compatible but we are aiming for it to be on 
 
 ```
 
-##Features
+## Features
 
   1. Sign up on website (Has been implemented)
   2. Login in on Website (Has been implemented)
