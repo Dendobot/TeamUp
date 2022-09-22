@@ -32,6 +32,7 @@ Currently, the website is deskptop compatible but we are aiming for it to be on 
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── server.js
+│   ├── README.md
 ├── frontend
 │   └── node_modules
 │   └── public
@@ -76,6 +77,8 @@ Currently, the website is deskptop compatible but we are aiming for it to be on 
 │   ├── package-lock.json
 │   └── README.md
 └── .gitignore
+└── README.md
+
 
 ```
 
