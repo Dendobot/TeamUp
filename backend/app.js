@@ -33,6 +33,16 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 
 
+if(process.env.NODE_ENV === 'production') {
+  console.log("in production")
+  app.use(express.static('../frontend/build'))
+
+  app.get("*", (req, res) => {
+    console.log("sending file")
+    res.sendFile("../frontend/build/index.html")
+  })
+}
+
 //Routes
 app.use('/users', require('./routes/users'));
 //verify token before give access to route
@@ -45,6 +55,7 @@ app.use('/admin', require('./routes/admin'));
 //verify token first
 
 //app.use('/dashboard', require('./routes/dashboard'));
+
 
 app.listen(PORT, function () {
   console.log("server is listening on port: " + PORT);
