@@ -13,14 +13,11 @@ import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 const LOGIN_URL = "/users/auth";
 
-function SignUp() {
-  //
+function SignIn() {
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
-  //
 
   const formik = useFormik({
     initialValues: {
@@ -29,10 +26,9 @@ function SignUp() {
     },
     onSubmit: async (values) => {
       try {
-        formik.errors.password = "";
         const response = await axios.post(
           LOGIN_URL,
-          JSON.stringify({ email: values.email, pwd: values.password}),
+          JSON.stringify({ email: values.email, pwd: values.password }),
           {
             headers: { "Content-Type": "application/json" },
             withCredentials: true,
@@ -53,7 +49,7 @@ function SignUp() {
       } catch (err) {
         console.log("error = ", err.response?.status);
         if (!err?.response) {
-         formik.errors.password = "No Server Response";
+          formik.errors.password = "No Server Response";
         } else if (err.response?.status === 400) {
           formik.errors.password = "Missing Username or Password";
         } else if (err.response?.status === 401) {
@@ -135,11 +131,11 @@ function SignUp() {
                           size="normal"
                         />
                         {Boolean(formik.errors.password) &&
-                            formik.touched.password && (
-                          <div style={{ color: "#d32f2f" }}>
-                            {formik.errors.password}
-                          </div>
-                        )}
+                          formik.touched.password && (
+                            <div style={{ color: "#d32f2f" }}>
+                              {formik.errors.password}
+                            </div>
+                          )}
                       </span>
                       <div class=" d-flex justify-content-center">
                         <Button variant="contained" size="large" type="submit">
@@ -171,4 +167,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignIn;
