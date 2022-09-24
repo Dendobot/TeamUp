@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const corsOptions = require('./config/corsOptions');
-const connectDB = require('./config/db')
+const connectDB = require('./config/db');
 
 
 //mongoose
@@ -36,7 +36,7 @@ app.use(cors(corsOptions));
 //Routes
 app.use('/users', require('./routes/users'));
 //verify token before give access to route
-app.use(verifyJWT);
+//app.use(verifyJWT);
 app.use('/recipe', require('./routes/recipe'));
 
 
