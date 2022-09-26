@@ -195,5 +195,17 @@ body {
     border-radius: 25px;
   }
 
+  .box{
+        align-items: center;
+        justify-content: center;
+  }
+
+  .recipe-img{
+    min-height: 299;
+    width: 207;
+  }
+
+
+
 
   

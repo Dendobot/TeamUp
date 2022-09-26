@@ -14,12 +14,14 @@ function Navigation () {
   var signout = <></>;
   var myRecipes = <></>;
   var addRecipe = <></>;
+  var bg = "navbar navbar-expand-lg navbar-light";
   const { auth } = useAuth();
   if (auth?.user) {
     loginButton =
       <SignOutButton />;
     myRecipes = <NavLink className="nav-link" to="/myRecipes">My Recipes</NavLink>
     addRecipe = <NavLink className="nav-link" to="/addRecipe">Add Recipe</NavLink>
+    bg = "navbar navbar-expand-lg navbar-light footer"
   } else {
     loginButton = <></>;
     home = <NavLink className="nav-link " to="/landingPage">Home<span className="sr-only">(current)</span></NavLink>
@@ -31,7 +33,7 @@ function Navigation () {
 
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-light ">
+    <nav class={bg}>
       <div className="left">
         <h1 > <a href="/landingPage">Cheffie </a> </h1>
       </div>

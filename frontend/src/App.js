@@ -5,8 +5,9 @@ import RequiredAuth from "./components/RequiredAuth";
 
 
 function App () {
+  
   return (
-    <div className="App">
+    <div className= "App">
       <Router>
         <Routes>
           <Route path="/" element={<Landing />}></Route>
