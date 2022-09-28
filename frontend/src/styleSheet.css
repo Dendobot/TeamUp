@@ -191,13 +191,10 @@ a:hover {
 
 .recipeTitle {
   margin-top:20px;
-  font-weight: 400;
+  font-weight:485;
   font-size: 16px;
   line-height: 125.29%;
-  /* or 20px */
-
   letter-spacing: 0.0120588em;
-
   color: #0671b7;
 }
 

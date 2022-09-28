@@ -1,7 +1,9 @@
-
 import React, { useEffect, useState } from "react";
 import {
-  TextField, InputAdornment, CardMedia, Stack,
+  TextField,
+  InputAdornment,
+  CardMedia,
+  Stack,
   Button,
   Grid,
   IconButton,
@@ -150,107 +152,108 @@ const UploadAndDisplayImage = () => {
     }
   }, []);
   return (
-    <div className="secondary-color">
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
-        <Grid className="setGridMargin" xs={3.8}>
-          <div className="left">
-            <h2 classname="common-font-color">Add a recipe</h2>
-            <p className="recipeTitle"> Recipe Title</p>
-            <TextField
-              size = "small"
-              className="bg-color"
-              label=" "
-              id="filled-basic"
-              variant="outlined"
-            />
-            <p className="recipeTitle"> Add Photo</p>
-            <Stack direction="row" alignItems="center" spacing={2}>
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                component="label"
-              >
-                <input
-                  hidden
-                  accept="image/*"
-                  type="file"
-                  onChange={(event) => {
-                    setSelectedImage(event.target.files[0]);
-                  }}
-                />
-                <PhotoCamera />
-              </IconButton>
-              <p>Click Icon to Upload</p>
-            </Stack>
-            {selectedImage && (
-              <div>
-                <CardMedia
-                  component="img"
-                  sx={{ width: 200, marginBottom: "10px" }}
-                  src={URL.createObjectURL(selectedImage)}
-                  alt="Live from space album cover"
-                />
-                <Button
-                  variant="outlined"
-                  onClick={() => setSelectedImage(null)}
-                >
-                  Remove
-                </Button>
-              </div>
-            )}
-            <p className="recipeTitle"> Cooking Time (In Minutes)</p>
-            <TextField
-              className="bg-color"
-              id="outlined-basic"
-              label=" "
-              variant="outlined"
-              size="small"
-              sx={{ width: "120px" }}
-            />
-            <p className="recipeTitle"> Note</p>
-            <TextField
-              className="bg-color"
-              id="outlined-basic"
-              label=" "
-              variant="outlined"
-              size="small"
-              multiline
-              minRows={"7"}
-              sx={{ width: "346px", marginBottom: "20px" }}
-            />
-          </div>
-        </Grid>
-        <Grid className="setGridMargin" xs={4}>
-          <div className="left">
-            <p className="recipeTitle">Ingredients</p>
-            <TableContainer>{tableData}</TableContainer>
-          </div>
-        </Grid>
-        <Grid className="setGridMargin" xs={3.5}>
-          <div className="left">
-            <p className="recipeTitle">Steps</p>
-            <TextField
-              className="bg-color"
-              id="outlined-basic"
-              label=" "
-              variant="outlined"
-              size="small"
-              multiline
-              minRows={"19"}
-              sx={{ width: "346px", marginBottom: "20px" }}
-            />
-            <Button
-              variant="contained"
-              size="small"
-              type="submit"
-              sx={{ marginLeft: "190px" }}
+    <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
+      <Grid className="setGridMargin" xs={3.8}>
+        <div className="left">
+          <h2 classname="common-font-color">Add a recipe</h2>
+          <p className="recipeTitle"> Recipe Title</p>
+          <TextField
+            size="small"
+            className="bg-color"
+            label=" "
+            id="filled-basic"
+            variant="outlined"
+          />
+          <p className="recipeTitle"> Add Photo</p>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="label"
             >
-              Save Changes
-            </Button>
-          </div>
-        </Grid>
+              <input
+                hidden
+                accept="image/*"
+                type="file"
+                onChange={(event) => {
+                  setSelectedImage(event.target.files[0]);
+                }}
+              />
+              <PhotoCamera />
+            </IconButton>
+            <p>Click Icon to Upload</p>
+          </Stack>
+          {selectedImage && (
+            <div>
+              <CardMedia
+                component="img"
+                sx={{ width: "346px", height: "173px", marginBottom: "10px" }}
+                src={URL.createObjectURL(selectedImage)}
+                alt="Live from space album cover"
+              />
+              <div class=" d-flex justify-content-center">
+              <Button
+                variant="outlined"
+                startIcon={<DeleteIcon />}
+                onClick={() => setSelectedImage(null)}
+              >
+                Remove
+              </Button>
+              </div>
+            </div>
+          )}
+          <p className="recipeTitle"> Cooking Time (In Minutes)</p>
+          <TextField
+            className="bg-color"
+            id="outlined-basic"
+            label=" "
+            variant="outlined"
+            size="small"
+            sx={{ width: "120px" }}
+          />
+          <p className="recipeTitle"> Note</p>
+          <TextField
+            className="bg-color"
+            id="outlined-basic"
+            label=" "
+            variant="outlined"
+            size="small"
+            multiline
+            minRows={"7"}
+            sx={{ width: "346px", marginBottom: "20px" }}
+          />
+        </div>
       </Grid>
-    </div>
+      <Grid className="setGridMargin" xs={4}>
+        <div className="left">
+          <p className="recipeTitle">Ingredients</p>
+          <TableContainer>{tableData}</TableContainer>
+        </div>
+      </Grid>
+      <Grid className="setGridMargin" xs={3.5}>
+        <div className="left">
+          <p className="recipeTitle"> Add Steps</p>
+          <TextField
+            className="bg-color"
+            id="outlined-basic"
+            label=" "
+            variant="outlined"
+            size="small"
+            multiline
+            minRows={"19"}
+            sx={{ width: "346px", marginBottom: "20px" }}
+          />
+          <Button
+            variant="contained"
+            size="small"
+            type="submit"
+            sx={{ marginLeft: "190px" }}
+          >
+            Save Changes
+          </Button>
+        </div>
+      </Grid>
+    </Grid>
   );
 };
 
