@@ -1,6 +1,7 @@
-import { TextField, InputAdornment } from "@mui/material";
+
 import React, { useEffect, useState } from "react";
 import {
+  TextField, InputAdornment, CardMedia, Stack,
   Button,
   Grid,
   IconButton,
@@ -10,6 +11,8 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -89,7 +92,7 @@ const UploadAndDisplayImage = () => {
             >
               <TableCell component="th" scope="row">
                 <TextField
-                  label = "Add Ingredient"
+                  label="Add Ingredient"
                   className="bg-color"
                   id="outlined-basic"
                   variant="outlined"
@@ -97,7 +100,10 @@ const UploadAndDisplayImage = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <IconButton onClick={(e) => handleChange(e, row.id)} aria-label="add to ingredient list">
+                        <IconButton
+                          onClick={(e) => handleChange(e, row.id)}
+                          aria-label="add to ingredient list"
+                        >
                           <AddCircleRoundedIcon color="primary" />
                         </IconButton>
                       </InputAdornment>
@@ -151,32 +157,45 @@ const UploadAndDisplayImage = () => {
             <h2 classname="common-font-color">Add a recipe</h2>
             <p className="recipeTitle"> Recipe Title</p>
             <TextField
+              size = "small"
               className="bg-color"
               label=" "
               id="filled-basic"
               variant="outlined"
             />
             <p className="recipeTitle"> Add Photo</p>
-            <input
-              className="uploade-photo"
-              type="file"
-              name="myImage"
-              onChange={(event) => {
-                setSelectedImage(event.target.files[0]);
-              }}
-            />
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="label"
+              >
+                <input
+                  hidden
+                  accept="image/*"
+                  type="file"
+                  onChange={(event) => {
+                    setSelectedImage(event.target.files[0]);
+                  }}
+                />
+                <PhotoCamera />
+              </IconButton>
+              <p>Click Icon to Upload</p>
+            </Stack>
             {selectedImage && (
               <div>
-                <br />
-                <div onClick={() => setSelectedImage(null)}>Remove</div>
-                <br />
-                <br />
-                <img
-                  className="photo-box"
-                  alt="not fount"
-                  width={"250px"}
+                <CardMedia
+                  component="img"
+                  sx={{ width: 200, marginBottom: "10px" }}
                   src={URL.createObjectURL(selectedImage)}
+                  alt="Live from space album cover"
                 />
+                <Button
+                  variant="outlined"
+                  onClick={() => setSelectedImage(null)}
+                >
+                  Remove
+                </Button>
               </div>
             )}
             <p className="recipeTitle"> Cooking Time (In Minutes)</p>
