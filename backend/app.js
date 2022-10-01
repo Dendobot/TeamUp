@@ -32,6 +32,8 @@ app.use(cookieParser());
 //cors for listenning from different port
 app.use(cors(corsOptions));
 
+//Routes
+app.use('/users', require('./routes/users'));
 
 if(process.env.NODE_ENV === 'production') {
   console.log("in production")
@@ -42,15 +44,14 @@ if(process.env.NODE_ENV === 'production') {
     res.sendFile("../frontend/build/index.html")
   })
 }
-
-//Routes
-app.use('/users', require('./routes/users'));
 //verify token before give access to route
 app.use(verifyJWT);
 app.use('/recipe', require('./routes/recipe'));
 
 
 app.use('/admin', require('./routes/admin'));
+
+
 
 //verify token first
 
