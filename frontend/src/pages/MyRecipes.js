@@ -8,7 +8,11 @@ function MyRecipes() {
   return (
     <div >
       <Navigation/>
+      <div className="center-horiz graph-parts">
       <RecipeBox/>
+      <RecipeBox/>
+      </div>
+      
     
     </div>
   );
