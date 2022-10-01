@@ -6,7 +6,6 @@ function ViewRecipe() {
     return (
       <div>
         <Navigation />
-        <UploadAndDisplayImage/>
       </div>
     );
   }

@@ -14,12 +14,14 @@ function Navigation () {
   var signout = <></>;
   var myRecipes = <></>;
   var addRecipe = <></>;
+  var viewRecipe = <></>;
   const { auth } = useAuth();
   if (auth?.user) {
     loginButton =
       <SignOutButton />;
     myRecipes = <NavLink className="nav-link" to="/home">My Recipes</NavLink>
     addRecipe = <NavLink className="nav-link" to="/addRecipe">Add Recipe</NavLink>
+    viewRecipe = <NavLink className="nav-link" to="/viewRecipe">View Recipe</NavLink>
   } else {
     loginButton = <></>;
     home = <NavLink className="nav-link " to="/landingPage">Home<span className="sr-only">(current)</span></NavLink>
@@ -50,6 +52,11 @@ function Navigation () {
             {about}
             {addRecipe}
             </li>
+
+          <li className="nav-item navBarLinks">
+            {viewRecipe}
+          </li>
+          
           <li className="nav-item navBarLinks">
             {signin}
           </li>
