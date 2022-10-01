@@ -206,9 +206,6 @@ body {
     height: 48px;
     left: 88px;
     top: 152px;
-    
-    font-family: 'Poppins';
-    font-style: normal;
     font-size: 30px;
     line-height: 125.29%;
   }
@@ -253,7 +250,6 @@ body {
     top: 184px;
     font-weight: 400;
     font-size: 18px;
-    font-family: 'Poppins';
     color: #0671B7;
   }
 
@@ -265,11 +261,8 @@ body {
     height: 22px;
     left: 1071px;
     top: 184px;
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 400;
     font-size: 18px;
     color: #0671B7;
-
 
   }
