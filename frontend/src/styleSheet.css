@@ -5,6 +5,7 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color:#EFF9FF;
   }
   
   code {
@@ -198,4 +199,78 @@ body {
   }
 
 
+  .recipe-header{
+    font-weight: 400;
+    color: #0671B7;
+    position: absolute;
+    width: 411px;
+    height: 48px;
+    left: 88px;
+    top: 152px;
+    
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 30px;
+    line-height: 125.29%;
+  }
+
+  .edit-recipe-button{
+    padding: 10px;
+    gap: 10px;
+    position: absolute;
+    left: 83.86%;
+    right: 5.69%;
+    top: 14.56%;
+    bottom: 81.26%;
+  }
+
+  .white-box{
+    position: absolute;
+    width: 346px;
+    height: 293px;
+    left: 88px;
+    top: 601px;
+    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
+    border-radius: 25px;
+    background: #FFFFFF;
+  }
+
+  .steps-box{
+    position: absolute;
+    width: 367px;
+    height: 674px;
+    left: 1059px;
+    top: 220px;
+    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
+    border-radius: 25px;
+    background: #FFFFFF;
+  }
+
+  .ingredients{
+    position: absolute;
+    width: 189px;
+    height: 22px;
+    left: 564px;
+    top: 184px;
+    font-weight: 400;
+    font-size: 18px;
+    font-family: 'Poppins';
+    color: #0671B7;
+  }
+
   
+
+  .steps{
+    position: absolute;
+    width: 133px;
+    height: 22px;
+    left: 1071px;
+    top: 184px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #0671B7;
+
+
+  }
