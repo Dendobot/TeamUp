@@ -202,6 +202,8 @@ body {
         margin-top: 20px;
         margin-bottom: 20px;
         margin-left: 7rem;
+        border-radius: 25px;
+        box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
   }
 
   .recipe-img{
@@ -215,7 +217,7 @@ body {
     height: 293px;
     left: 88px;
     top: 601px;
-    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
+    
     border-radius: 25px;
     background: #FFFFFF;
   }
@@ -230,7 +232,14 @@ body {
   }
 
   .right-table{
-    float:right;
+    float:left;
   }
+
+  .plus-icon{
+  
+    position:fixed;
+  }
+
+  
 
   

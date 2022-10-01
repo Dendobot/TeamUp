@@ -17,7 +17,6 @@ function App () {
           <Route path="/signup" element={<SignUp />}></Route>
 
           
-
           {/*protected routes*/}
           <Route element={<RequiredAuth />} >
             <Route path="/myRecipes" element={<MyRecipes />}></Route>

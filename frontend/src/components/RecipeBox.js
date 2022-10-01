@@ -3,9 +3,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 
-function Box({ children, ...props }) {
-    return <div {...props}>{children}</div>
-  }
 
 function RecipeBox() {
   var recipe3Name = "My Recipe 3";
