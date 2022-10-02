@@ -15,10 +15,10 @@ const ImageUploadPreviewComponent = () => {
     console.log("file", file);
   }
 
-  function uploadFiles(e) {
+  /*function uploadFiles(e) {
     e.preventDefault();
     console.log(file);
-  }
+  }*/
 
   function deleteFile(e) {
     const s = file.filter((item, index) => index !== e);
@@ -72,13 +72,6 @@ const ImageUploadPreviewComponent = () => {
         </IconButton>
         <p>Click Icon to Upload</p>
       </Stack>
-      <button
-        type="button"
-        className="btn btn-primary btn-block"
-        onClick={uploadFiles}
-      >
-        Upload
-      </button>
     </form>
   );
 };

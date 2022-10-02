@@ -5,10 +5,10 @@ import {
   Button,
   Grid,
   IconButton,
-  List,
   ListItem,
   ListItemText,
   Chip,
+  Box,
 } from "@mui/material";
 
 import { useFormik } from "formik";
@@ -34,6 +34,7 @@ const UploadAndDisplayImage = () => {
   const [ingredients, setIngredients] = useState("");
   const [tagsList, setTagsList] = useState([]);
   const [tags, setTags] = useState("");
+  
   //backend
   const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
@@ -167,7 +168,7 @@ const UploadAndDisplayImage = () => {
                 <Chip
                   label={`${tags}`}
                   onDelete={(e) => removeTag(i)}
-                  sx = {{marginBottom:"5px"}}
+                  sx = {{marginBottom:"5px", marginRight:"5px"}}
                 />
             ))}
             <div>
@@ -177,6 +178,7 @@ const UploadAndDisplayImage = () => {
                 className="bg-color"
                 id="tags"
                 name="tags"
+                size = "small"
                 variant="outlined"
                 onChange={updateTag}
                 InputProps={{
@@ -205,7 +207,7 @@ const UploadAndDisplayImage = () => {
               size="small"
               multiline
               minRows={"7"}
-              sx={{ width: "346px", marginBottom: "20px" }}
+              sx={{ width: "346px", marginBottom: "40px" }}
               name="note"
               value={formik.values.note}
               onChange={formik.handleChange}
@@ -215,23 +217,26 @@ const UploadAndDisplayImage = () => {
         <Grid className="setGridMargin" xs={4}>
           <div className="left">
             <p className="recipeTitle">Ingredients</p>
-            <List
+            <Box
               sx={{
-                width: "100%",
-                maxWidth: 360,
-                bgcolor: "background.paper",
-                marginBottom: "15px",
+                bgcolor: 'background.paper',
+                boxShadow: 1,
+                borderRadius: 2,
+                maxWidth: 300,
+                marginBottom:"10px",
               }}
             >
               {ingredientList.map((ingredients, i) => (
-                <ListItem key={ingredients + i}>
-                  <ListItemText primary={`${i + 1}. ${ingredients}`} />
+                <div>
+                <ListItem size= "small" key={ingredients + i}>
+                  <ListItemText size = "small" primary={`${ingredients}`} />
                   <IconButton onClick={(e) => handleDelete(i)}>
                     <DeleteIcon />
                   </IconButton>
                 </ListItem>
+                </div>
               ))}
-            </List>
+            </Box>
             <div>
               <TextField
                 label="Add Ingredient"
@@ -277,7 +282,7 @@ const UploadAndDisplayImage = () => {
               variant="outlined"
               size="small"
               multiline
-              minRows={"19"}
+              minRows={"22"}
               sx={{ width: "346px", marginBottom: "20px" }}
               name="method"
               value={formik.values.method}
