@@ -1,74 +1,45 @@
-# Getting Started with Create React App
+# TeamUp Backend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+This is the Node JS server for TeamUp's web application. It handles the api calls to manage user creation and authentication, recipe creation, deletion and updates. It is to be used in conjunction with the frontend React app and MongoDB
 
-## Available Scripts
+## Environment vars
 
-Before starting to run the project, it is recommended that you install all the required dependencies using the following command:
+This project uses the following environment variables:
 
-### `npm install`
+| Name                 | Description                                                            |
+| -------------------- | ---------------------------------------------------------------------- |
+| NODE_ENV             | Specifies the environment (e.g. local, prod) we are running the app in |
+| PORT                 | Specifies the port we wish to run the app on                           |
+| ACCESS_TOKEN_SECRET  | Specifies the access token used for JWT purposes                       |
+| REFRESH_TOKEN_SECRET | Specifies the refresh token used for JWT purposes                      |
 
-In the project directory, you can run:
+# Pre-requisites
 
-### `npm start`
+- Install [Node.js](https://nodejs.org/en/) version 16.0.0
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Getting started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Clone the repository
 
-### `npm test`
+```
+git clone  git@github.com:Dendobot/TeamUp.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Install dependencies
 
-### `npm run build`
+```
+cd backend
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- run the backend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Testing
+To test the api endpoints, install VsCode Extension "Thunder Client". Then, run the application and test apis by creating new requests. <br> <br>
+The purpose of Thunder Client is to test the backend without needing to run the frontend. This is useful when there are changes being done to the frontend / not working at the moment. The backend team does not have to rely on the frontend to test the api's in the backend.
