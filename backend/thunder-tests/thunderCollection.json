@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "_id": "1bcc905f-cc4b-48c2-84fb-50f8013217ff",
+    "colName": "Recipe",
+    "created": "2022-09-24T14:25:19.776Z",
+    "sortNum": 10000,
+    "folders": []
+  }
+]
