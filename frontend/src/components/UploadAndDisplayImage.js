@@ -17,9 +17,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ImageUploadPreviewComponent from "../components/ImageUploadPreviewComponent";
 
 //for backEnd
-import axios from "../api/axios";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate, Link } from "react-router-dom";
-const REGISTER_URL = "/recipe/createRecipe";
+import useAuth from "../hooks/useAuth";
+
+const CREATE_URL = "/recipe/createRecipe";
 
 const validationSchema = yup.object({
   recipeName: yup.string("Enter your name").required("Name is required"),
@@ -29,6 +31,9 @@ const validationSchema = yup.object({
 const UploadAndDisplayImage = () => {
   const [ingredientList, setIngredientList] = useState([]);
   const [ingredients, setIngredients] = useState("");
+  //backend
+  const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
 
   //redirecting to login if successfully registered
   const navigate = useNavigate();
@@ -46,9 +51,10 @@ const UploadAndDisplayImage = () => {
       //axios to back end
       try {
         if (ingredientList.length > 0) {
-          const response = await axios.post(
-            REGISTER_URL,
+          const response = await axiosPrivate.post(
+            CREATE_URL,
             JSON.stringify({
+              user: auth.user,
               recipeName: values.recipeName,
               note: values.note,
               ingredients: ingredientList,
@@ -89,7 +95,7 @@ const UploadAndDisplayImage = () => {
     setIngredients(target.value);
   };
 
-  function handleDelete(e) {
+  function handleDelete (e) {
     console.log(ingredientList);
     const s = ingredientList.filter((ingredients, i) => i !== e);
     setIngredientList(s);
