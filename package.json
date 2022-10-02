@@ -1,0 +1,24 @@
+{
+  "name": "teamup",
+  "version": "1.0.0",
+  "description": "This project is being worked on as a part of COMP30022, a subject titled \"IT Project\" from the University of Melbourne. In this semester (Semester 2, 2022) our goal was to create a platform where individuals will be able to store any recipes that are special to them or recipes that they may frequent often.",
+  "main": "backend/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd backend && npm start",
+    "build-frontend": "cd frontend && npm run build",
+    "install-frontend": "cd frontend && npm install",
+    "install-backend": "cd backend && npm install",
+    "heroku-postbuild": "npm run install-frontend && npm run build-frontend && npm run install-backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dendobot/TeamUp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dendobot/TeamUp/issues"
+  },
+  "homepage": "https://github.com/Dendobot/TeamUp#readme"
+}
