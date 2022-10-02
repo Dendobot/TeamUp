@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   TextField,
   InputAdornment,
-  CardMedia,
-  Stack,
   Button,
   Grid,
   IconButton,
@@ -14,13 +12,12 @@ import {
   TableRow,
 } from "@mui/material";
 
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ImageUploadPreviewComponent from "../components/ImageUploadPreviewComponent";
 
 const UploadAndDisplayImage = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
   const [rows, setRows] = useState([
     {
       id: 1,
@@ -165,43 +162,9 @@ const UploadAndDisplayImage = () => {
             variant="outlined"
           />
           <p className="recipeTitle"> Add Photo</p>
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="label"
-            >
-              <input
-                hidden
-                accept="image/*"
-                type="file"
-                onChange={(event) => {
-                  setSelectedImage(event.target.files[0]);
-                }}
-              />
-              <PhotoCamera />
-            </IconButton>
-            <p>Click Icon to Upload</p>
-          </Stack>
-          {selectedImage && (
-            <div>
-              <CardMedia
-                component="img"
-                sx={{ width: "346px", height: "173px", marginBottom: "10px" }}
-                src={URL.createObjectURL(selectedImage)}
-                alt="Live from space album cover"
-              />
-              <div class=" d-flex justify-content-center">
-              <Button
-                variant="outlined"
-                startIcon={<DeleteIcon />}
-                onClick={() => setSelectedImage(null)}
-              >
-                Remove
-              </Button>
-              </div>
-            </div>
-          )}
+          <div>
+            <ImageUploadPreviewComponent/>
+          </div>
           <p className="recipeTitle"> Cooking Time (In Minutes)</p>
           <TextField
             className="bg-color"
