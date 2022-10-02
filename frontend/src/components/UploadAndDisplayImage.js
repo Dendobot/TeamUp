@@ -10,6 +10,9 @@ import {
   TableCell,
   TableContainer,
   TableRow,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 
 
@@ -18,89 +21,92 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ImageUploadPreviewComponent from "../components/ImageUploadPreviewComponent";
 
 const UploadAndDisplayImage = () => {
-  const [rows, setRows] = useState([
-    {
-      id: 1,
-      item: "",
-    },
-  ]);
-
-  const generateRow = () => {
-    return {
-      id: rows.length + 1,
-      item: "",
-    };
+  const [ingredientList, setIngredientList] = useState([]);
+  const [ingredients, setIngredients] = useState("");
+  const handleClick = () => {
+    setIngredientList((ingredientList) => ingredientList.concat(ingredients));
   };
 
-  const handleDeleteRow = (event, id) => {
-    setRows((rows) => {
-      rows[id - 1].item = "";
-      for (let i = id - 1; i < rows.length; i++) {
-        rows[i].id--;
-      }
-    });
-
-    setRows((prevRows) => {
-      return [...rows.slice(0, id - 1), ...rows.slice(id)];
-    });
+  const updateIngredient = ({ target }) => {
+    // Update query onKeyPress of input box
+    setIngredients(target.value);
   };
 
-  const handleChange = (e, id) => {
-    let value = e.target.value;
-
-    if (id === rows.length) {
-      if (value !== "") {
-        setRows((prevRows) => [...prevRows, generateRow()]);
-      }
-    } else if (id + 1 === rows.length) {
-      if (value === "") {
-        handleDeleteRow(e, id + 1);
-      }
-    }
-    setRows((prevRows) => {
-      return prevRows.map((row, index) =>
-        index === id - 1 ? { ...row, size: value } : row
-      );
-    });
+  function handleDelete(e) {
+    console.log(ingredientList);
+    const s = ingredientList.filter((ingredients, i) => i !== e);
+    setIngredientList(s);
+    console.log(s);
   };
 
-  /*const handleSave = () => {
-    let arr = [];
-    if (rows[rows.length - 1].item === "") {
-      arr = rows.slice(0, -1);
-    } else {
-      arr = rows;
-    }
-
-    let items = [];
-    for (let i = 0; i < arr.length; i++) {
-      items.push(arr[i].item);
-    }
-
-    window.sessionStorage.setItem("list", JSON.stringify(items));
-  };*/
-
-  const generateTable = () => {
-    return (
-      <Table>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+  return (
+    <form>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
+        <Grid className="setGridMargin" xs={3.8}>
+          <div className="left">
+            <h2 classname="common-font-color">Add a recipe</h2>
+            <p className="recipeTitle"> Recipe Title</p>
+            <TextField
+              size="small"
+              className="bg-color"
+              label=" "
+              id="filled-basic"
+              variant="outlined"
+            />
+            <p className="recipeTitle"> Add Photo</p>
+            <div>
+              <ImageUploadPreviewComponent />
+            </div>
+            <p className="recipeTitle"> Cooking Time (In Minutes)</p>
+            <TextField
+              className="bg-color"
+              id="outlined-basic"
+              label=" "
+              variant="outlined"
+              size="small"
+              sx={{ width: "120px" }}
+            />
+            <p className="recipeTitle"> Note</p>
+            <TextField
+              className="bg-color"
+              id="outlined-basic"
+              label=" "
+              variant="outlined"
+              size="small"
+              multiline
+              minRows={"7"}
+              sx={{ width: "346px", marginBottom: "20px" }}
+            />
+          </div>
+        </Grid>
+        <Grid className="setGridMargin" xs={4}>
+          <div className="left">
+            <p className="recipeTitle">Ingredients</p>
+            <List
+              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper", marginBottom:"15px" }}
             >
-              <TableCell component="th" scope="row">
-                <TextField
+              {ingredientList.map((ingredients, i) => (
+                <ListItem key={ingredients + i}>
+                  <ListItemText primary={`${i+1}. ${ingredients}`}/> 
+                  <IconButton onClick={(e) => handleDelete(i)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItem>
+              ))}
+            </List>
+            <div>
+            <TextField
                   label="Add Ingredient"
+                  type = "text"
                   className="bg-color"
                   id="outlined-basic"
                   variant="outlined"
-                  value={row.size}
+                  onChange={updateIngredient}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
                         <IconButton
-                          onClick={(e) => handleChange(e, row.id)}
+                          onClick={handleClick}
                           aria-label="add to ingredient list"
                         >
                           <AddCircleRoundedIcon color="primary" />
@@ -109,114 +115,34 @@ const UploadAndDisplayImage = () => {
                     ),
                   }}
                 />
-              </TableCell>
-              <TableCell component="th" scope="row">
-                {row.id === rows.length ? (
-                  <></>
-                ) : (
-                  <IconButton onClick={(e) => handleDeleteRow(e, row.id)}>
-                    <DeleteIcon />
-                  </IconButton>
-                )}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    );
-  };
-
-  const [tableData, setTableData] = useState(generateTable());
-
-  useEffect(() => {
-    setTableData(generateTable());
-  }, [rows]);
-
-  useEffect(() => {
-    if (window.sessionStorage.getItem("list")) {
-      let sizes_arr = window.sessionStorage.getItem("list").split(",");
-      sizes_arr.push("");
-      let rows_arr = [];
-      for (let i = 0; i < sizes_arr.length; i++) {
-        rows_arr.push({
-          id: i + 1,
-          size: sizes_arr[i],
-        });
-      }
-
-      setRows(rows_arr);
-      setTableData(generateTable());
-    }
-  }, []);
-  return (
-    <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
-      <Grid className="setGridMargin" xs={3.8}>
-        <div className="left">
-          <h2 classname="common-font-color">Add a recipe</h2>
-          <p className="recipeTitle"> Recipe Title</p>
-          <TextField
-            size="small"
-            className="bg-color"
-            label=" "
-            id="filled-basic"
-            variant="outlined"
-          />
-          <p className="recipeTitle"> Add Photo</p>
-          <div>
-            <ImageUploadPreviewComponent/>
+            </div>
           </div>
-          <p className="recipeTitle"> Cooking Time (In Minutes)</p>
-          <TextField
-            className="bg-color"
-            id="outlined-basic"
-            label=" "
-            variant="outlined"
-            size="small"
-            sx={{ width: "120px" }}
-          />
-          <p className="recipeTitle"> Note</p>
-          <TextField
-            className="bg-color"
-            id="outlined-basic"
-            label=" "
-            variant="outlined"
-            size="small"
-            multiline
-            minRows={"7"}
-            sx={{ width: "346px", marginBottom: "20px" }}
-          />
-        </div>
+        </Grid>
+        <Grid className="setGridMargin" xs={3.5}>
+          <div className="left">
+            <p className="recipeTitle"> Add Steps</p>
+            <TextField
+              className="bg-color"
+              id="outlined-basic"
+              label=" "
+              variant="outlined"
+              size="small"
+              multiline
+              minRows={"19"}
+              sx={{ width: "346px", marginBottom: "20px" }}
+            />
+            <Button
+              variant="contained"
+              size="small"
+              type="submit"
+              sx={{ marginLeft: "190px" }}
+            >
+              Save Changes
+            </Button>
+          </div>
+        </Grid>
       </Grid>
-      <Grid className="setGridMargin" xs={4}>
-        <div className="left">
-          <p className="recipeTitle">Ingredients</p>
-          <TableContainer>{tableData}</TableContainer>
-        </div>
-      </Grid>
-      <Grid className="setGridMargin" xs={3.5}>
-        <div className="left">
-          <p className="recipeTitle"> Add Steps</p>
-          <TextField
-            className="bg-color"
-            id="outlined-basic"
-            label=" "
-            variant="outlined"
-            size="small"
-            multiline
-            minRows={"19"}
-            sx={{ width: "346px", marginBottom: "20px" }}
-          />
-          <Button
-            variant="contained"
-            size="small"
-            type="submit"
-            sx={{ marginLeft: "190px" }}
-          >
-            Save Changes
-          </Button>
-        </div>
-      </Grid>
-    </Grid>
+    </form>
   );
 };
 
