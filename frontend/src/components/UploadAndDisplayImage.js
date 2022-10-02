@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import {
   TextField,
   InputAdornment,
@@ -8,6 +8,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Chip,
 } from "@mui/material";
 
 import { useFormik } from "formik";
@@ -18,7 +19,7 @@ import ImageUploadPreviewComponent from "../components/ImageUploadPreviewCompone
 
 //for backEnd
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const CREATE_URL = "/recipe/createRecipe";
@@ -31,6 +32,8 @@ const validationSchema = yup.object({
 const UploadAndDisplayImage = () => {
   const [ingredientList, setIngredientList] = useState([]);
   const [ingredients, setIngredients] = useState("");
+  const [tagsList, setTagsList] = useState([]);
+  const [tags, setTags] = useState("");
   //backend
   const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
@@ -45,6 +48,7 @@ const UploadAndDisplayImage = () => {
       ingredients: [],
       method: "",
       cookingTime: 0,
+      tags: [],
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -60,6 +64,7 @@ const UploadAndDisplayImage = () => {
               ingredients: ingredientList,
               method: values.method,
               cookingTime: values.cookingTime,
+              tags: tagsList,
             }),
             {
               headers: { "Content-Type": "application/json" },
@@ -70,8 +75,7 @@ const UploadAndDisplayImage = () => {
           console.log(JSON.stringify(response));
           alert("Success!");
           navigate("/home");
-        }
-        else {
+        } else {
           formik.errors.ingredients = "No ingredient present";
         }
       } catch (err) {
@@ -80,6 +84,7 @@ const UploadAndDisplayImage = () => {
       //axios to back end
       console.log("you clicked the submit button");
       console.log(" recipe name = ", values.recipeName);
+      console.log("Tags = ", tagsList);
       console.log("note = ", values.note);
       console.log("method = ", values.method);
       console.log("ingredients = ", ingredientList);
@@ -95,11 +100,26 @@ const UploadAndDisplayImage = () => {
     setIngredients(target.value);
   };
 
-  function handleDelete (e) {
+  function handleDelete(e) {
     console.log(ingredientList);
     const s = ingredientList.filter((ingredients, i) => i !== e);
     setIngredientList(s);
     console.log(s);
+  }
+
+  const handleTag = () => {
+    setTagsList((tagsList) => tagsList.concat(tags));
+  };
+
+  const updateTag = ({ target }) => {
+    setTags(target.value);
+  };
+
+  function removeTag(e) {
+    console.log(tagsList);
+    const t = tagsList.filter((tags, i) => i !== e);
+    setTagsList(t);
+    console.log(t);
   }
 
   return (
@@ -141,6 +161,41 @@ const UploadAndDisplayImage = () => {
               value={formik.values.cookingTime}
               onChange={formik.handleChange}
             />
+
+            <p className="recipeTitle">Add Tags</p>
+            {tagsList.map((tags, i) => (
+                <Chip
+                  label={`${tags}`}
+                  onDelete={(e) => removeTag(i)}
+                  sx = {{marginBottom:"5px"}}
+                />
+            ))}
+            <div>
+              <TextField
+                label="Add Tags"
+                type="text"
+                className="bg-color"
+                id="tags"
+                name="tags"
+                variant="outlined"
+                onChange={updateTag}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton
+                        onClick={handleTag}
+                        aria-label="add to tags list"
+                      >
+                        <AddCircleRoundedIcon color="primary" />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{marginTop:"5px"}}
+              
+              />
+            </div>
+
             <p className="recipeTitle"> Note</p>
             <TextField
               className="bg-color"
