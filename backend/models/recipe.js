@@ -26,7 +26,7 @@ const RecipeSchema = new mongoose.Schema({
     required: false
   },
   photo_url: {
-    type: [String],
+    type: String,
     required: false
   },
 
