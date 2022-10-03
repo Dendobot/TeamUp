@@ -14,21 +14,25 @@ router.use(bodyParser.urlencoded({ extended: false }));
 // @desc    get all recipes for a user
 // @route   GET /recipe
 // @access  Private
-router.get("/", async (req, res) => {
+router.get("/viewRecipes", async (req, res) => {
   const { user } = req.body;
-  
+
   User.findOne({ username: user }).exec(async (err, user) => {
     if (user) {
       console.log("user who requested the recipes is: ", user);
-      const recipes = [];
+      const recipeInfo = [];
       try {
         for (const recipeId of user.recipes) {
           const recipe = await Recipe.findOne({ id: recipeId }).exec();
-          recipes.push(recipe);
+          recipeInfo.push({
+            recipeId: recipe._id,
+            recipeName: recipe.recipeName,
+            photo: recipe.photo_url,
+          });
         }
 
         const response = {
-          recipes,
+          recipeInfo,
         };
 
         var responseJSON = JSON.stringify(response, {
@@ -36,7 +40,6 @@ router.get("/", async (req, res) => {
         });
 
         res.json(responseJSON);
-
       } catch (err) {
         res.status(500).json({ message: err.message });
       }

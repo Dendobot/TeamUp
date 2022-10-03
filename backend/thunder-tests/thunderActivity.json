@@ -274,5 +274,29 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "40a7edd5-42a3-423e-80c6-b5a0aa91e4fb",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3500/viewRecipes",
+    "url": "http://localhost:3500/viewRecipes",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-10-03T09:49:28.423Z",
+    "modified": "2022-10-03T09:50:11.449Z",
+    "headers": [
+      {
+        "name": "Cookie",
+        "value": "jwt=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2NjQ3ODUzOTEsImV4cCI6MTY2NDg3MTc5MX0.8Camnl31JL9FAwdyzxvcGAuyDLiJVa2Kwn1ESdDAMN8\""
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"user\": \"test\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

@@ -34,6 +34,14 @@ app.use(cors(corsOptions));
 //Routes
 app.use("/users", require("./routes/users"));
 
+
+//verify token before give access to route
+app.use(verifyJWT);
+app.use("/recipe", require("./routes/recipe"));
+
+app.use("/admin", require("./routes/admin"));
+
+//verify token first
 if (process.env.NODE_ENV === "production") {
   console.log("in production");
   app.use(
@@ -46,14 +54,6 @@ if (process.env.NODE_ENV === "production") {
     );
   });
 }
-//verify token before give access to route
-app.use(verifyJWT);
-app.use("/recipe", require("./routes/recipe"));
-
-app.use("/admin", require("./routes/admin"));
-
-//verify token first
-
 //app.use('/dashboard', require('./routes/dashboard'));
 
 app.listen(PORT, function () {
