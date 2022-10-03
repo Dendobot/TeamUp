@@ -10,47 +10,43 @@ const Recipe = require('../models/recipe.js');
 router.use(bodyParser.json()); //Handles JSON requests
 router.use(bodyParser.urlencoded({ extended: false }));
 
-//dashboard
-router.get('/', async (req, res) => {
-  const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(401);
-  const refreshToken = cookies.jwt;
-  const foundUser = await User.findOne({ refreshToken }).exec();
-  if (!foundUser) return res.sendStatus(403); //Forbidden
 
-  var user_requested = foundUser.username;
-  const recipeNameArray = new Array();
-  const recipeIdArray = new Array();
+// @desc    get all recipes for a user
+// @route   GET /recipe
+// @access  Private
+router.get("/viewRecipes", async (req, res) => {
+  const { user } = req.body;
 
-  console.log("request this user's recipe: " + user_requested);
-  try {
-    const user = await User.findOne({ username: user_requested }).exec();
-    console.log("user found " + user.username);
+  User.findOne({ username: user }).exec(async (err, user) => {
+    if (user) {
+      console.log("user who requested the recipes is: ", user);
+      const recipeInfo = [];
+      try {
+        for (const recipeId of user.recipes) {
+          const recipe = await Recipe.findOne({ id: recipeId }).exec();
+          recipeInfo.push({
+            recipeId: recipe._id,
+            recipeName: recipe.recipeName,
+            photo: recipe.photo_url,
+          });
+        }
 
-    try {
-      for await (const rid of user.recipes) {
-        const recipe = await Recipe.findOne({ id: rid }).exec();
-        recipeNameArray.push(recipe.recipeName);
-        recipeIdArray.push(recipe.id);
+        const response = {
+          recipeInfo,
+        };
+
+        var responseJSON = JSON.stringify(response, {
+          headers: { "Content-Type": "application/json" },
+        });
+
+        res.json(responseJSON);
+      } catch (err) {
+        res.status(500).json({ message: err.message });
       }
-
-      const response = {
-        recipeIdArray,
-        recipeNameArray
-      };
-      var responseJSON = JSON.stringify(response, {
-        headers: { 'Content-Type': 'application/json' },
-      });
-      res.json(responseJSON);
-
-
-    } catch (err) {
-      res.status(500).json({ 'message': err.message });
-
+    } else {
+      res.status(500).json({ message: "user does not exist" });
     }
-  } catch (err) {
-    res.status(500).json({ 'message': err.message });
-  }
+  });
 });
 
 router.get('/viewRecipe', async (req, res) => {
