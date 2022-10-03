@@ -27,6 +27,7 @@ const CREATE_URL = "/recipe/createRecipe";
 const validationSchema = yup.object({
   recipeName: yup.string("Enter your name").required("Name is required"),
   method: yup.string("Enter your method").required("Method is required"),
+  cookingTime: yup.number(),
 });
 
 const UploadAndDisplayImage = () => {
@@ -161,7 +162,18 @@ const UploadAndDisplayImage = () => {
               name="cookingTime"
               value={formik.values.cookingTime}
               onChange={formik.handleChange}
+              error={
+                formik.touched.cookingTime &&
+                Boolean(formik.errors.cookingTime)
+              }
             />
+            {Boolean(formik.errors.cookingTime) &&
+              formik.touched.cookingTime && (
+                <div style={{ color: "#d32f2f" }}>
+                  {formik.errors.cookingTime}
+                </div>
+              )}
+          
 
             <p className="recipeTitle">Add Tags</p>
             {tagsList.map((tags, i) => (
@@ -244,6 +256,7 @@ const UploadAndDisplayImage = () => {
                 className="bg-color"
                 id="ingredients"
                 name="ingredients"
+                required
                 variant="outlined"
                 onChange={updateIngredient}
                 InputProps={{
