@@ -15,10 +15,11 @@ function App () {
           <Route path="/signin" element={<SignIn />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
 
-          <Route path="/addRecipe" element={<AddRecipe />}></Route>
+
 
           {/*protected routes*/}
           <Route element={<RequiredAuth />} >
+            <Route path="/addRecipe" element={<AddRecipe />}></Route>
             <Route path="/Recipes" element={<Recipes />}></Route>
           </Route>
 
