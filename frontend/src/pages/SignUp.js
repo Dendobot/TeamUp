@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
+import { TextField, IconButton } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import FaceIcon from "@mui/icons-material/Face";
-import LockIcon from "@mui/icons-material/Lock";
 import EmailIcon from "@mui/icons-material/Email";
 import Navigation from "../components/Navigation";
 import { useFormik } from "formik";
@@ -12,6 +11,9 @@ import { Button } from "@mui/material";
 //for backEnd
 import axios from "../api/axios";
 import { useNavigate, Link } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 const REGISTER_URL = '/users/register';
 
 
@@ -41,6 +43,9 @@ function SignUp () {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const[showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
 
   const formik = useFormik({
     initialValues: {
@@ -72,9 +77,9 @@ function SignUp () {
         if (!err?.response) {
           alert('No Server Response');
         } else if (err.response?.status === 409) {
-          alert('This email is registered');
+          formik.errors.email= 'This email is registered';
         } else if (err.response?.status === 444) {
-          alert('This username is registered');
+          formik.errors.name = 'This username is registered';
         } else {
           alert('Registration Failed');
         }
@@ -174,9 +179,14 @@ function SignUp () {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <LockIcon />
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                              >
+                                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                              </IconButton>
                             </InputAdornment>
-                          ),
+                          )
                         }}
                       />
                       {Boolean(formik.errors.password) &&
@@ -193,7 +203,7 @@ function SignUp () {
                         name="confirmPassword"
                         label="Confirm password"
                         className="secondary-color"
-                        type={showPassword ? "text" : "password"}
+                        type={showConfirmPassword ? "text" : "password"}
                         value={formik.values.confirmPassword}
                         onChange={formik.handleChange}
                         error={
@@ -203,9 +213,14 @@ function SignUp () {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <LockIcon />
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowConfirmPassword}
+                              >
+                                {showConfirmPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                              </IconButton>
                             </InputAdornment>
-                          ),
+                          )
                         }}
                       />
                       {Boolean(formik.errors.confirmPassword) &&
