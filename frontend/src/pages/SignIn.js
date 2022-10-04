@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
+import {TextField } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import FaceIcon from "@mui/icons-material/Face";
-import LockIcon from "@mui/icons-material/Lock";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import Navigation from "../components/Navigation";
 import { useFormik } from "formik";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 
 //backend
 import { useNavigate, useLocation, Link } from "react-router-dom";
@@ -13,7 +14,9 @@ import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 const LOGIN_URL = "/users/auth";
 
+
 function SignIn() {
+
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -68,6 +71,7 @@ function SignIn() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   return (
     <div>
@@ -123,7 +127,16 @@ function SignIn() {
                           InputProps={{
                             startAdornment: (
                               <InputAdornment position="start">
-                                <LockIcon />
+                                <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={handleClickShowPassword}
+                                >
+                                  {showPassword ? (
+                                    <VisibilityIcon />
+                                  ) : (
+                                    <VisibilityOffIcon />
+                                  )}
+                                </IconButton>
                               </InputAdornment>
                             ),
                           }}
