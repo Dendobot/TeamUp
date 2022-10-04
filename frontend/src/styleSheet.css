@@ -161,6 +161,12 @@ a:hover {
   text-align: center;
 }
 
+.PageHeight {
+  height: 120vh;
+  background-color: var(--secondaryBlue);
+
+}
+
 .secondary-color {
   background-color: var(--secondaryBlue);
 }
@@ -191,6 +197,15 @@ a:hover {
 
 .recipeTitle {
   margin-top:20px;
+  font-weight:485;
+  font-size: 16px;
+  line-height: 125.29%;
+  letter-spacing: 0.0120588em;
+  color: #0671b7;
+}
+
+.OtherTitle {
+  margin-top:55px;
   font-weight:485;
   font-size: 16px;
   line-height: 125.29%;

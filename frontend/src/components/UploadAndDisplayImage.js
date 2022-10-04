@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import {
   TextField,
   InputAdornment,
@@ -9,17 +9,20 @@ import {
   ListItemText,
   Chip,
   Box,
+  Stack,
+  CardMedia,
 } from "@mui/material";
+
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 import { useFormik } from "formik";
 import * as yup from "yup";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ImageUploadPreviewComponent from "../components/ImageUploadPreviewComponent";
 
 //for backEnd
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const CREATE_URL = "/recipe/createRecipe";
@@ -35,7 +38,10 @@ const UploadAndDisplayImage = () => {
   const [ingredients, setIngredients] = useState("");
   const [tagsList, setTagsList] = useState([]);
   const [tags, setTags] = useState("");
-  
+  const [value, setValue] = useState("");
+  const [tagValue, setTagValue] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+
   //backend
   const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
@@ -51,6 +57,7 @@ const UploadAndDisplayImage = () => {
       method: "",
       cookingTime: 0,
       tags: [],
+      photo_url:"",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -67,6 +74,7 @@ const UploadAndDisplayImage = () => {
               method: values.method,
               cookingTime: values.cookingTime,
               tags: tagsList,
+              photo_url: selectedImage
             }),
             {
               headers: { "Content-Type": "application/json" },
@@ -94,28 +102,12 @@ const UploadAndDisplayImage = () => {
     },
   });
 
-  const handleClick = () => {
-    setIngredientList((ingredientList) => ingredientList.concat(ingredients));
-  };
-
-  const updateIngredient = ({ target }) => {
-    setIngredients(target.value);
-  };
-
   function handleDelete(e) {
     console.log(ingredientList);
     const s = ingredientList.filter((ingredients, i) => i !== e);
     setIngredientList(s);
     console.log(s);
   }
-
-  const handleTag = () => {
-    setTagsList((tagsList) => tagsList.concat(tags));
-  };
-
-  const updateTag = ({ target }) => {
-    setTags(target.value);
-  };
 
   function removeTag(e) {
     console.log(tagsList);
@@ -149,7 +141,47 @@ const UploadAndDisplayImage = () => {
             )}
             <p className="recipeTitle"> Add Photo</p>
             <div>
-              <ImageUploadPreviewComponent />
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <IconButton
+                  color="primary"
+                  aria-label="upload picture"
+                  component="label"
+                >
+                  <input
+                    hidden
+                    accept="image/*"
+                    type="file"
+                    onChange={(event) => {
+                      setSelectedImage(event.target.files[0]);
+                    }}
+                  />
+                  <PhotoCamera />
+                </IconButton>
+                <p>Click Icon to Upload</p>
+              </Stack>
+              {selectedImage && (
+                <div>
+                  <CardMedia
+                    component="img"
+                    sx={{
+                      width: "346px",
+                      height: "173px",
+                      marginBottom: "10px",
+                    }}
+                    src={URL.createObjectURL(selectedImage)}
+                    alt="Live from space album cover"
+                  />
+                  <div class=" d-flex justify-content-center">
+                    <Button
+                      variant="outlined"
+                      startIcon={<DeleteIcon />}
+                      onClick={() => setSelectedImage(null)}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
             <p className="recipeTitle"> Cooking Time (In Minutes)</p>
             <TextField
@@ -163,8 +195,7 @@ const UploadAndDisplayImage = () => {
               value={formik.values.cookingTime}
               onChange={formik.handleChange}
               error={
-                formik.touched.cookingTime &&
-                Boolean(formik.errors.cookingTime)
+                formik.touched.cookingTime && Boolean(formik.errors.cookingTime)
               }
             />
             {Boolean(formik.errors.cookingTime) &&
@@ -173,15 +204,14 @@ const UploadAndDisplayImage = () => {
                   {formik.errors.cookingTime}
                 </div>
               )}
-          
 
             <p className="recipeTitle">Add Tags</p>
             {tagsList.map((tags, i) => (
-                <Chip
-                  label={`${tags}`}
-                  onDelete={(e) => removeTag(i)}
-                  sx = {{marginBottom:"5px", marginRight:"5px"}}
-                />
+              <Chip
+                label={`${tags}`}
+                onDelete={(e) => removeTag(i)}
+                sx={{ marginBottom: "5px", marginRight: "5px" }}
+              />
             ))}
             <div>
               <TextField
@@ -190,14 +220,23 @@ const UploadAndDisplayImage = () => {
                 className="bg-color"
                 id="tags"
                 name="tags"
-                size = "small"
+                size="small"
                 variant="outlined"
-                onChange={updateTag}
+                onChange={({ target }) => {
+                  setTags(target.value);
+                  setTagValue(target.value);
+                }}
+                value={tagValue}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
                       <IconButton
-                        onClick={handleTag}
+                        onClick={() => {
+                          if (tags !== "") {
+                          setTagsList((tagsList) => tagsList.concat(tags));
+                        }
+                        setTagValue("");
+                      }}
                         aria-label="add to tags list"
                       >
                         <AddCircleRoundedIcon color="primary" />
@@ -205,8 +244,7 @@ const UploadAndDisplayImage = () => {
                     </InputAdornment>
                   ),
                 }}
-                sx={{marginTop:"5px"}}
-              
+                sx={{ marginTop: "5px" }}
               />
             </div>
 
@@ -228,24 +266,24 @@ const UploadAndDisplayImage = () => {
         </Grid>
         <Grid className="setGridMargin" xs={4}>
           <div className="left">
-            <p className="recipeTitle">Ingredients</p>
+            <p className="OtherTitle">Ingredients</p>
             <Box
               sx={{
-                bgcolor: 'background.paper',
+                bgcolor: "background.paper",
                 boxShadow: 1,
                 borderRadius: 2,
-                maxWidth: 300,
-                marginBottom:"10px",
+                maxWidth: 270,
+                marginBottom: "10px",
               }}
             >
               {ingredientList.map((ingredients, i) => (
                 <div>
-                <ListItem size= "small" key={ingredients + i}>
-                  <ListItemText size = "small" primary={`${ingredients}`} />
-                  <IconButton onClick={(e) => handleDelete(i)}>
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItem>
+                  <ListItem size="small" key={ingredients + i}>
+                    <ListItemText size="small" primary={`${ingredients}`} />
+                    <IconButton onClick={(e) => handleDelete(i)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </ListItem>
                 </div>
               ))}
             </Box>
@@ -256,14 +294,24 @@ const UploadAndDisplayImage = () => {
                 className="bg-color"
                 id="ingredients"
                 name="ingredients"
-                required
                 variant="outlined"
-                onChange={updateIngredient}
+                onChange={({ target }) => {
+                  setIngredients(target.value);
+                  setValue(target.value);
+                }}
+                value={value}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
                       <IconButton
-                        onClick={handleClick}
+                        onClick={() => {
+                          if (ingredients !== "") {
+                            setIngredientList((ingredientList) =>
+                              ingredientList.concat(ingredients)
+                            );
+                          }
+                          setValue("");
+                        }}
                         aria-label="add to ingredient list"
                       >
                         <AddCircleRoundedIcon color="primary" />
@@ -287,7 +335,7 @@ const UploadAndDisplayImage = () => {
         </Grid>
         <Grid className="setGridMargin" xs={3.5}>
           <div className="left">
-            <p className="recipeTitle"> Add Steps</p>
+            <p className="OtherTitle"> Add Steps</p>
             <TextField
               className="bg-color"
               id="method"

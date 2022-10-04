@@ -5,7 +5,7 @@ function AddRecipe() {
   return (
     <div>
       <Navigation />
-      <div className="secondary-color">
+      <div className="PageHeight">
         <UploadAndDisplayImage />
       </div>
     </div>
