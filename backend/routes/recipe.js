@@ -4,11 +4,13 @@ const User = require("../models/user.js");
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Recipe = require('../models/recipe.js');
-
+const verifyJWT = require("../config/verifyJWT");
 
 
 router.use(bodyParser.json()); //Handles JSON requests
 router.use(bodyParser.urlencoded({ extended: false }));
+//verify token before give access to route
+router.use(verifyJWT);
 
 
 // @desc    get all recipes for a user
