@@ -91,12 +91,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-09-07T15:39:43.478Z",
-    "modified": "2022-09-07T16:23:50.476Z",
+    "modified": "2022-09-24T14:29:11.962Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\"user\":\"truman\",\"recipeName\":\"das\",\"intro\":\"dsa\",\"ingredients\":\"das\",\"method\":\"das\"}",
+      "raw": "{\n  \"user\": \"test\",\n  \"recipeName\": \"Pizza3\",\n  \"note\": \"this food is good!\",\n  \"method\": \"cook for 5 min\",\n  \"cookingTime\": 5,\n  \"ingredients\": [\"Flour\", \"PineApple\"],\n  \"tags\": [\"vegan\",\"american\"]\n}",
       "form": []
     },
     "tests": []
@@ -110,13 +110,8 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-09-07T16:45:25.813Z",
-    "modified": "2022-09-07T17:45:19.769Z",
-    "headers": [
-      {
-        "name": "Cookie",
-        "value": "jwt= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRydW1hbiIsImlhdCI6MTY2MjU3MjY4NiwiZXhwIjoxNjYyNjU5MDg2fQ.UGGKccwKbfAi0FugIzTswc2AKG7nWraLFefsOg3xZO0"
-      }
-    ],
+    "modified": "2022-09-24T14:14:05.124Z",
+    "headers": [],
     "params": [],
     "tests": []
   },
@@ -217,6 +212,91 @@
     "modified": "2022-09-16T05:33:16.137Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "b375d486-2db5-4189-94a1-a8594fcf6fd6",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:3500",
+    "url": "https://localhost:3500",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-24T14:12:17.694Z",
+    "modified": "2022-09-24T14:12:17.720Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "d94eca12-8dd8-47a2-9c84-69d7bbccff6e",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:3500/",
+    "url": "https://localhost:3500/",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-24T14:13:50.855Z",
+    "modified": "2022-09-24T14:13:50.868Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "306ae385-88d4-4ec2-8a2b-c9c8f1f0de7c",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost:3500/recipe",
+    "url": "https://localhost:3500/recipe",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-24T14:13:55.721Z",
+    "modified": "2022-09-24T14:13:55.732Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e7a9dae6-2052-4f15-bff2-c71bd50bb375",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3500/createRecipe",
+    "url": "localhost:3500/createRecipe",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-09-24T14:21:06.166Z",
+    "modified": "2022-09-24T14:22:10.270Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"user\": \"test\",\n  \"recipeName\": \"Pizza\",\n  \"note\": \"this food is good!\",\n  \"method\": \"cook for 5 min\",\n  \"cookingTime\": 5,\n  \"ingredients\": [\"Flour\", \"PineApple\"],\n  \"tags\": [\"vegan\",\"american\"]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "40a7edd5-42a3-423e-80c6-b5a0aa91e4fb",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3500/viewRecipes",
+    "url": "http://localhost:3500/viewRecipes",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-10-03T09:49:28.423Z",
+    "modified": "2022-10-03T09:50:11.449Z",
+    "headers": [
+      {
+        "name": "Cookie",
+        "value": "jwt=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2NjQ3ODUzOTEsImV4cCI6MTY2NDg3MTc5MX0.8Camnl31JL9FAwdyzxvcGAuyDLiJVa2Kwn1ESdDAMN8\""
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"user\": \"test\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]
