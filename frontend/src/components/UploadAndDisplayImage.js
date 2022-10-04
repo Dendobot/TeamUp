@@ -232,7 +232,7 @@ const UploadAndDisplayImage = () => {
                     <InputAdornment position="start">
                       <IconButton
                         onClick={() => {
-                          if (tags !== "") {
+                          if ((tags !== "") && (tagValue !== "")){
                           setTagsList((tagsList) => tagsList.concat(tags));
                         }
                         setTagValue("");
@@ -305,7 +305,7 @@ const UploadAndDisplayImage = () => {
                     <InputAdornment position="start">
                       <IconButton
                         onClick={() => {
-                          if (ingredients !== "") {
+                          if ((ingredients !== "") && (value !== "")) {
                             setIngredientList((ingredientList) =>
                               ingredientList.concat(ingredients)
                             );
