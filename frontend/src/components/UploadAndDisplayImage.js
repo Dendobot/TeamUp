@@ -147,10 +147,7 @@ const handleIngredientKey = (event) => {
   }
 
   return (
-    <Box className="PageHeight" 
-    sx ={{
-      width:1600
-    }}>
+    <div className="PageHeight">
     <form onSubmit={formik.handleSubmit}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
         <Grid className="setGridMargin" xs={3.7}>
@@ -394,7 +391,7 @@ const handleIngredientKey = (event) => {
         </Grid>
       </Grid>
     </form>
-    </Box>
+    </div>
   );
 };
 
