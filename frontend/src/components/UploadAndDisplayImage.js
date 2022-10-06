@@ -103,18 +103,20 @@ const UploadAndDisplayImage = () => {
   });
 
   const handleTag = () => {
-    if ((tags !== "") && (tagValue !== "")){
+    if ((tags !== "") && (tagValue !== "") && (tags !== " ")){
     setTagsList((tagsList) => tagsList.concat(tags));
   }
+  setTags("");
   setTagValue("");
 }
 
 const handleIngredient = () => {
-  if ((ingredients !== "") && (value !== "")) {
+  if ((ingredients !== "") && (value !== "") && (ingredients !== " ")) {
     setIngredientList((ingredientList) =>
       ingredientList.concat(ingredients)
     );
   }
+  setIngredients("");
   setValue("");
 }
 
@@ -145,9 +147,13 @@ const handleIngredientKey = (event) => {
   }
 
   return (
+    <Box className="PageHeight" 
+    sx ={{
+      width:1600
+    }}>
     <form onSubmit={formik.handleSubmit}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
-        <Grid className="setGridMargin" xs={3.8}>
+        <Grid className="setGridMargin" xs={3.7}>
           <div className="left">
             <h2 classname="common-font-color">Add a recipe</h2>
             <p className="recipeTitle"> Recipe Title</p>
@@ -262,16 +268,7 @@ const handleIngredientKey = (event) => {
                   endAdornment: (
                     <InputAdornment position="start">
                       <IconButton
-
                         onClick={handleTag}
-
-                        onClick={() => {
-                          if ((tags !== "")&&(tags !== " ")) {
-                          setTagsList((tagsList) => tagsList.concat(tags));
-                        }
-                        setTags("");
-                        setTagValue("");
-
                         aria-label="add to tags list"
                       >
                         <AddCircleRoundedIcon color="primary" />
@@ -300,7 +297,7 @@ const handleIngredientKey = (event) => {
             />
           </div>
         </Grid>
-        <Grid className="setGridMargin" xs={4}>
+        <Grid className="setGridMargin" xs={3.7} >
           <div className="left">
             <p className="OtherTitle">Ingredients</p>
             <Box
@@ -343,15 +340,6 @@ const handleIngredientKey = (event) => {
                       <IconButton
 
                         onClick={handleIngredient}
-                        onClick={() => {
-                          if ((ingredients !== " ")&& (ingredients !== "")) {
-                            setIngredientList((ingredientList) =>
-                              ingredientList.concat(ingredients)
-                            );
-                          }
-                          setIngredients("");
-                          setValue("");
-                        }}
 
                         aria-label="add to ingredient list"
                       >
@@ -373,7 +361,7 @@ const handleIngredientKey = (event) => {
             </div>
           </div>
         </Grid>
-        <Grid className="setGridMargin" xs={3.5}>
+        <Grid className="setGridMargin" xs={3.7}>
           <div className="left">
             <p className="OtherTitle"> Add Steps</p>
             <TextField
@@ -406,6 +394,7 @@ const handleIngredientKey = (event) => {
         </Grid>
       </Grid>
     </form>
+    </Box>
   );
 };
 

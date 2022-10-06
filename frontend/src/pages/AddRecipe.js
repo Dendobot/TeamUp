@@ -5,9 +5,7 @@ function AddRecipe() {
   return (
     <div>
       <Navigation />
-      <div className="PageHeight">
         <UploadAndDisplayImage />
-      </div>
     </div>
   );
 }
