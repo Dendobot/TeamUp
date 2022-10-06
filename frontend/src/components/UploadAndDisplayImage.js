@@ -28,7 +28,7 @@ import useAuth from "../hooks/useAuth";
 const CREATE_URL = "/recipe/createRecipe";
 
 const validationSchema = yup.object({
-  recipeName: yup.string("Enter your name").required("Name is required"),
+  recipeName: yup.string("Enter your recipe Title").required("Title is required"),
   method: yup.string("Enter your method").required("Method is required"),
   cookingTime: yup.number(),
 });
