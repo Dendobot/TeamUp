@@ -51,9 +51,12 @@ router.get("/viewRecipes", async (req, res) => {
   });
 });
 
-router.get('/viewRecipe/632f1b833a62c0aeca7e6c27', async (req, res) => {
+router.get('/viewRecipe/:id', async (req, res) => {
   console.log("I got called!")
-  var id = req.query.id;
+  const url = req.url;
+  const urlSplit = url.split("/")
+  const id = urlSplit[urlSplit.length - 1]
+  console.log("id = ", id)
 
   try {
     const recipe = await Recipe.findOne({ id: id }).exec();

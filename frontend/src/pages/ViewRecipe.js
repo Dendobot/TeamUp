@@ -1,33 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation";
 //import BottomBar from "../components/BottomBar";
 import { Button } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
-import { axiosPrivate } from "../api/axios";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useParams } from "react-router-dom";
 
 const VIEW_RECIPE_URL = "/recipe/viewRecipe/";
 
 function ViewRecipe() {
-  
+  const axiosPrivate = useAxiosPrivate();
   const { id } = useParams();
   console.log("id = ", id)
+  const [recipeInfo, setrecipeInfo] = useState();
+
+  const getRecipe = async () => {
+    const url = VIEW_RECIPE_URL + id
+    console.log("get url = ", url)
+    try {
+      const response = await axiosPrivate.get(url, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      console.log("response.data = ", response.data);
+      const obj = await JSON.parse(response.data);
+      console.log("response obj = ", obj);
+      setrecipeInfo(obj)
+
+    } catch (err) {
+      alert("Failed to get recipe");
+    }
+  };
+
 
   useEffect(() => {
-    const getRecipe = async () => {
-      const url = VIEW_RECIPE_URL + id
-      console.log("get url = ", url)
-      try {
-        const response = await axiosPrivate.get(url, {
-          headers: { "Content-Type": "application/json" },
-        });
-
-        console.log("response = ", response);
-      } catch (err) {
-        alert("Failed to get recipe");
-      }
-    };
-
     getRecipe();
   }, [axiosPrivate]);
 
@@ -35,7 +41,7 @@ function ViewRecipe() {
     <div>
       <Navigation />
       <div className="secondary-color">
-        <div className="recipe-header"> Chicken Butter Indian Style </div>
+        <div className="recipe-header"> {recipeInfo?.recipeName} </div>
       </div>
       <div className="edit-recipe-button">
         <Button variant="contained">Edit Recipe</Button>
