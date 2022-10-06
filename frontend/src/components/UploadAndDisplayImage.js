@@ -102,6 +102,34 @@ const UploadAndDisplayImage = () => {
     },
   });
 
+  const handleTag = () => {
+    if ((tags !== "") && (tagValue !== "")){
+    setTagsList((tagsList) => tagsList.concat(tags));
+  }
+  setTagValue("");
+}
+
+const handleIngredient = () => {
+  if ((ingredients !== "") && (value !== "")) {
+    setIngredientList((ingredientList) =>
+      ingredientList.concat(ingredients)
+    );
+  }
+  setValue("");
+}
+
+const handleKeyDown = (event) => {
+  if (event.key === 'Enter') {
+    handleTag();
+  }
+}
+
+const handleIngredientKey = (event) => {
+  if (event.key === 'Enter') {
+    handleIngredient();
+  }
+}
+
   function handleDelete(e) {
     console.log(ingredientList);
     const s = ingredientList.filter((ingredients, i) => i !== e);
@@ -228,17 +256,13 @@ const UploadAndDisplayImage = () => {
                   setTags(target.value);
                   setTagValue(target.value);
                 }}
+                onKeyDown = {handleKeyDown}
                 value={tagValue}
                 InputProps={{
-                  startAdornment: (
+                  endAdornment: (
                     <InputAdornment position="start">
                       <IconButton
-                        onClick={() => {
-                          if ((tags !== "") && (tagValue !== "")){
-                          setTagsList((tagsList) => tagsList.concat(tags));
-                        }
-                        setTagValue("");
-                      }}
+                        onClick={handleTag}
                         aria-label="add to tags list"
                       >
                         <AddCircleRoundedIcon color="primary" />
@@ -302,26 +326,19 @@ const UploadAndDisplayImage = () => {
                   setIngredients(target.value);
                   setValue(target.value);
                 }}
+                onKeyDown = {handleIngredientKey}
                 value={value}
                 InputProps={{
-                  startAdornment: (
+                  endAdornment: (
                     <InputAdornment position="start">
                       <IconButton
-                        onClick={() => {
-                          if ((ingredients !== "") && (value !== "")) {
-                            setIngredientList((ingredientList) =>
-                              ingredientList.concat(ingredients)
-                            );
-                          }
-                          setValue("");
-                        }}
+                        onClick={handleIngredient}
                         aria-label="add to ingredient list"
                       >
                         <AddCircleRoundedIcon color="primary" />
                       </IconButton>
                     </InputAdornment>
-                  ),
-                }}
+                  )}}
                 error={
                   formik.touched.ingredients &&
                   Boolean(formik.errors.ingredients)
