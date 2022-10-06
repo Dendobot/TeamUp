@@ -28,8 +28,10 @@ router.get("/viewRecipes", async (req, res) => {
       console.log("user who requested the recipes is: ", user);
       const recipeInfo = [];
       try {
+        console.log("user recipes",user.recipes)
         for (const recipeId of user.recipes) {
-          const recipe = await Recipe.findOne({ id: recipeId }).exec();
+          const recipe = await Recipe.findOne({ _id: recipeId }).exec();
+          console.log("recipe",recipe)
           recipeInfo.push({
             recipeId: recipe._id,
             recipeName: recipe.recipeName,

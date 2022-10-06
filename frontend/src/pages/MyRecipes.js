@@ -3,15 +3,16 @@ import Navigation from "../components/Navigation";
 import RecipeBox from "../components/RecipeBox";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { IconButton } from "@mui/material";
-import useAuth from "../hooks/useAuth";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function MyRecipes() {
   const axiosPrivate = useAxiosPrivate();
-  const { auth } = useAuth();
+  const [recipeNames, setRecipesNames] = useState();
+  const [recipeIDs, setRecipeIDs] = useState();
+  const [ans, setAns] = React.useState();
 
-  useEffect(() => {
+  
     const getRecipeInfo = async () => {
       try {
         const response = await axiosPrivate.get("/recipe/viewRecipes", {
@@ -20,14 +21,35 @@ function MyRecipes() {
 
         console.log("response = ", response);
         console.log("response.data = ", response.data);
+        const obj = await JSON.parse(response.data);
+        console.log("obj = ", obj.recipeInfo);
+
+        let r = [];
+        let d = [];
+        for (let i = 0; i < obj.recipeInfo.length; i++) {
+          r.push(obj.recipeInfo[i].recipeName);
+          d.push(obj.recipeInfo[i].recipeId);
+        }
+
+        setRecipesNames(r);
+        setRecipeIDs(d);
+        setAns(obj);
+
       } catch (err) {
         alert("Fail");
       }
     };
+    useEffect(() => {
 
-    const recipeInfo = getRecipeInfo();
-    console.log("recipeInfo = ", recipeInfo);
+    getRecipeInfo();
+    console.log("recipeInfo = ", getRecipeInfo());
+    
   }, [axiosPrivate]);
+
+  console.log(recipeNames);
+  console.log(recipeIDs)
+  console.log(ans)
+  
 
   return (
     <div>
@@ -52,17 +74,17 @@ function MyRecipes() {
         </IconButton>
       </a>
       <div className="center-horiz graph-parts">
-        <RecipeBox />
-        <RecipeBox />
-        <RecipeBox />
-        <RecipeBox />
-        <RecipeBox />
-        <RecipeBox />
-        <RecipeBox />
-        <RecipeBox />
-        <RecipeBox />
-        <RecipeBox />
-        <RecipeBox />
+      {recipeNames?.length
+        ? (
+          <ul>
+            {recipeNames.map((users, i) =>
+            <RecipeBox recipeName= {recipeNames[i]}/>
+              )}
+          </ul>
+        ) : <p>No users to display</p>
+
+      }
+        
       </div>
     </div>
   );
