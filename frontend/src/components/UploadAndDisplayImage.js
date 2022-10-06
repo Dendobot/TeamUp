@@ -245,7 +245,7 @@ const handleIngredientKey = (event) => {
             ))}
             <div>
               <TextField
-                label="Add Tags"
+                label="Add Tag"
                 type="text"
                 className="bg-color"
                 id="tags"
@@ -262,7 +262,16 @@ const handleIngredientKey = (event) => {
                   endAdornment: (
                     <InputAdornment position="start">
                       <IconButton
+
                         onClick={handleTag}
+
+                        onClick={() => {
+                          if ((tags !== "")&&(tags !== " ")) {
+                          setTagsList((tagsList) => tagsList.concat(tags));
+                        }
+                        setTags("");
+                        setTagValue("");
+
                         aria-label="add to tags list"
                       >
                         <AddCircleRoundedIcon color="primary" />
@@ -332,7 +341,18 @@ const handleIngredientKey = (event) => {
                   endAdornment: (
                     <InputAdornment position="start">
                       <IconButton
+
                         onClick={handleIngredient}
+                        onClick={() => {
+                          if ((ingredients !== " ")&& (ingredients !== "")) {
+                            setIngredientList((ingredientList) =>
+                              ingredientList.concat(ingredients)
+                            );
+                          }
+                          setIngredients("");
+                          setValue("");
+                        }}
+
                         aria-label="add to ingredient list"
                       >
                         <AddCircleRoundedIcon color="primary" />
