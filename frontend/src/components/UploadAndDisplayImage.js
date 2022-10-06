@@ -46,7 +46,7 @@ const UploadAndDisplayImage = () => {
   const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
 
-  //redirecting to login if successfully registered
+  //redirecting to home page if successfully registered
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -135,6 +135,7 @@ const UploadAndDisplayImage = () => {
               error={
                 formik.touched.recipeName && Boolean(formik.errors.recipeName)
               }
+              InputLabelProps={{shrink: false}}
             />
             {Boolean(formik.errors.recipeName) && formik.touched.recipeName && (
               <div style={{ color: "#d32f2f" }}>{formik.errors.recipeName}</div>
@@ -197,6 +198,7 @@ const UploadAndDisplayImage = () => {
               error={
                 formik.touched.cookingTime && Boolean(formik.errors.cookingTime)
               }
+              InputLabelProps={{shrink: false}}
             />
             {Boolean(formik.errors.cookingTime) &&
               formik.touched.cookingTime && (
@@ -261,6 +263,7 @@ const UploadAndDisplayImage = () => {
               name="note"
               value={formik.values.note}
               onChange={formik.handleChange}
+              InputLabelProps={{shrink: false}}
             />
           </div>
         </Grid>
@@ -349,6 +352,7 @@ const UploadAndDisplayImage = () => {
               value={formik.values.method}
               onChange={formik.handleChange}
               error={formik.touched.method && Boolean(formik.errors.method)}
+              InputLabelProps={{shrink: false}}
             />
             {Boolean(formik.errors.method) && formik.touched.method && (
               <div style={{ color: "#d32f2f" }}>{formik.errors.method}</div>
