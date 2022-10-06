@@ -51,10 +51,8 @@ router.get("/viewRecipes", async (req, res) => {
   });
 });
 
-// @desc    get one recipe detailed info for a user
-// @route   GET /recipe/viewRecipe
-// @access  Private
-router.get('/viewRecipe', async (req, res) => {
+router.get('/viewRecipe/632f1b833a62c0aeca7e6c27', async (req, res) => {
+  console.log("I got called!")
   var id = req.query.id;
 
   try {

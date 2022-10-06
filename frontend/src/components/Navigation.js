@@ -14,14 +14,18 @@ function Navigation () {
   var signout = <></>;
   var myRecipes = <></>;
   var addRecipe = <></>;
-  var viewRecipe = <></>;
+  const viewRecipe = (recipeId) => {
+    const url = "/viewRecipe/" + recipeId
+    console.log("url = ", url)
+    return <NavLink className="nav-link" to={url}>View Recipe</NavLink>
+  }
+
   const { auth } = useAuth();
   if (auth?.user) {
     loginButton =
       <SignOutButton />;
     myRecipes = <NavLink className="nav-link" to="/home">My Recipes</NavLink>
     addRecipe = <NavLink className="nav-link" to="/addRecipe">Add Recipe</NavLink>
-    viewRecipe = <NavLink className="nav-link" to="/viewRecipe">View Recipe</NavLink>
   } else {
     loginButton = <></>;
     home = <NavLink className="nav-link " to="/landingPage">Home<span className="sr-only">(current)</span></NavLink>
@@ -35,7 +39,7 @@ function Navigation () {
   return (
     <nav class="navbar navbar-expand-lg navbar-light ">
       <div className="left">
-        <h1 > <a href="/landingPage">Cheffie </a> </h1>
+        <h1 > <a href="/landingPage">Cheffies </a> </h1>
       </div>
       <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +58,7 @@ function Navigation () {
             </li>
 
           <li className="nav-item navBarLinks">
-            {viewRecipe}
+            {viewRecipe("632f1b833a62c0aeca7e6c27")}
           </li>
           
           <li className="nav-item navBarLinks">
