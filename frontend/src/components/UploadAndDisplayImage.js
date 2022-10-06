@@ -215,7 +215,7 @@ const UploadAndDisplayImage = () => {
             ))}
             <div>
               <TextField
-                label="Add Tags"
+                label="Add Tag"
                 type="text"
                 className="bg-color"
                 id="tags"
@@ -228,13 +228,14 @@ const UploadAndDisplayImage = () => {
                 }}
                 value={tagValue}
                 InputProps={{
-                  startAdornment: (
+                  endAdornment: (
                     <InputAdornment position="start">
                       <IconButton
                         onClick={() => {
-                          if (tags !== "") {
+                          if ((tags !== "")&&(tags !== " ")) {
                           setTagsList((tagsList) => tagsList.concat(tags));
                         }
+                        setTags("");
                         setTagValue("");
                       }}
                         aria-label="add to tags list"
@@ -301,15 +302,16 @@ const UploadAndDisplayImage = () => {
                 }}
                 value={value}
                 InputProps={{
-                  startAdornment: (
+                  endAdornment: (
                     <InputAdornment position="start">
                       <IconButton
                         onClick={() => {
-                          if (ingredients !== "") {
+                          if ((ingredients !== " ")&& (ingredients !== "")) {
                             setIngredientList((ingredientList) =>
                               ingredientList.concat(ingredients)
                             );
                           }
+                          setIngredients("");
                           setValue("");
                         }}
                         aria-label="add to ingredient list"
