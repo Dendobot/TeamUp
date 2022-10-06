@@ -7,36 +7,27 @@ import useAuth from "../hooks/useAuth";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useEffect } from "react";
 
-
-
-
-
 function MyRecipes() {
   const axiosPrivate = useAxiosPrivate();
-const { auth } = useAuth();
- 
-  useEffect(() => {
+  const { auth } = useAuth();
 
+  useEffect(() => {
     const getRecipeInfo = async () => {
       try {
-        const response = await axiosPrivate.get(
-          "/recipe/viewRecipes",
-          JSON.stringify({ user: auth.user }),
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-  
+        const response = await axiosPrivate.get("/recipe/viewRecipes", {
+          headers: { "Content-Type": "application/json" },
+        });
+
         console.log("response = ", response);
         console.log("response.data = ", response.data);
       } catch (err) {
         alert("Fail");
       }
     };
-  
-    const recipeInfo = getRecipeInfo()
-  
-  }, [axiosPrivate])
+
+    const recipeInfo = getRecipeInfo();
+    console.log("recipeInfo = ", recipeInfo);
+  }, [axiosPrivate]);
 
   return (
     <div>

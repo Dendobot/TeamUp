@@ -15,9 +15,15 @@ router.use(bodyParser.urlencoded({ extended: false }));
 // @route   GET /recipe
 // @access  Private
 router.get("/viewRecipes", async (req, res) => {
-  const { user } = req.body;
+  const cookies = req.cookies;
+  if (!cookies?.jwt) return res.sendStatus(401);
+  const refreshToken = cookies.jwt;
+  const foundUser = await User.findOne({ refreshToken }).exec();
+  if (!foundUser) return res.sendStatus(403); //Forbidden
 
-  User.findOne({ username: user }).exec(async (err, user) => {
+  var user_requested = foundUser.username;
+ 
+  User.findOne({ username: user_requested }).exec(async (err, user) => {
     if (user) {
       console.log("user who requested the recipes is: ", user);
       const recipeInfo = [];
