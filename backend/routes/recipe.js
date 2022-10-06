@@ -62,7 +62,7 @@ router.get('/viewRecipe', async (req, res) => {
   var id = req.query.id;
 
   try {
-    const recipe = await Recipe.findOne({ id: id }).exec();
+    const recipe = await Recipe.findOne({ _id: id }).exec();
     if (recipe) {
 
       res.render('viewRecipe', {

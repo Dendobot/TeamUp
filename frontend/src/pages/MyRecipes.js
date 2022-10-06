@@ -10,6 +10,7 @@ function MyRecipes() {
   const axiosPrivate = useAxiosPrivate();
   const [recipeNames, setRecipesNames] = useState();
   const [recipeIDs, setRecipeIDs] = useState();
+  const [recipePhoto, setRecipePhoto] = useState();
   const [ans, setAns] = React.useState();
 
   
@@ -22,17 +23,20 @@ function MyRecipes() {
         console.log("response = ", response);
         console.log("response.data = ", response.data);
         const obj = await JSON.parse(response.data);
-        console.log("obj = ", obj.recipeInfo);
+        console.log("obj = ", obj);
 
         let r = [];
         let d = [];
+        let p = [];
         for (let i = 0; i < obj.recipeInfo.length; i++) {
           r.push(obj.recipeInfo[i].recipeName);
           d.push(obj.recipeInfo[i].recipeId);
+          p.push(obj.recipeInfo[i].photo);
         }
 
         setRecipesNames(r);
         setRecipeIDs(d);
+        setRecipePhoto(p);
         setAns(obj);
 
       } catch (err) {
@@ -49,6 +53,7 @@ function MyRecipes() {
   console.log(recipeNames);
   console.log(recipeIDs)
   console.log(ans)
+  console.log(recipePhoto)
   
 
   return (
@@ -78,7 +83,7 @@ function MyRecipes() {
         ? (
           <ul>
             {recipeNames.map((users, i) =>
-            <RecipeBox recipeName= {recipeNames[i]}/>
+            <RecipeBox recipeName= {recipeNames[i]} imgsrc={recipePhoto[i]}/>
               )}
           </ul>
         ) : <p>No users to display</p>
