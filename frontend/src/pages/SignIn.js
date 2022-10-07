@@ -159,7 +159,6 @@ function SignIn() {
                               autoHideDuration={6000}
                               onClose={handleClose}
                             >
-                              <AlertTitle> Error </AlertTitle>
                               <Alert
                                 severity="error"
                                 sx={{ marginTop: 2, width: 300 }}
@@ -169,6 +168,7 @@ function SignIn() {
                               </Alert>
                             </Snackbar>
                           )}
+
                         {Boolean(formik.errors.success) && (
                           <Snackbar
                             open={open}

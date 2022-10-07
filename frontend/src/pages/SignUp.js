@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { TextField, IconButton, Button, Snackbar, AlertTitle, InputAdornment } from "@mui/material";
+import {
+  TextField,
+  IconButton,
+  Button,
+  Snackbar,
+  AlertTitle,
+  InputAdornment,
+} from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import EmailIcon from "@mui/icons-material/Email";
 import Navigation from "../components/Navigation";
@@ -142,10 +149,7 @@ function SignUp() {
                         }}
                       />
                       {Boolean(formik.errors.name) && formik.touched.name && (
-                        <Alert
-                          severity="error"
-                          sx={{ marginTop: 2}}
-                        >
+                        <Alert severity="error" sx={{ marginTop: 2 }}>
                           {formik.errors.name}
                         </Alert>
                       )}
@@ -170,10 +174,7 @@ function SignUp() {
                         }}
                       />
                       {Boolean(formik.errors.email) && formik.touched.email && (
-                        <Alert
-                          severity="error"
-                          sx={{ marginTop: 2}}
-                        >
+                        <Alert severity="error" sx={{ marginTop: 2 }}>
                           {formik.errors.email}
                         </Alert>
                       )}
@@ -211,10 +212,7 @@ function SignUp() {
                       />
                       {Boolean(formik.errors.password) &&
                         formik.touched.password && (
-                          <Alert
-                            severity="error"
-                            sx={{ marginTop: 2}}
-                          >
+                          <Alert severity="error" sx={{ marginTop: 2 }}>
                             {formik.errors.password}
                           </Alert>
                         )}
@@ -252,9 +250,7 @@ function SignUp() {
                       />
                       {Boolean(formik.errors.confirmPassword) &&
                         formik.touched.confirmPassword && (
-                          <Alert
-                            severity="error"
-                          >
+                          <Alert severity="error">
                             {formik.errors.confirmPassword}
                           </Alert>
                         )}
