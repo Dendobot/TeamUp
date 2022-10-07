@@ -19,7 +19,6 @@ import {
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 import { useFormik } from "formik";
-import * as yup from "yup";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -29,15 +28,6 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const CREATE_URL = "/recipe/createRecipe";
-
-const validationSchema = yup.object({
-  recipeName: yup
-    .string("Enter your recipe Title")
-    .required("Title is required"),
-  method: yup.string("Enter your method").required("Method is required"),
-  ingredients: yup.array().of(yup.string()),
-  cookingTime: yup.number(),
-});
 
 const UploadAndDisplayImage = () => {
   const [ingredientList, setIngredientList] = useState([]);
@@ -74,12 +64,11 @@ const UploadAndDisplayImage = () => {
       tags: [],
       photo_url: "",
     },
-    validationSchema: validationSchema,
     onSubmit: async (values) => {
       //axios to back end
       console.log("click save changes");
       try {
-        if (ingredientList.length > 0) {
+        if ((ingredientList.length > 0)&&(values.method !== "")&&(values.method !== " ")&&(values.recipeName !== "")&&(values.recipeName !== " ")) {
           const response = await axiosPrivate.post(
             CREATE_URL,
             JSON.stringify({
@@ -105,7 +94,16 @@ const UploadAndDisplayImage = () => {
             setSuccess(false);
           }, 2000);
         } else {
-          formik.errors.ingredients = "No ingredient present";
+          if ((values.method === "") || (values.method === " ")) {
+            formik.errors.method = "Method is required"
+          }
+          
+          if ((values.recipeName === "") || (values.recipeName === " ")) {
+            formik.errors.recipeName = "Recipe name is required"
+          }
+          if (ingredientList.length === 0) {
+          formik.errors.ingredients = "Ingredient is required";
+          }
         }
       } catch (err) {
         console.log("error = ", err.response?.status);
