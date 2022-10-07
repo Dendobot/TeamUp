@@ -35,6 +35,7 @@ function SignIn() {
     initialValues: {
       email: "",
       password: "",
+      success: "",
     },
     onSubmit: async (values) => {
       try {
@@ -46,17 +47,20 @@ function SignIn() {
             withCredentials: true,
           }
         );
-        console.log(response?.data);
-        const accessToken = response?.data?.accessToken;
-        const user = response?.data?.user;
-        console.log("User: " + user);
-        setAuth({
-          user: user,
-          pwd: values.password,
-          email: values.email,
-          accessToken,
-        });
-        navigate(from, { replace: true });
+        formik.errors.success = "Logged in successfully!";
+        setTimeout(() => {
+          console.log(response?.data);
+          const accessToken = response?.data?.accessToken;
+          const user = response?.data?.user;
+          console.log("User: " + user);
+          setAuth({
+            user: user,
+            pwd: values.password,
+            email: values.email,
+            accessToken,
+          });
+          navigate(from, { replace: true });
+        }, 2000);
       } catch (err) {
         console.log("error = ", err.response?.status);
         if (!err?.response) {
@@ -160,6 +164,18 @@ function SignIn() {
                             >
                               <Alert severity="error" sx={{ marginTop: 2 }}>
                                 {formik.errors.password}
+                              </Alert>
+                            </Snackbar>
+                          )}
+                        {Boolean(formik.errors.success) &&
+                          (
+                            <Snackbar
+                              open={open}
+                              autoHideDuration={6000}
+                              onClose={handleClose}
+                            >
+                              <Alert severity="success" sx={{ marginTop: 2 }}>
+                                {formik.errors.success}
                               </Alert>
                             </Snackbar>
                           )}

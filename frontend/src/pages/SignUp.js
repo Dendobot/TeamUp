@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { TextField, IconButton } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import FaceIcon from "@mui/icons-material/Face";
@@ -7,6 +7,7 @@ import Navigation from "../components/Navigation";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
 
 //for backEnd
 import axios from "../api/axios";
@@ -44,11 +45,21 @@ function SignUp() {
   const handleClickShowConfirmPassword = () =>
     setShowConfirmPassword(!showConfirmPassword);
 
+  const [open, setOpen] = useState(true);
+  const handleClose = (event = React.SyntheticEvent | Event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
       password: "",
+      success: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -66,10 +77,14 @@ function SignUp() {
             withCredentials: true,
           }
         );
-        console.log(response?.data);
-        console.log(response?.accessToken);
-        console.log(JSON.stringify(response));
-        navigate("/signin");
+
+        formik.errors.success = "Signed up successfully!";
+        setTimeout(() => {
+          console.log(response?.data);
+          console.log(response?.accessToken);
+          console.log(JSON.stringify(response));
+          navigate("/signin");
+        }, 2000);
       } catch (err) {
         if (!err?.response) {
           formik.errors.confirmPassword = "No Server Response";
@@ -230,10 +245,24 @@ function SignUp() {
                       />
                       {Boolean(formik.errors.confirmPassword) &&
                         formik.touched.confirmPassword && (
-                            <Alert severity="error" sx={{ marginTop: 2, width: '100%'}}>
-                              {formik.errors.confirmPassword}
-                            </Alert>
+                          <Alert
+                            severity="error"
+                            sx={{ marginTop: 2, width: "100%" }}
+                          >
+                            {formik.errors.confirmPassword}
+                          </Alert>
                         )}
+                      {Boolean(formik.errors.success) && (
+                        <Snackbar
+                          open={open}
+                          autoHideDuration={6000}
+                          onClose={handleClose}
+                        >
+                          <Alert severity="success" sx={{ marginTop: 2 }}>
+                            {formik.errors.success}
+                          </Alert>
+                        </Snackbar>
+                      )}
                     </span>
                     <div class=" d-flex justify-content-center">
                       <Button variant="contained" size="large" type="submit">
