@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import Navigation from "../components/Navigation";
 function Landing() {
   return (
-    <div className="vh-100 overflow">
+    <div className="min-vh-100 overflow">
       <Navigation />
       <div className="row justify-content-center margin-top-70 text-center text-md-left">
         <div className="col-sm-12 col-md-5 col-xl-4">

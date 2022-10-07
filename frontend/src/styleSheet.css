@@ -187,14 +187,6 @@ a:hover {
   background-color: var(--secondaryBlue);
 }
 
-@media (min-width: 768px) {
-  .tableimg {
-    position: absolute;
-    bottom: 0;
-    right: 15%;
-  }
-}
-
 .uploade-photo {
   position: relative;
   width: 346px;
