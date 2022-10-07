@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import FaceIcon from "@mui/icons-material/Face";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -7,6 +7,8 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import Navigation from "../components/Navigation";
 import { useFormik } from "formik";
 import { Button, IconButton } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 //backend
 import { useNavigate, useLocation, Link } from "react-router-dom";
@@ -14,13 +16,20 @@ import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 const LOGIN_URL = "/users/auth";
 
-
 function SignIn() {
-
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [open, setOpen] = useState(true);
   const from = location.state?.from?.pathname || "/";
+
+  const handleClose = (event = React.SyntheticEvent | Event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -41,7 +50,6 @@ function SignIn() {
         const accessToken = response?.data?.accessToken;
         const user = response?.data?.user;
         console.log("User: " + user);
-        alert("Logged In");
         setAuth({
           user: user,
           pwd: values.password,
@@ -145,9 +153,15 @@ function SignIn() {
                         />
                         {Boolean(formik.errors.password) &&
                           formik.touched.password && (
-                            <div style={{ color: "#d32f2f" }}>
-                              {formik.errors.password}
-                            </div>
+                            <Snackbar
+                              open={open}
+                              autoHideDuration={6000}
+                              onClose={handleClose}
+                            >
+                              <Alert severity="error" sx={{ marginTop: 2 }}>
+                                {formik.errors.password}
+                              </Alert>
+                            </Snackbar>
                           )}
                       </span>
                       <div class=" d-flex justify-content-center">
