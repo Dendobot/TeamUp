@@ -354,7 +354,7 @@ const UploadAndDisplayImage = () => {
                   name="ingredients"
                   variant="outlined"
                   onChange={({ target }) => {
-                    if (target.value.length < 30) {
+                    if (target.value.length <= 22) {
                       setIngredients(target.value);
                       setValue(target.value);
                     }

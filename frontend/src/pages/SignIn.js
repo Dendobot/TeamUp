@@ -162,7 +162,7 @@ function SignIn() {
                           variant="outlined"
                           size="normal"
                         />
-                        {Boolean(error) && Boolean(formik.touched.password) && (
+                        {Boolean(error) && (
                           <Alert severity="error" sx={{ marginTop: 2 }}>
                             <AlertTitle> {error} </AlertTitle>
                           </Alert>
