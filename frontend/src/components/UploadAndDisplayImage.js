@@ -120,7 +120,6 @@ const UploadAndDisplayImage = () => {
         }
       } catch (err) {
         console.log("error = ", err.response?.status);
-        alert("Fail");
       }
       //axios to back end
       console.log("you clicked the submit button");
