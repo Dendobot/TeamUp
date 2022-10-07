@@ -10,13 +10,11 @@ import { Button } from "@mui/material";
 
 //for backEnd
 import axios from "../api/axios";
-import { useNavigate, Link } from 'react-router-dom';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useNavigate, Link } from "react-router-dom";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
-const REGISTER_URL = '/users/register';
-
-
+const REGISTER_URL = "/users/register";
 
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Name is required"),
@@ -27,10 +25,7 @@ const validationSchema = yup.object({
   password: yup
     .string("Enter your password")
     .min(8, "Password should be of minimum 8 characters length")
-    .matches(
-      /([A-Z])/,
-      "Must contain one Uppercase character"
-    )
+    .matches(/([A-Z])/, "Must contain one Uppercase character")
     .required("Password is required"),
   confirmPassword: yup
     .string()
@@ -38,14 +33,15 @@ const validationSchema = yup.object({
     .required("Confirm Password is Required"),
 });
 
-function SignUp () {
+function SignUp() {
   //redirecting to login if successfully registered
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-  const[showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
-  const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
+  const handleClickShowConfirmPassword = () =>
+    setShowConfirmPassword(!showConfirmPassword);
 
   const formik = useFormik({
     initialValues: {
@@ -57,15 +53,16 @@ function SignUp () {
     onSubmit: async (values) => {
       //axios to back end
       try {
-        const response = await axios.post(REGISTER_URL,
+        const response = await axios.post(
+          REGISTER_URL,
           JSON.stringify({
             user: values.name,
             pwd: values.password,
-            email: values.email
+            email: values.email,
           }),
           {
             headers: { "Content-Type": "application/json" },
-            withCredentials: true
+            withCredentials: true,
           }
         );
         console.log(response?.data);
@@ -75,13 +72,13 @@ function SignUp () {
         navigate("/signin");
       } catch (err) {
         if (!err?.response) {
-          alert('No Server Response');
+          alert("No Server Response");
         } else if (err.response?.status === 409) {
-          formik.errors.email= 'This email is registered';
+          formik.errors.email = "This email is registered";
         } else if (err.response?.status === 444) {
-          formik.errors.name = 'This username is registered';
+          formik.errors.name = "This username is registered";
         } else {
-          alert('Registration Failed');
+          alert("Registration Failed");
         }
       }
       //axios to back end
@@ -94,7 +91,7 @@ function SignUp () {
   });
 
   return (
-    <div>
+    <div className="vh-100 overflow position-relative">
       <img
         className="top-lightimg "
         src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}
@@ -183,10 +180,14 @@ function SignUp () {
                                 aria-label="toggle password visibility"
                                 onClick={handleClickShowPassword}
                               >
-                                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                {showPassword ? (
+                                  <VisibilityIcon />
+                                ) : (
+                                  <VisibilityOffIcon />
+                                )}
                               </IconButton>
                             </InputAdornment>
-                          )
+                          ),
                         }}
                       />
                       {Boolean(formik.errors.password) &&
@@ -217,10 +218,14 @@ function SignUp () {
                                 aria-label="toggle password visibility"
                                 onClick={handleClickShowConfirmPassword}
                               >
-                                {showConfirmPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                {showConfirmPassword ? (
+                                  <VisibilityIcon />
+                                ) : (
+                                  <VisibilityOffIcon />
+                                )}
                               </IconButton>
                             </InputAdornment>
-                          )
+                          ),
                         }}
                       />
                       {Boolean(formik.errors.confirmPassword) &&
@@ -250,7 +255,10 @@ function SignUp () {
       <div class="form-check d-flex justify-content-center mb-4">
         <label class="form-check-label" for="form2Example3">
           Already have an account?
-          <Link className="underline" to="/signIn"> Sign In</Link>
+          <Link className="underline" to="/signIn">
+            {" "}
+            Sign In
+          </Link>
         </label>
       </div>
     </div>
