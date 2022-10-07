@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
 code {
@@ -21,6 +22,10 @@ a {
   --primaryBlue: #0671b7;
   --secondaryBlue: #e0f3ff;
   --lightBlue: #f9fdff;
+}
+
+.landing-container {
+  min-height: 100vh;
 }
 
 h1 {
@@ -82,7 +87,7 @@ a:hover {
 }
 
 .footer {
-  background-color: var(--lightBlue);
+  background-color: var(--secondaryBlue);
 }
 
 .lets-get-text {
@@ -164,7 +169,6 @@ a:hover {
 .PageHeight {
   height: 120vh;
   background-color: var(--secondaryBlue);
-
 }
 
 .secondary-color {
@@ -188,7 +192,7 @@ a:hover {
 
 .bg-color {
   position: relative;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
 .photo-box {
@@ -196,8 +200,8 @@ a:hover {
 }
 
 .recipeTitle {
-  margin-top:20px;
-  font-weight:485;
+  margin-top: 20px;
+  font-weight: 485;
   font-size: 16px;
   line-height: 125.29%;
   letter-spacing: 0.0120588em;
@@ -205,8 +209,8 @@ a:hover {
 }
 
 .OtherTitle {
-  margin-top:55px;
-  font-weight:485;
+  margin-top: 55px;
+  font-weight: 485;
   font-size: 16px;
   line-height: 125.29%;
   letter-spacing: 0.0120588em;
