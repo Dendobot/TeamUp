@@ -17,7 +17,6 @@ import {
 } from "@mui/material";
 
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-
 import { useFormik } from "formik";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -47,6 +46,15 @@ const UploadAndDisplayImage = () => {
 
     setOpen(false);
   };
+
+  function isNumber(str) {
+    if (str.trim() === '') {
+      return false;
+    }
+  
+    return !isNaN(str);
+  }
+
   //backend
   const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
@@ -64,11 +72,13 @@ const UploadAndDisplayImage = () => {
       tags: [],
       photo_url: "",
     },
+    //validationSchema: validationSchema,
     onSubmit: async (values) => {
       //axios to back end
       console.log("click save changes");
       try {
-        if ((ingredientList.length > 0)&&(values.method !== "")&&(values.method !== " ")&&(values.recipeName !== "")&&(values.recipeName !== " ")) {
+        if ((ingredientList.length > 0)&&(values.method !== "")&&(values.method !== " ")
+        &&(values.recipeName !== "")&&(values.recipeName !== " ")&&(isNumber(values.cookingTime))) {
           const response = await axiosPrivate.post(
             CREATE_URL,
             JSON.stringify({
@@ -103,6 +113,9 @@ const UploadAndDisplayImage = () => {
           }
           if (ingredientList.length === 0) {
           formik.errors.ingredients = "Ingredient is required";
+          }
+          if (!isNumber(values.cookingTime)) {
+            formik.errors.cookingTime = "Cooking time needs to be a number"
           }
         }
       } catch (err) {
