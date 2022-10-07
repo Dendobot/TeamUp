@@ -176,7 +176,7 @@ const UploadAndDisplayImage = () => {
         <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
           <Grid className="setGridMargin" xs={3.7}>
             <div className="left">
-              <h2 classname="common-font-color">Add a recipe</h2>
+              <h2 className="common-font-color">Add a recipe</h2>
               <p className="recipeTitle"> Recipe Title</p>
               <TextField
                 id="recipeName"
@@ -411,11 +411,12 @@ const UploadAndDisplayImage = () => {
               {Boolean(success) && (
                 <Snackbar
                   open={open}
-                  autoHideDuration={1000}
+                  autoHideDuration={2000}
                   onClose={handleClose}
                 >
                   <Alert severity="success" sx={{ marginTop: 2 }}>
-                    <AlertTitle> Recipe Saved Successfully </AlertTitle>
+                    <AlertTitle> Success </AlertTitle>
+                    Recipe Saved Successfully
                   </Alert>
                 </Snackbar>
               )}

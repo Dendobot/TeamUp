@@ -171,11 +171,12 @@ function SignIn() {
                         {Boolean(success) && (
                           <Snackbar
                             open={open}
-                            autoHideDuration={1000}
+                            autoHideDuration={2000}
                             onClose={handleClose}
                           >
                             <Alert severity="success" sx={{ marginTop: 2 }}>
-                              <AlertTitle> Login Successfull </AlertTitle>
+                              <AlertTitle> Success </AlertTitle>
+                              Logged in Successfully
                             </Alert>
                           </Snackbar>
                         )}
