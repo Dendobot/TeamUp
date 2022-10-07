@@ -111,7 +111,7 @@ function SignUp() {
   });
 
   return (
-    <div>
+    <div className="min-vh-100 overflow">
       <img
         className="top-lightimg "
         src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}
@@ -250,7 +250,7 @@ function SignUp() {
                       />
                       {Boolean(formik.errors.confirmPassword) &&
                         formik.touched.confirmPassword && (
-                          <Alert severity="error" sx={{ marginTop: 2 }} >
+                          <Alert severity="error" sx={{ marginTop: 2 }}>
                             {formik.errors.confirmPassword}
                           </Alert>
                         )}
@@ -282,19 +282,19 @@ function SignUp() {
           </div>
         </div>
       </section>
-      <img
-        className="tableimg"
-        src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}
-        alt="sign in page"
-      />
-      <div class="form-check d-flex justify-content-center mb-4">
-        <label class="form-check-label" for="form2Example3">
-          Already have an account?
+      <div class="row d-flex justify-content-center mb-4">
+        <label>
+          <span>Already have an account? </span>
           <Link className="underline" to="/signIn">
-            {" "}
             Sign In
           </Link>
         </label>
+      </div>
+      <div class="row justify-content-center">
+        <img
+          src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}
+          alt="sign in page"
+        />
       </div>
     </div>
   );

@@ -166,7 +166,7 @@ const UploadAndDisplayImage = () => {
   }
 
   return (
-    <div className="PageHeight">
+    <div className="blue-background">
       <form
         onKeyPress={(e) => {
           e.which === 13 && e.preventDefault();

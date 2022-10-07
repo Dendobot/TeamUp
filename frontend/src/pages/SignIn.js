@@ -93,7 +93,7 @@ function SignIn() {
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   return (
-    <div>
+    <div className="min-vh-100 overflow">
       <img
         className="top-lightimg "
         src={`https://file.rendit.io/n/PKdbhv0kawz00MsuG3et.png`}
@@ -101,7 +101,7 @@ function SignIn() {
       />
       <Navigation />
 
-      <section class="vh-90">
+      <section>
         <div className="row d-flex justify-content-center align-items-center h-90">
           <div className="col-lg-12 col-xl-11">
             <div className=" text-black">
@@ -194,19 +194,20 @@ function SignIn() {
           </div>
         </div>
       </section>
-      <div class="form-check d-flex justify-content-center mb-4">
-        <label class="form-check-label" for="form2Example3">
-          Don't have an account?
+      <div class="row d-flex justify-content-center mb-4">
+        <label>
+          <span> Don't have an account? </span>
           <Link className="underline" to="/signup">
             Sign Up
           </Link>
         </label>
       </div>
-      <img
-        className="tableimg"
-        src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}
-        alt="sign in page"
-      />
+      <div class="row justify-content-center tableimg">
+        <img
+          src={` https://file.rendit.io/n/a6hHW4KrHfZkHmZFUWbX.png`}
+          alt="sign in page"
+        />
+      </div>
     </div>
   );
 }
