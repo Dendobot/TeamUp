@@ -49,6 +49,7 @@ function SignIn() {
         );
         formik.errors.success = "Logged in successfully!";
         setTimeout(() => {
+          formik.errors.success = "";
           console.log(response?.data);
           const accessToken = response?.data?.accessToken;
           const user = response?.data?.user;
@@ -162,7 +163,7 @@ function SignIn() {
                               autoHideDuration={6000}
                               onClose={handleClose}
                             >
-                              <Alert severity="error" sx={{ marginTop: 2 }}>
+                              <Alert severity="error" sx={{ marginTop: 2, width: 300 }}>
                                 {formik.errors.password}
                               </Alert>
                             </Snackbar>
@@ -174,7 +175,7 @@ function SignIn() {
                               autoHideDuration={6000}
                               onClose={handleClose}
                             >
-                              <Alert severity="success" sx={{ marginTop: 2 }}>
+                              <Alert severity="success" sx={{ marginTop: 2, width: 300 }}>
                                 {formik.errors.success}
                               </Alert>
                             </Snackbar>

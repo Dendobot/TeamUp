@@ -80,6 +80,7 @@ function SignUp() {
 
         formik.errors.success = "Signed up successfully!";
         setTimeout(() => {
+          formik.errors.success = "";
           console.log(response?.data);
           console.log(response?.accessToken);
           console.log(JSON.stringify(response));
@@ -144,7 +145,7 @@ function SignUp() {
                         }}
                       />
                       {Boolean(formik.errors.name) && formik.touched.name && (
-                        <Alert severity="error" sx={{ marginTop: 2 }}>
+                        <Alert severity="error" sx={{ marginTop: 2, width: 300 }}>
                           {formik.errors.name}
                         </Alert>
                       )}
@@ -169,7 +170,7 @@ function SignUp() {
                         }}
                       />
                       {Boolean(formik.errors.email) && formik.touched.email && (
-                        <Alert severity="error" sx={{ marginTop: 2 }}>
+                        <Alert severity="error" sx={{ marginTop: 2, width: 300 }}>
                           {formik.errors.email}
                         </Alert>
                       )}
@@ -207,7 +208,7 @@ function SignUp() {
                       />
                       {Boolean(formik.errors.password) &&
                         formik.touched.password && (
-                          <Alert severity="error" sx={{ marginTop: 2 }}>
+                          <Alert severity="error" sx={{ marginTop: 2, width: 300 }}>
                             {formik.errors.password}
                           </Alert>
                         )}
@@ -247,7 +248,7 @@ function SignUp() {
                         formik.touched.confirmPassword && (
                           <Alert
                             severity="error"
-                            sx={{ marginTop: 2, width: "100%" }}
+                            sx={{ marginTop: 2, width: 300 }}
                           >
                             {formik.errors.confirmPassword}
                           </Alert>
@@ -258,7 +259,7 @@ function SignUp() {
                           autoHideDuration={6000}
                           onClose={handleClose}
                         >
-                          <Alert severity="success" sx={{ marginTop: 2 }}>
+                          <Alert severity="success" sx={{ marginTop: 2, width: 300 }}>
                             {formik.errors.success}
                           </Alert>
                         </Snackbar>
