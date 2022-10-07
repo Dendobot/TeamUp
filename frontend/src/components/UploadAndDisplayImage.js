@@ -46,15 +46,6 @@ const UploadAndDisplayImage = () => {
 
     setOpen(false);
   };
-
-  function isNumber(str) {
-    if (str.trim() === '') {
-      return false;
-    }
-  
-    return !isNaN(str);
-  }
-
   //backend
   const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
@@ -72,13 +63,12 @@ const UploadAndDisplayImage = () => {
       tags: [],
       photo_url: "",
     },
-    //validationSchema: validationSchema,
     onSubmit: async (values) => {
       //axios to back end
       console.log("click save changes");
       try {
         if ((ingredientList.length > 0)&&(values.method !== "")&&(values.method !== " ")
-        &&(values.recipeName !== "")&&(values.recipeName !== " ")&&(isNumber(values.cookingTime)|| (values.cookingTime === "0"))) {
+        &&(values.recipeName !== "")&&(values.recipeName !== " ")&&(Number.isInteger(+values.cookingTime))) {
           const response = await axiosPrivate.post(
             CREATE_URL,
             JSON.stringify({
@@ -114,7 +104,7 @@ const UploadAndDisplayImage = () => {
           if (ingredientList.length === 0) {
           formik.errors.ingredients = "Ingredient is required";
           }
-          if (!isNumber(values.cookingTime)) {
+          if (!Number.isInteger(+values.cookingTime)) {
             formik.errors.cookingTime = "Cooking time needs to be a number"
           }
         }
