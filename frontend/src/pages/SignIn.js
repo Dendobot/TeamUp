@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
-import InputAdornment from "@mui/material/InputAdornment";
+import {
+  TextField,
+  AlertTitle,
+  Snackbar,
+  Alert,
+  Button,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import Navigation from "../components/Navigation";
 import { useFormik } from "formik";
-import { Button, IconButton } from "@mui/material";
 
 //backend
 import { useNavigate, useLocation, Link } from "react-router-dom";
@@ -18,7 +24,18 @@ function SignIn() {
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [open, setOpen] = useState(true);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
   const from = location.state?.from?.pathname || "/";
+
+  const handleClose = (event = React.SyntheticEvent | Event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -27,6 +44,7 @@ function SignIn() {
     },
     onSubmit: async (values) => {
       try {
+        setError("");
         const response = await axios.post(
           LOGIN_URL,
           JSON.stringify({ email: values.email, pwd: values.password }),
@@ -35,28 +53,31 @@ function SignIn() {
             withCredentials: true,
           }
         );
+        setSuccess(true);
         console.log(response?.data);
-        const accessToken = response?.data?.accessToken;
-        const user = response?.data?.user;
-        console.log("User: " + user);
-        alert("Logged In");
-        setAuth({
-          user: user,
-          pwd: values.password,
-          email: values.email,
-          accessToken,
-        });
-        navigate(from, { replace: true });
+        setTimeout(() => {
+          const accessToken = response?.data?.accessToken;
+          const user = response?.data?.user;
+          console.log("User: " + user);
+          setAuth({
+            user: user,
+            pwd: values.password,
+            email: values.email,
+            accessToken,
+          });
+          navigate(from, { replace: true });
+          setSuccess(false);
+        }, 2000);
       } catch (err) {
         console.log("error = ", err.response?.status);
         if (!err?.response) {
-          formik.errors.password = "No Server Response";
+          setError("No Server Response");
         } else if (err.response?.status === 400) {
-          formik.errors.password = "Missing Username or Password";
+          setError("Missing Username or Password");
         } else if (err.response?.status === 401) {
-          formik.errors.password = "Invalid username or Password";
+          setError("Invalid username or Password");
         } else {
-          formik.errors.password = "Login Failed";
+          setError("Login Failed");
         }
       }
 
@@ -141,12 +162,24 @@ function SignIn() {
                           variant="outlined"
                           size="normal"
                         />
-                        {Boolean(formik.errors.password) &&
-                          formik.touched.password && (
-                            <div style={{ color: "#d32f2f" }}>
-                              {formik.errors.password}
-                            </div>
-                          )}
+                        {Boolean(error) && (
+                          <Alert severity="error" sx={{ marginTop: 2 }}>
+                            <AlertTitle> {error} </AlertTitle>
+                          </Alert>
+                        )}
+
+                        {Boolean(success) && (
+                          <Snackbar
+                            open={open}
+                            autoHideDuration={2000}
+                            onClose={handleClose}
+                          >
+                            <Alert severity="success" sx={{ marginTop: 2 }}>
+                              <AlertTitle> Success </AlertTitle>
+                              Logged in Successfully
+                            </Alert>
+                          </Snackbar>
+                        )}
                       </span>
                       <div class=" d-flex justify-content-center">
                         <Button variant="contained" size="large" type="submit">

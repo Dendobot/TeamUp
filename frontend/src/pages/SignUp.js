@@ -1,18 +1,24 @@
 import React, { useState } from "react";
-import { TextField, IconButton } from "@mui/material";
-import InputAdornment from "@mui/material/InputAdornment";
+import {
+  TextField,
+  IconButton,
+  Button,
+  Snackbar,
+  AlertTitle,
+  InputAdornment,
+} from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import EmailIcon from "@mui/icons-material/Email";
 import Navigation from "../components/Navigation";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Button } from "@mui/material";
 
 //for backEnd
 import axios from "../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import Alert from "@mui/material/Alert";
 
 const REGISTER_URL = "/users/register";
 
@@ -43,11 +49,21 @@ function SignUp() {
   const handleClickShowConfirmPassword = () =>
     setShowConfirmPassword(!showConfirmPassword);
 
+  const [open, setOpen] = useState(true);
+  const handleClose = (event = React.SyntheticEvent | Event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
       password: "",
+      success: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -65,20 +81,24 @@ function SignUp() {
             withCredentials: true,
           }
         );
-        console.log(response?.data);
-        console.log(response?.accessToken);
-        console.log(JSON.stringify(response));
-        alert("Success!");
-        navigate("/signin");
+
+        formik.errors.success = "Signed up successfully!";
+        setTimeout(() => {
+          formik.errors.success = "";
+          console.log(response?.data);
+          console.log(response?.accessToken);
+          console.log(JSON.stringify(response));
+          navigate("/signin");
+        }, 2000);
       } catch (err) {
         if (!err?.response) {
-          alert("No Server Response");
+          formik.errors.confirmPassword = "No Server Response";
         } else if (err.response?.status === 409) {
           formik.errors.email = "This email is registered";
         } else if (err.response?.status === 444) {
           formik.errors.name = "This username is registered";
         } else {
-          alert("Registration Failed");
+          formik.errors.confirmPassword = "Registration Failed";
         }
       }
       //axios to back end
@@ -129,9 +149,9 @@ function SignUp() {
                         }}
                       />
                       {Boolean(formik.errors.name) && formik.touched.name && (
-                        <div style={{ color: "#d32f2f" }}>
+                        <Alert severity="error" sx={{ marginTop: 2 }}>
                           {formik.errors.name}
-                        </div>
+                        </Alert>
                       )}
                     </span>
                     <span className="d-flex flex-column  mb-4">
@@ -154,9 +174,9 @@ function SignUp() {
                         }}
                       />
                       {Boolean(formik.errors.email) && formik.touched.email && (
-                        <div style={{ color: "#d32f2f" }}>
+                        <Alert severity="error" sx={{ marginTop: 2 }}>
                           {formik.errors.email}
-                        </div>
+                        </Alert>
                       )}
                     </span>
                     <span className="d-flex flex-column  mb-4">
@@ -192,9 +212,9 @@ function SignUp() {
                       />
                       {Boolean(formik.errors.password) &&
                         formik.touched.password && (
-                          <div style={{ color: "#d32f2f" }}>
+                          <Alert severity="error" sx={{ marginTop: 2 }}>
                             {formik.errors.password}
-                          </div>
+                          </Alert>
                         )}
                     </span>
                     <span className="d-flex flex-column  mb-4">
@@ -230,10 +250,25 @@ function SignUp() {
                       />
                       {Boolean(formik.errors.confirmPassword) &&
                         formik.touched.confirmPassword && (
-                          <div style={{ color: "#d32f2f" }}>
+                          <Alert severity="error" sx={{ marginTop: 2 }}>
                             {formik.errors.confirmPassword}
-                          </div>
+                          </Alert>
                         )}
+                      {Boolean(formik.errors.success) && (
+                        <Snackbar
+                          open={open}
+                          autoHideDuration={2000}
+                          onClose={handleClose}
+                        >
+                          <Alert
+                            severity="success"
+                            sx={{ marginTop: 2, width: 300 }}
+                          >
+                            <AlertTitle> Success </AlertTitle>
+                            {formik.errors.success}
+                          </Alert>
+                        </Snackbar>
+                      )}
                     </span>
                     <div class=" d-flex justify-content-center">
                       <Button variant="contained" size="large" type="submit">
