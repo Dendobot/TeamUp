@@ -78,7 +78,7 @@ const UploadAndDisplayImage = () => {
       console.log("click save changes");
       try {
         if ((ingredientList.length > 0)&&(values.method !== "")&&(values.method !== " ")
-        &&(values.recipeName !== "")&&(values.recipeName !== " ")&&(isNumber(values.cookingTime))) {
+        &&(values.recipeName !== "")&&(values.recipeName !== " ")&&(isNumber(values.cookingTime)|| (values.cookingTime === "0"))) {
           const response = await axiosPrivate.post(
             CREATE_URL,
             JSON.stringify({
