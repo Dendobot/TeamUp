@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
-import InputAdornment from "@mui/material/InputAdornment";
+import { TextField, AlertTitle, Snackbar, Alert, Button, IconButton, InputAdornment } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import Navigation from "../components/Navigation";
 import { useFormik } from "formik";
-import { Button, IconButton } from "@mui/material";
-import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
 
 //backend
 import { useNavigate, useLocation, Link } from "react-router-dom";
@@ -163,23 +159,31 @@ function SignIn() {
                               autoHideDuration={6000}
                               onClose={handleClose}
                             >
-                              <Alert severity="error" sx={{ marginTop: 2, width: 300 }}>
+                              <AlertTitle> Error </AlertTitle>
+                              <Alert
+                                severity="error"
+                                sx={{ marginTop: 2, width: 300 }}
+                              >
+                                <AlertTitle> Error </AlertTitle>
                                 {formik.errors.password}
                               </Alert>
                             </Snackbar>
                           )}
-                        {Boolean(formik.errors.success) &&
-                          (
-                            <Snackbar
-                              open={open}
-                              autoHideDuration={6000}
-                              onClose={handleClose}
+                        {Boolean(formik.errors.success) && (
+                          <Snackbar
+                            open={open}
+                            autoHideDuration={6000}
+                            onClose={handleClose}
+                          >
+                            <Alert
+                              severity="success"
+                              sx={{ marginTop: 2, width: 300 }}
                             >
-                              <Alert severity="success" sx={{ marginTop: 2, width: 300 }}>
-                                {formik.errors.success}
-                              </Alert>
-                            </Snackbar>
-                          )}
+                              <AlertTitle> Success </AlertTitle>
+                              {formik.errors.success}
+                            </Alert>
+                          </Snackbar>
+                        )}
                       </span>
                       <div class=" d-flex justify-content-center">
                         <Button variant="contained" size="large" type="submit">

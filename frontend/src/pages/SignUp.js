@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { TextField, IconButton } from "@mui/material";
-import InputAdornment from "@mui/material/InputAdornment";
+import { TextField, IconButton, Button, Snackbar, AlertTitle, InputAdornment } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import EmailIcon from "@mui/icons-material/Email";
 import Navigation from "../components/Navigation";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Button } from "@mui/material";
-import Snackbar from "@mui/material/Snackbar";
 
 //for backEnd
 import axios from "../api/axios";
@@ -145,7 +142,10 @@ function SignUp() {
                         }}
                       />
                       {Boolean(formik.errors.name) && formik.touched.name && (
-                        <Alert severity="error" sx={{ marginTop: 2, width: 300 }}>
+                        <Alert
+                          severity="error"
+                          sx={{ marginTop: 2}}
+                        >
                           {formik.errors.name}
                         </Alert>
                       )}
@@ -170,7 +170,10 @@ function SignUp() {
                         }}
                       />
                       {Boolean(formik.errors.email) && formik.touched.email && (
-                        <Alert severity="error" sx={{ marginTop: 2, width: 300 }}>
+                        <Alert
+                          severity="error"
+                          sx={{ marginTop: 2}}
+                        >
                           {formik.errors.email}
                         </Alert>
                       )}
@@ -208,7 +211,10 @@ function SignUp() {
                       />
                       {Boolean(formik.errors.password) &&
                         formik.touched.password && (
-                          <Alert severity="error" sx={{ marginTop: 2, width: 300 }}>
+                          <Alert
+                            severity="error"
+                            sx={{ marginTop: 2}}
+                          >
                             {formik.errors.password}
                           </Alert>
                         )}
@@ -248,7 +254,6 @@ function SignUp() {
                         formik.touched.confirmPassword && (
                           <Alert
                             severity="error"
-                            sx={{ marginTop: 2, width: 300 }}
                           >
                             {formik.errors.confirmPassword}
                           </Alert>
@@ -259,7 +264,11 @@ function SignUp() {
                           autoHideDuration={6000}
                           onClose={handleClose}
                         >
-                          <Alert severity="success" sx={{ marginTop: 2, width: 300 }}>
+                          <Alert
+                            severity="success"
+                            sx={{ marginTop: 2, width: 300 }}
+                          >
+                            <AlertTitle> Success </AlertTitle>
                             {formik.errors.success}
                           </Alert>
                         </Snackbar>
