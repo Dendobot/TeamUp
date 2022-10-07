@@ -27,8 +27,16 @@ a {
   --white: #fff;
 }
 
-.margin-top-70 {
-  margin-top: 70px;
+@media (min-width: 576px) {
+  .hero-mt {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-mt {
+    margin-top: 150px;
+  }
 }
 
 .overflow {
