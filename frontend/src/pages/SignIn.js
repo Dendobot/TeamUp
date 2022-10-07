@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { TextField, AlertTitle, Snackbar, Alert, Button, IconButton, InputAdornment } from "@mui/material";
+import {
+  TextField,
+  AlertTitle,
+  Snackbar,
+  Alert,
+  Button,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -17,6 +25,8 @@ function SignIn() {
   const navigate = useNavigate();
   const location = useLocation();
   const [open, setOpen] = useState(true);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
   const from = location.state?.from?.pathname || "/";
 
   const handleClose = (event = React.SyntheticEvent | Event, reason) => {
@@ -31,10 +41,10 @@ function SignIn() {
     initialValues: {
       email: "",
       password: "",
-      success: "",
     },
     onSubmit: async (values) => {
       try {
+        setError("");
         const response = await axios.post(
           LOGIN_URL,
           JSON.stringify({ email: values.email, pwd: values.password }),
@@ -43,10 +53,9 @@ function SignIn() {
             withCredentials: true,
           }
         );
-        formik.errors.success = "Logged in successfully!";
+        setSuccess(true);
+        console.log(response?.data);
         setTimeout(() => {
-          formik.errors.success = "";
-          console.log(response?.data);
           const accessToken = response?.data?.accessToken;
           const user = response?.data?.user;
           console.log("User: " + user);
@@ -57,17 +66,18 @@ function SignIn() {
             accessToken,
           });
           navigate(from, { replace: true });
+          setSuccess(false);
         }, 2000);
       } catch (err) {
         console.log("error = ", err.response?.status);
         if (!err?.response) {
-          formik.errors.password = "No Server Response";
+          setError("No Server Response");
         } else if (err.response?.status === 400) {
-          formik.errors.password = "Missing Username or Password";
+          setError("Missing Username or Password");
         } else if (err.response?.status === 401) {
-          formik.errors.password = "Invalid username or Password";
+          setError("Invalid username or Password");
         } else {
-          formik.errors.password = "Login Failed";
+          setError("Login Failed");
         }
       }
 
@@ -152,35 +162,20 @@ function SignIn() {
                           variant="outlined"
                           size="normal"
                         />
-                        {Boolean(formik.errors.password) &&
-                          formik.touched.password && (
-                            <Snackbar
-                              open={open}
-                              autoHideDuration={6000}
-                              onClose={handleClose}
-                            >
-                              <Alert
-                                severity="error"
-                                sx={{ marginTop: 2, width: 300 }}
-                              >
-                                <AlertTitle> Error </AlertTitle>
-                                {formik.errors.password}
-                              </Alert>
-                            </Snackbar>
-                          )}
+                        {Boolean(error) && Boolean(formik.touched.password) && (
+                          <Alert severity="error" sx={{ marginTop: 2 }}>
+                            <AlertTitle> {error} </AlertTitle>
+                          </Alert>
+                        )}
 
-                        {Boolean(formik.errors.success) && (
+                        {Boolean(success) && (
                           <Snackbar
                             open={open}
-                            autoHideDuration={6000}
+                            autoHideDuration={1000}
                             onClose={handleClose}
                           >
-                            <Alert
-                              severity="success"
-                              sx={{ marginTop: 2, width: 300 }}
-                            >
-                              <AlertTitle> Success </AlertTitle>
-                              {formik.errors.success}
+                            <Alert severity="success" sx={{ marginTop: 2 }}>
+                              <AlertTitle> Login Successfull </AlertTitle>
                             </Alert>
                           </Snackbar>
                         )}
