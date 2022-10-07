@@ -250,7 +250,7 @@ function SignUp() {
                       />
                       {Boolean(formik.errors.confirmPassword) &&
                         formik.touched.confirmPassword && (
-                          <Alert severity="error">
+                          <Alert severity="error" sx={{ marginTop: 2 }} >
                             {formik.errors.confirmPassword}
                           </Alert>
                         )}
