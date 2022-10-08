@@ -150,7 +150,7 @@ router.post('/deleteRecipe', async (req, res) => {
   try {
     const foundUser = await User.findOneAndUpdate({ username: user }, { $pull: { recipes: id } }).exec();
     console.log("user found " + foundUser.username);
-    Recipe.deleteOne({ _id: id }).then(function () {
+    Recipe.deleteOne({ id: id }).then(function () {
       console.log("Data deleted"); // Success
       res.status(201).json({ 'success': ` ${id} deleted` });
     }).catch(function (error) {

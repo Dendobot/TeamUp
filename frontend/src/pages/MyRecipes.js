@@ -5,6 +5,8 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { IconButton } from "@mui/material";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 function MyRecipes() {
   const axiosPrivate = useAxiosPrivate();
@@ -12,8 +14,8 @@ function MyRecipes() {
   const [recipeIDs, setRecipeIDs] = useState();
   const [recipePhoto, setRecipePhoto] = useState();
   const [ans, setAns] = React.useState();
-
-  
+  const { auth } = useAuth();
+  const navigate = useNavigate();
     const getRecipeInfo = async () => {
       try {
         const response = await axiosPrivate.get("/recipe/viewRecipes", {
@@ -54,10 +56,41 @@ function MyRecipes() {
   console.log(recipeIDs)
   console.log(ans)
   console.log(recipePhoto)
+
+  const handleDelete = async (index) => {
+    try {
+      console.log("recipeIDs     ", recipeIDs)
+      console.log("Deleted recipe ID",recipeIDs[index.index])
+        const response = await axiosPrivate.post(
+          "/recipe/deleteRecipe",
+          JSON.stringify({
+            user: auth.user,
+            id: recipeIDs[index.index]
+          }),
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        console.log(response?.data);
+        console.log(response?.accessToken);
+        console.log(JSON.stringify(response));
+        alert("Success!");
+        
+        //setRecipesNames(recipeNames.splice(index, index+1) );
+        //setRecipeIDs(recipeIDs.splice(index, index+1));
+        //setRecipePhoto(recipePhoto.splice(index, index+1));
+        //console.log("After ",recipeNames);
+        //console.log("After ",recipeIDs)
+        //console.log("After ",recipePhoto)
+        navigate("/myRecipes");
+    } catch (err) {
+      alert("Fail");
+    }
+  }
   
 
   return (
-    <div>
+    <div className="PageHeight">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -83,10 +116,10 @@ function MyRecipes() {
         ? (
           <ul>
             {recipeNames.map((users, i) =>
-            <RecipeBox recipeName= {recipeNames[i]} imgsrc={recipePhoto[i]}/>
+            <RecipeBox key={i} recipeName= {recipeNames[i]} imgsrc={recipePhoto[i]}  onDelete={handleDelete} index = {i}/>
               )}
           </ul>
-        ) : <p>No users to display</p>
+        ) : <p>You have not added any recipes</p>
 
       }
         
