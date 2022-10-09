@@ -91,7 +91,7 @@ router.get('/viewRecipe', async (req, res) => {
 // @access  Private
 router.post('/createRecipe', async (req, res) => {
 
-  const { user, recipeName, note, ingredients, method, tags, cookingTime, photo_url } = req.body;
+  const { user, recipeName, note, ingredients, method, tags, cookingTime } = req.body;
 
   //new recipe
   User.findOne({ username: user }).exec((err, user) => {
@@ -103,7 +103,6 @@ router.post('/createRecipe', async (req, res) => {
         method: method,
         tags: tags,
         cookingTime: cookingTime,
-        photo_url: photo_url,
       });
       newRecipe.save()
         .then((value) => {
@@ -131,7 +130,7 @@ router.post('/createRecipe', async (req, res) => {
 // @access  Private
 router.post('/editRecipe', async (req, res) => {
 
-  const { id, recipeName, note, ingredients, method, tags, cookingTime, photo_url } = req.body;
+  const { id, recipeName, note, ingredients, method, tags, cookingTime } = req.body;
 
   //new recipe
   Recipe.findOne({ _id: id }).exec((err, recipe) => {
@@ -142,16 +141,15 @@ router.post('/editRecipe', async (req, res) => {
         recipe.method = method,
         recipe.tags = tags,
         recipe.cookingTime = cookingTime,
-        recipe.photo_url = photo_url;
-      recipe.save()
-        .then((value) => {
-          res.status(201).json({ 'success': `${recipe} edited!` });
-          console.log('successfully edited a recipe');
-          console.log(recipe);
-        }).catch(value => {
-          console.log(value);
-          res.status(500).json({ 'message': err.message });
-        });
+        recipe.save()
+          .then((value) => {
+            res.status(201).json({ 'success': `${recipe} edited!` });
+            console.log('successfully edited a recipe');
+            console.log(recipe);
+          }).catch(value => {
+            console.log(value);
+            res.status(500).json({ 'message': err.message });
+          });
     } else {
       res.status(500).json({ 'message': "no recipe found" });
     }
