@@ -13,15 +13,15 @@ import {
   CardMedia,
   Snackbar,
   Alert,
-  AlertTitle
+  AlertTitle,
+  Divider,
 } from "@mui/material";
 
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { useFormik } from "formik";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
-import TextareaAutosize from '@mui/base/TextareaAutosize';
-
+import TextareaAutosize from "@mui/base/TextareaAutosize";
 
 //for backEnd
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
@@ -45,7 +45,7 @@ const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(true);
-  
+
   const handleClose = (event = React.SyntheticEvent | Event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -74,7 +74,13 @@ const UploadAndDisplayImage = () => {
       //axios to back end
       console.log("click save changes");
       try {
-        if ((ingredientList.length > 0)&&(stepsList.length > 0)&&(values.recipeName !== "")&&(values.recipeName !== " ")&&(Number.isInteger(+values.cookingTime))) {
+        if (
+          ingredientList.length > 0 &&
+          stepsList.length > 0 &&
+          values.recipeName !== "" &&
+          values.recipeName !== " " &&
+          Number.isInteger(+values.cookingTime)
+        ) {
           const response = await axiosPrivate.post(
             CREATE_URL,
             JSON.stringify({
@@ -101,17 +107,17 @@ const UploadAndDisplayImage = () => {
           }, 2000);
         } else {
           if (stepsList.length === 0) {
-            formik.errors.method = "Method is required"
+            formik.errors.method = "Method is required";
           }
-          
-          if ((values.recipeName === "") || (values.recipeName === " ")) {
-            formik.errors.recipeName = "Recipe name is required"
+
+          if (values.recipeName === "" || values.recipeName === " ") {
+            formik.errors.recipeName = "Recipe name is required";
           }
           if (ingredientList.length === 0) {
-          formik.errors.ingredients = "Ingredient is required";
+            formik.errors.ingredients = "Ingredient is required";
           }
           if (!Number.isInteger(+values.cookingTime)) {
-            formik.errors.cookingTime = "Cooking time needs to be a number"
+            formik.errors.cookingTime = "Cooking time needs to be a number";
           }
         }
       } catch (err) {
@@ -165,7 +171,6 @@ const UploadAndDisplayImage = () => {
       handleSteps();
     }
   };
-  
 
   const handleIngredientKey = (event) => {
     if (event.key === "Enter") {
@@ -179,7 +184,6 @@ const UploadAndDisplayImage = () => {
     setStepsList(s);
     console.log(s);
   }
-
 
   function handleDelete(e) {
     console.log(ingredientList);
@@ -372,6 +376,7 @@ const UploadAndDisplayImage = () => {
                         <DeleteIcon />
                       </IconButton>
                     </ListItem>
+                    <Divider />
                   </div>
                 ))}
               </Box>
@@ -430,12 +435,23 @@ const UploadAndDisplayImage = () => {
                 }}
               >
                 {stepsList.map((steps, i) => (
-                  <Stack direction="row" alignItems="center" spacing={2}>
-                    <TextareaAutosize defaultValue={`${i+1}.${steps}`} style = {{width: 270, border: "none", resize: "none", borderStyle:"none"}}/>
-                    <IconButton onClick={(e) => handleDeleteSteps(i)}>
-                       <DeleteIcon />
-                    </IconButton>
-                  </Stack>
+                  <div>
+                    <Stack direction="row" alignItems="center" spacing={2}>
+                      <TextareaAutosize
+                        defaultValue={`${i + 1}.${steps}`}
+                        style={{
+                          width: 270,
+                          border: "none",
+                          resize: "none",
+                          borderStyle: "none",
+                        }}
+                      />
+                      <IconButton onClick={(e) => handleDeleteSteps(i)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </Stack>
+                    <Divider />
+                  </div>
                 ))}
               </Box>
               <div>
@@ -447,10 +463,9 @@ const UploadAndDisplayImage = () => {
                   name="method"
                   variant="outlined"
                   onChange={({ target }) => {
-                      setSteps(target.value);
-                      setValueStep(target.value);
-                  }
-                }
+                    setSteps(target.value);
+                    setValueStep(target.value);
+                  }}
                   onKeyDown={handleStepsKey}
                   value={valueStep}
                   InputProps={{
@@ -465,10 +480,7 @@ const UploadAndDisplayImage = () => {
                       </InputAdornment>
                     ),
                   }}
-                  error={
-                    formik.touched.method &&
-                    Boolean(formik.errors.method)
-                  }
+                  error={formik.touched.method && Boolean(formik.errors.method)}
                 />
               </div>
 
@@ -491,7 +503,7 @@ const UploadAndDisplayImage = () => {
                 variant="contained"
                 size="small"
                 type="submit"
-                sx={{ marginTop:"10px", marginLeft: "145px" }}
+                sx={{ marginTop: "10px", marginLeft: "145px" }}
               >
                 Save Changes
               </Button>
