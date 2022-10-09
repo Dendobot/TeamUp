@@ -27,8 +27,12 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import axios from "../api/axios";
 
 const CREATE_URL = "/recipe/createRecipe";
+const PHOTO_CLOUD_URL = "https://api.cloudinary.com/v1_1/dyhv1equv/image/upload";
+
+
 
 const UploadAndDisplayImage = () => {
   const [ingredientList, setIngredientList] = useState([]);
@@ -81,6 +85,22 @@ const UploadAndDisplayImage = () => {
           values.recipeName !== " " &&
           Number.isInteger(+values.cookingTime)
         ) {
+          var url = "https://res.cloudinary.com/dyhv1equv/image/upload/v1665228999/60817ec5354dde0018c06960_yqcup6.jpg";
+          if (selectedImage) {
+            const formData = new FormData();
+            formData.append("file", selectedImage);
+            formData.append("upload_preset", "default");
+            try {
+              const res = await axios.post(PHOTO_CLOUD_URL, formData);
+              console.log("photo Submit Success");
+              console.log(res.data.url);
+              url = res.data.url;
+            }
+            catch {
+              console.log("photo Submit failed");
+            }
+          }
+
           const response = await axiosPrivate.post(
             CREATE_URL,
             JSON.stringify({
@@ -91,7 +111,7 @@ const UploadAndDisplayImage = () => {
               method: stepsList,
               cookingTime: values.cookingTime,
               tags: tagsList,
-              photo_url: selectedImage,
+              photo_url: url,
             }),
             {
               headers: { "Content-Type": "application/json" },
@@ -178,21 +198,21 @@ const UploadAndDisplayImage = () => {
     }
   };
 
-  function handleDeleteSteps(e) {
+  function handleDeleteSteps (e) {
     console.log(stepsList);
     const m = stepsList.filter((steps, index) => index !== e);
     setStepsList(m);
     console.log(m);
   }
 
-  function handleDelete(e) {
+  function handleDelete (e) {
     console.log(ingredientList);
     const s = ingredientList.filter((ingredients, i) => i !== e);
     setIngredientList(s);
     console.log(s);
   }
 
-  function removeTag(e) {
+  function removeTag (e) {
     console.log(tagsList);
     const t = tagsList.filter((tags, i) => i !== e);
     setTagsList(t);
@@ -241,6 +261,7 @@ const UploadAndDisplayImage = () => {
                     component="label"
                   >
                     <input
+                      id="photoInput"
                       hidden
                       accept="image/*"
                       type="file"
@@ -268,7 +289,11 @@ const UploadAndDisplayImage = () => {
                       <Button
                         variant="outlined"
                         startIcon={<DeleteIcon />}
-                        onClick={() => setSelectedImage(null)}
+                        onClick={() => {
+                          setSelectedImage(null);
+                          document.getElementById("photoInput").value = null;
+                        }
+                        }
                       >
                         Remove
                       </Button>
