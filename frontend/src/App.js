@@ -21,7 +21,7 @@ function App () {
           <Route element={<RequiredAuth />} >
             <Route path="/myRecipes" element={<MyRecipes />}></Route>
             <Route path="/addRecipe" element={<AddRecipe />}></Route>
-            <Route path="/viewRecipe" element={<ViewRecipe />}></Route>
+            <Route path="/viewRecipe:id" element={<ViewRecipe />}></Route>
           </Route>
 
           {/*catch all*/}

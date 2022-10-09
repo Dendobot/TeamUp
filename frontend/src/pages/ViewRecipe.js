@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useParams } from "react-router-dom";
 
-const VIEW_RECIPE_URL = "/recipe/viewRecipe/";
+const VIEW_RECIPE_URL = "/recipe/viewRecipe?id=";
 
 function ViewRecipe() {
   const axiosPrivate = useAxiosPrivate();
@@ -18,14 +18,17 @@ function ViewRecipe() {
     const url = VIEW_RECIPE_URL + id
     console.log("get url = ", url)
     try {
-      const response = await axiosPrivate.get(url, {
+      const response = await axiosPrivate.get(url,
+      {
         headers: { "Content-Type": "application/json" },
-      });
+      }
+    );
 
       console.log("response.data = ", response.data);
       const obj = await JSON.parse(response.data);
       console.log("response obj = ", obj);
       setrecipeInfo(obj)
+      console.log("recipe info",obj)
 
     } catch (err) {
       alert("Failed to get recipe");
@@ -58,7 +61,7 @@ function ViewRecipe() {
           top: "517px",
         }}
       >
-        Cooking Time (in minutes): 5
+        Cooking Time (in minutes): {recipeInfo?.cookingTime}
       </h5>
       <h5
         className="ingredients"
@@ -71,8 +74,8 @@ function ViewRecipe() {
           top: "571px",
         }}
       >
-        {" "}
-        Notes{" "}
+        {recipeInfo?.ingredients}
+        Notes {recipeInfo?.note}
       </h5>
       <div
         className="white-box"

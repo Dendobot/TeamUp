@@ -6,7 +6,7 @@ import { IconButton } from "@mui/material";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function MyRecipes() {
   const axiosPrivate = useAxiosPrivate();
@@ -95,7 +95,7 @@ function MyRecipes() {
 
   const handleView = async (index) => {
     
-        navigate("/viewRecipe?id=".concat(recipeIDs[index.index]));
+        navigate("/viewRecipe".concat(recipeIDs[index.index]));
     
   }
   
@@ -107,7 +107,7 @@ function MyRecipes() {
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
       />
       <Navigation />
-      <a href="../addRecipe">
+      <Link to="../addRecipe">
         <IconButton
           aria-label="add"
           sx={{
@@ -121,7 +121,7 @@ function MyRecipes() {
         >
           <AddCircleIcon fontSize="inherit">add_circle</AddCircleIcon>
         </IconButton>
-      </a>
+      </Link>
       <div className="center-horiz graph-parts">
       {recipeNames?.length
         ? (
