@@ -180,9 +180,9 @@ const UploadAndDisplayImage = () => {
 
   function handleDeleteSteps(e) {
     console.log(stepsList);
-    const s = stepsList.filter((steps, i) => i !== e);
-    setStepsList(s);
-    console.log(s);
+    const m = stepsList.filter((steps, index) => index !== e);
+    setStepsList(m);
+    console.log(m);
   }
 
   function handleDelete(e) {
@@ -434,24 +434,24 @@ const UploadAndDisplayImage = () => {
                   marginBottom: "10px",
                 }}
               >
-                {stepsList.map((steps, i) => (
-                  <div>
+                {stepsList.map((steps, index) => (
+                  <ListItem size="small" key={steps + index}>
                     <Stack direction="row" alignItems="center" spacing={2}>
                       <TextareaAutosize
-                        defaultValue={`${i + 1}.${steps}`}
+                        defaultValue={`${index + 1}.${steps}`}
                         style={{
-                          width: 270,
+                          width: 200,
                           border: "none",
                           resize: "none",
                           borderStyle: "none",
                         }}
                       />
-                      <IconButton onClick={(e) => handleDeleteSteps(i)}>
+                      <IconButton onClick={(e) => handleDeleteSteps(index)}>
                         <DeleteIcon />
                       </IconButton>
                     </Stack>
                     <Divider />
-                  </div>
+                  </ListItem>
                 ))}
               </Box>
               <div>
