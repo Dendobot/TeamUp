@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Landing, About, SignIn, Footer, SignUp, AddRecipe, MyRecipes } from "./components";
+import { Landing, About, SignIn, Footer, SignUp, AddRecipe, MyRecipes,ViewRecipe } from "./components";
 import RequiredAuth from "./components/RequiredAuth";
 
 
@@ -16,10 +16,12 @@ function App () {
           <Route path="/signin" element={<SignIn />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
 
+          
           {/*protected routes*/}
-          <Route element={<RequiredAuth />}>
+          <Route element={<RequiredAuth />} >
+            <Route path="/myRecipes" element={<MyRecipes />}></Route>
             <Route path="/addRecipe" element={<AddRecipe />}></Route>
-            <Route path="/Recipes" element={<Recipes />}></Route>
+            <Route path="/viewRecipe" element={<ViewRecipe />}></Route>
           </Route>
 
           {/*catch all*/}

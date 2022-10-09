@@ -87,10 +87,37 @@ function MyRecipes() {
       alert("Fail");
     }
   }
+
+
+  const handleEdit = async (index) => {
+   
+  }
+
+  const handleView = async (index) => {
+    try {
+      console.log("recipeIDs     ", recipeIDs)
+      console.log("Deleted recipe ID",recipeIDs[index.index])
+        const response = await axiosPrivate.post(
+          "/recipe/viewRecipe",
+          JSON.stringify({
+            id: recipeIDs[index.index]
+          }),
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        console.log(response?.data);
+        console.log(response?.accessToken);
+        console.log(JSON.stringify(response));
+        navigate("/viewRecipe");
+    } catch (err) {
+      alert("Fail");
+    }
+  }
   
 
   return (
-    <div className="PageHeight">
+    <div className="secondary-color vh-100">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -116,7 +143,7 @@ function MyRecipes() {
         ? (
           <ul>
             {recipeNames.map((users, i) =>
-            <RecipeBox key={i} recipeName= {recipeNames[i]} imgsrc={recipePhoto[i]}  onDelete={handleDelete} index = {i}/>
+            <RecipeBox key={i} recipeName= {recipeNames[i]} imgsrc={recipePhoto[i]}  onDelete={handleDelete} index = {i} onEdit = {handleEdit} onView={handleView}/>
               )}
           </ul>
         ) : <p>You have not added any recipes</p>

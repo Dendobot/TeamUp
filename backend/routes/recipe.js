@@ -78,6 +78,8 @@ router.get('/viewRecipe', async (req, res) => {
     } else {
       res.status(404).json({ message: "recipe does not exist" });
     }
+
+    
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

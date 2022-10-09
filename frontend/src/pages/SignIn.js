@@ -27,7 +27,7 @@ function SignIn() {
   const [open, setOpen] = useState(true);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/myRecipes";
 
   const handleClose = (event = React.SyntheticEvent | Event, reason) => {
     if (reason === "clickaway") {
