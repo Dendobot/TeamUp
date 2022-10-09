@@ -20,6 +20,8 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { useFormik } from "formik";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
+import TextareaAutosize from '@mui/base/TextareaAutosize';
+
 
 //for backEnd
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
@@ -120,7 +122,7 @@ const UploadAndDisplayImage = () => {
       console.log(" recipe name = ", values.recipeName);
       console.log("Tags = ", tagsList);
       console.log("note = ", values.note);
-      console.log("method = ", values.method);
+      console.log("method = ", stepsList);
       console.log("ingredients = ", ingredientList);
       console.log("cooking time = ", +values.cookingTime);
     },
@@ -422,20 +424,18 @@ const UploadAndDisplayImage = () => {
                 sx={{
                   bgcolor: "background.paper",
                   boxShadow: 1,
-                  borderRadius: 2,
+                  borderRadius: 0,
                   maxWidth: 270,
                   marginBottom: "10px",
                 }}
               >
                 {stepsList.map((steps, i) => (
-                  <div>
-                    <ListItem size="small" key={steps + i}>
-                      <ListItemText size="small" primary={`${steps}`} />
-                      <IconButton onClick={(e) => handleDeleteSteps(i)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItem>
-                  </div>
+                  <Stack direction="row" alignItems="center" spacing={2}>
+                    <TextareaAutosize defaultValue={`${i+1}.${steps}`} style = {{width: 270, border: "none", resize: "none", borderStyle:"none"}}/>
+                    <IconButton onClick={(e) => handleDeleteSteps(i)}>
+                       <DeleteIcon />
+                    </IconButton>
+                  </Stack>
                 ))}
               </Box>
               <div>
@@ -504,3 +504,10 @@ const UploadAndDisplayImage = () => {
 };
 
 export default UploadAndDisplayImage;
+
+/*<ListItem size="small" key={steps + i}>
+<ListItemText size="small" primary={`${steps}`} />
+<IconButton onClick={(e) => handleDeleteSteps(i)}>
+  <DeleteIcon />
+</IconButton>
+</ListItem>*/
