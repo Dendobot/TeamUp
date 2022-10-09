@@ -31,9 +31,14 @@ const CREATE_URL = "/recipe/createRecipe";
 const UploadAndDisplayImage = () => {
   const [ingredientList, setIngredientList] = useState([]);
   const [ingredients, setIngredients] = useState("");
+  const [value, setValue] = useState("");
+
+  const [stepsList, setStepsList] = useState([]);
+  const [steps, setSteps] = useState("");
+  const [valueStep, setValueStep] = useState("");
+
   const [tagsList, setTagsList] = useState([]);
   const [tags, setTags] = useState("");
-  const [value, setValue] = useState("");
   const [tagValue, setTagValue] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -58,7 +63,7 @@ const UploadAndDisplayImage = () => {
       recipeName: "",
       note: "",
       ingredients: [],
-      method: "",
+      method: [],
       cookingTime: 0,
       tags: [],
       photo_url: "",
@@ -67,8 +72,7 @@ const UploadAndDisplayImage = () => {
       //axios to back end
       console.log("click save changes");
       try {
-        if ((ingredientList.length > 0)&&(values.method !== "")&&(values.method !== " ")
-        &&(values.recipeName !== "")&&(values.recipeName !== " ")&&(Number.isInteger(+values.cookingTime))) {
+        if ((ingredientList.length > 0)&&(stepsList.length > 0)&&(values.recipeName !== "")&&(values.recipeName !== " ")&&(Number.isInteger(+values.cookingTime))) {
           const response = await axiosPrivate.post(
             CREATE_URL,
             JSON.stringify({
@@ -76,7 +80,7 @@ const UploadAndDisplayImage = () => {
               recipeName: values.recipeName,
               note: values.note,
               ingredients: ingredientList,
-              method: values.method,
+              method: stepsList,
               cookingTime: values.cookingTime,
               tags: tagsList,
               photo_url: selectedImage,
@@ -94,7 +98,7 @@ const UploadAndDisplayImage = () => {
             setSuccess(false);
           }, 2000);
         } else {
-          if ((values.method === "") || (values.method === " ")) {
+          if (stepsList.length === 0) {
             formik.errors.method = "Method is required"
           }
           
@@ -139,17 +143,41 @@ const UploadAndDisplayImage = () => {
     setValue("");
   };
 
+  const handleSteps = () => {
+    if (steps !== "" && valueStep !== "" && steps !== " ") {
+      setStepsList((stepsList) => stepsList.concat(steps));
+      formik.errors.method = "";
+    }
+    setSteps("");
+    setValueStep("");
+  };
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleTag();
     }
   };
 
+  const handleStepsKey = (event) => {
+    if (event.key === "Enter") {
+      handleSteps();
+    }
+  };
+  
+
   const handleIngredientKey = (event) => {
     if (event.key === "Enter") {
       handleIngredient();
     }
   };
+
+  function handleDeleteSteps(e) {
+    console.log(stepsList);
+    const s = stepsList.filter((steps, i) => i !== e);
+    setStepsList(s);
+    console.log(s);
+  }
+
 
   function handleDelete(e) {
     console.log(ingredientList);
@@ -390,21 +418,60 @@ const UploadAndDisplayImage = () => {
           <Grid className="setGridMargin" xs={3.7}>
             <div className="left">
               <p className="OtherTitle"> Add Steps</p>
-              <TextField
-                className="bg-color"
-                id="method"
-                label=" "
-                variant="outlined"
-                size="small"
-                multiline
-                minRows={"22"}
-                sx={{ width: "346px", marginBottom: "20px" }}
-                name="method"
-                value={formik.values.method}
-                onChange={formik.handleChange}
-                error={formik.touched.method && Boolean(formik.errors.method)}
-                InputLabelProps={{ shrink: false }}
-              />
+              <Box
+                sx={{
+                  bgcolor: "background.paper",
+                  boxShadow: 1,
+                  borderRadius: 2,
+                  maxWidth: 270,
+                  marginBottom: "10px",
+                }}
+              >
+                {stepsList.map((steps, i) => (
+                  <div>
+                    <ListItem size="small" key={steps + i}>
+                      <ListItemText size="small" primary={`${steps}`} />
+                      <IconButton onClick={(e) => handleDeleteSteps(i)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </ListItem>
+                  </div>
+                ))}
+              </Box>
+              <div>
+                <TextField
+                  label="Add Steps"
+                  type="text"
+                  className="bg-color"
+                  id="method"
+                  name="method"
+                  variant="outlined"
+                  onChange={({ target }) => {
+                      setSteps(target.value);
+                      setValueStep(target.value);
+                  }
+                }
+                  onKeyDown={handleStepsKey}
+                  value={valueStep}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        <IconButton
+                          onClick={handleSteps}
+                          aria-label="add to steps list"
+                        >
+                          <AddCircleRoundedIcon color="primary" />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  error={
+                    formik.touched.method &&
+                    Boolean(formik.errors.method)
+                  }
+                />
+              </div>
+
               {Boolean(formik.errors.method) && formik.touched.method && (
                 <div style={{ color: "#d32f2f" }}>{formik.errors.method}</div>
               )}
@@ -424,7 +491,7 @@ const UploadAndDisplayImage = () => {
                 variant="contained"
                 size="small"
                 type="submit"
-                sx={{ marginLeft: "190px" }}
+                sx={{ marginTop:"10px", marginLeft: "145px" }}
               >
                 Save Changes
               </Button>
