@@ -74,8 +74,10 @@ function MyRecipes() {
         console.log(response?.data);
         console.log(response?.accessToken);
         console.log(JSON.stringify(response));
-        alert("Success!");
         
+        recipeNames.splice(index, 1) 
+        recipeIDs.splice(index, 1)
+        recipePhoto.splice(index, 1)
         //setRecipesNames(recipeNames.splice(index, index+1) );
         //setRecipeIDs(recipeIDs.splice(index, index+1));
         //setRecipePhoto(recipePhoto.splice(index, index+1));
