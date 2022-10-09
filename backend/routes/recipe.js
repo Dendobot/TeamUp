@@ -4,15 +4,17 @@ const User = require("../models/user.js");
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Recipe = require('../models/recipe.js');
-
+const verifyJWT = require("../config/verifyJWT");
 
 
 router.use(bodyParser.json()); //Handles JSON requests
 router.use(bodyParser.urlencoded({ extended: false }));
+//verify token before give access to route
+router.use(verifyJWT);
 
 
-// @desc    get all recipes for a user
-// @route   GET /recipe
+// @desc    get all recipes (id, name and photo) for a user
+// @route   GET /recipe/viewRecipes
 // @access  Private
 router.get("/viewRecipes", async (req, res) => {
   const cookies = req.cookies;
@@ -58,6 +60,9 @@ router.get("/viewRecipes", async (req, res) => {
   });
 });
 
+// @desc    get one recipe detailed info for a user
+// @route   GET /recipe/viewRecipe
+// @access  Private
 router.get('/viewRecipe', async (req, res) => {
   var id = req.query.id;
 
@@ -65,17 +70,23 @@ router.get('/viewRecipe', async (req, res) => {
     const recipe = await Recipe.findOne({ _id: id }).exec();
     if (recipe) {
 
-      res.render('viewRecipe', {
-        recipe: recipe
+      var responseJSON = JSON.stringify(recipe, {
+        headers: { "Content-Type": "application/json" },
       });
+
+      res.json(responseJSON);
+    } else {
+      res.status(404).json({ message: "recipe does not exist" });
     }
   } catch (err) {
-    throw err;
+    res.status(500).json({ message: err.message });
   }
 
 });
 
-
+// @desc    create one recipe for a user
+// @route   POST /recipe/createRecipe
+// @access  Private
 router.post('/createRecipe', async (req, res) => {
 
   const { user, recipeName, note, ingredients, method, tags, cookingTime } = req.body;
@@ -112,8 +123,9 @@ router.post('/createRecipe', async (req, res) => {
 
 });
 
-
-
+// @desc    update a recipe for a user
+// @route   POST /recipe/editRecipe
+// @access  Private
 router.post('/editRecipe', async (req, res) => {
 
   const { id, recipeName, note, ingredients, method, tags, cookingTime } = req.body;
@@ -143,6 +155,9 @@ router.post('/editRecipe', async (req, res) => {
 
 });
 
+// @desc    delete a particular recipe for a user
+// @route   DELETE /recipe/deleteRecipe
+// @access  Private
 router.post('/deleteRecipe', async (req, res) => {
 
   const { id, user } = req.body;

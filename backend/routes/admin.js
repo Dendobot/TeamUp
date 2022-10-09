@@ -4,9 +4,10 @@ const User = require("../models/user.js");
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
+const verifyJWT = require("../config/verifyJWT");
 
-
-
+//verify token before give access to route
+router.use(verifyJWT);
 
 const getAllUsers = async (req, res) => {
   const users = await User.find();

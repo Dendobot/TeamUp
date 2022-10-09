@@ -4,7 +4,6 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 const PORT = process.env.PORT || 3500;
-const verifyJWT = require("./config/verifyJWT");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -34,9 +33,6 @@ app.use(cors(corsOptions));
 //Routes
 app.use("/users", require("./routes/users"));
 
-
-//verify token before give access to route
-app.use(verifyJWT);
 app.use("/recipe", require("./routes/recipe"));
 
 app.use("/admin", require("./routes/admin"));
