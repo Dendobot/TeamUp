@@ -41,16 +41,16 @@ function ViewRecipe() {
   }, [axiosPrivate]);
 
   return (
-    <div>
+    <div className="secondary-color">
       <Navigation />
-      <div className="secondary-color">
+      
         <div className="recipe-header"> {recipeInfo?.recipeName} </div>
-      </div>
+        <img src={recipeInfo?.photo_url}  style={{borderRadius: 25}} width="300" height="165"  ></img>
       <div className="edit-recipe-button">
         <Button variant="contained">Edit Recipe</Button>
       </div>
-      <h5 className="ingredients">Ingredients</h5>
-      <h5 className="steps">Steps</h5>
+      <h5 className="ingredients">Ingredients {recipeInfo?.ingredients}</h5>
+      <h5 className="steps">Steps {recipeInfo?.method}</h5>
       <h5
         className="ingredients"
         style={{
@@ -74,7 +74,6 @@ function ViewRecipe() {
           top: "571px",
         }}
       >
-        {recipeInfo?.ingredients}
         Notes {recipeInfo?.note}
       </h5>
       <div
@@ -83,14 +82,12 @@ function ViewRecipe() {
           position: "absolute",
           width: "346px",
           height: "289px",
-          left: "88px",
-          top: "219px",
+          
         }}
       ></div>
-      <div className="white-box"></div>
-
-      <div className="steps-box"></div>
-    </div>
+      
+      </div>
+   
   );
 }
 
