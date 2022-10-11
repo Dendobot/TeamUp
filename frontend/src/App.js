@@ -8,6 +8,7 @@ import {
   SignUp,
   AddRecipe,
   Recipes,
+  ViewRecipe,
 } from "./components";
 import RequiredAuth from "./components/RequiredAuth";
 
