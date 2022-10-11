@@ -319,6 +319,19 @@ a:hover {
 
   }
 
+  .note-font{
+    width: 261px;
+    height: 22px;
+    left: 106px;
+    top: 799px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 125.29%;
+    letter-spacing: 0.0120588em;
+    color: #0671B7;
+
+  }
 
   .ingredients{
     position: absolute;

@@ -160,7 +160,7 @@ export default ViewRecipe; */
                 marginRight: "10px",
                 marginTop: "20px"
               }}>
-                <h6 className = "tag-font" style={{padding:"1px"}}>{recipeInfo.tags[i]}</h6>
+                <h6 className = "tag-font" style={{marginLeft:"5px"}}>{recipeInfo.tags[i]}</h6>
               </div>
             ))}
             </div>
@@ -168,7 +168,7 @@ export default ViewRecipe; */
           </ul>
         </div>
       </div>
-      <div className="white-box"> {recipeInfo?.note} </div>
+      <div className="white-box"> <h6 className="note-font" style={{marginTop: "15px", marginLeft: "20px"}}>{recipeInfo?.note} </h6> </div>
 
       <div className="steps-box"> {recipeInfo?.method} </div>
     </div>
