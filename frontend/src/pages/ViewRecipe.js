@@ -139,7 +139,13 @@ export default ViewRecipe; */
           left: "88px",
           top: "219px",
         }}
-      > {recipeInfo?.photo}</div>
+      > <img src={recipeInfo?.photo_url}  style={{
+        borderRadius: 25, 
+        width: "346px",
+        height: "289px",
+        left: "88px",
+        top: "219px",
+        }}  ></img> </div>
       <div className="white-box"> {recipeInfo?.note} </div>
 
       <div className="steps-box"> {recipeInfo?.method} </div>
