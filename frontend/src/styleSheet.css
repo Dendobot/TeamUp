@@ -298,6 +298,28 @@ a:hover {
     background: #FFFFFF;
   }
 
+  .tags{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2px 12px;
+    gap: 6px;
+    background: #E5FDF6;
+    border-radius: 12px;
+  }
+
+  .tag-font{
+    width: 43px;
+    height: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #0671B7;
+
+  }
+
+
   .ingredients{
     position: absolute;
     width: 189px;

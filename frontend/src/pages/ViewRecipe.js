@@ -145,7 +145,29 @@ export default ViewRecipe; */
         height: "289px",
         left: "88px",
         top: "219px",
-        }}  ></img> </div>
+        }}  ></img> 
+        
+        <div>
+          <ul>
+          {recipeInfo.tags?.length ? (
+            <div> {(recipeInfo?.tags).map((tag, i) => (
+              <div className = "tags" style={{
+                width: "67px",
+                height: "24px",
+                left: "92px",
+                top: "520px",
+                display: "inline-block",
+                marginRight: "10px",
+                marginTop: "20px"
+              }}>
+                <h6 className = "tag-font" style={{padding:"1px"}}>{recipeInfo.tags[i]}</h6>
+              </div>
+            ))}
+            </div>
+          ) : (<p>No tags</p>)}
+          </ul>
+        </div>
+      </div>
       <div className="white-box"> {recipeInfo?.note} </div>
 
       <div className="steps-box"> {recipeInfo?.method} </div>
