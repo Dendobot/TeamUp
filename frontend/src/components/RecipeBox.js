@@ -25,7 +25,7 @@ function RecipeBox(props) {
   return (
     <div className="box right-table">
     <div className ="white-box" style={{ width: '346px', height:'289px',  padding:'23px'}}>
-    <p>{props.recipeName}</p>
+    <h4>{props.recipeName}</h4>
     <img src={props.imgsrc}style={{borderRadius: 25}} width="300" height="165"   onClick={() => props.onView({index})}></img>
     <IconButton aria-label="delete" size="large" color="secondary" theme={theme} onClick={() => props.onDelete({index})}>
       <DeleteIcon fontSize="inherit" />

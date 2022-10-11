@@ -16,6 +16,7 @@ function MyRecipes() {
   const [ans, setAns] = React.useState();
   const { auth } = useAuth();
   const navigate = useNavigate();
+
   const getRecipeInfo = async () => {
     try {
       const response = await axiosPrivate.get("/recipe/viewRecipes", {
@@ -91,7 +92,7 @@ function MyRecipes() {
   const handleView = async (index) => {
     navigate("/viewRecipe".concat(recipeIDs[index.index]));
   };
-
+  console.log("user:        ", useAuth().auth.user)
   return (
     <div className="secondary-color vh-100">
       <link
@@ -99,7 +100,10 @@ function MyRecipes() {
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
       />
       <Navigation />
+      <h6 className="center-horiz welcome-parts1">Hey {useAuth().auth.user}!</h6>
+        <h3 className="center-horiz welcome-parts2">Here are your recipes</h3>
       <Link to="../addRecipe">
+
         <IconButton
           aria-label="add"
           sx={{
@@ -116,6 +120,8 @@ function MyRecipes() {
       </Link>
       <div className="center-horiz graph-parts">
         {recipeNames?.length ? (
+          <div>
+
           <ul>
             {recipeNames.map((users, i) => (
               <RecipeBox
@@ -129,6 +135,7 @@ function MyRecipes() {
               />
             ))}
           </ul>
+          </div>
         ) : (
           <p>You have not added any recipes</p>
         )}

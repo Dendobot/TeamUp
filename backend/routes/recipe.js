@@ -42,7 +42,7 @@ router.get("/viewRecipes", async (req, res) => {
         }
 
         const response = {
-          recipeInfo,
+          recipeInfo
         };
 
 
