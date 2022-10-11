@@ -1,12 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Landing, About, SignIn, Footer, SignUp, AddRecipe, Recipes, ViewRecipe } from "./components";
+import {
+  Landing,
+  About,
+  SignIn,
+  Footer,
+  SignUp,
+  AddRecipe,
+  Recipes,
+} from "./components";
 import RequiredAuth from "./components/RequiredAuth";
 
-
-function App () {
+function App() {
   return (
-    <div className="App">
+    <div>
       <Router>
         <Routes>
           <Route path="/" element={<Landing />}></Route>
@@ -27,10 +34,10 @@ function App () {
           </Route>
 
           {/*catch all*/}
-          <Route path='*' element={<Landing />} />
+          <Route path="*" element={<Landing />} />
         </Routes>
-        <Footer />
       </Router>
+      <Footer />
     </div>
   );
 }

@@ -2,15 +2,9 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="footer">
-      <footer class="py-1 footer fixed-bottom">
-        <div class="container">
-          <p class="m-0 text-center ">
-                      made with ❤️ by TeamUp
-          </p>
-        </div>
-      </footer>
-    </div>
+    <footer class="py-3 footer">
+      <p class="m-0 text-center">Made with ❤️ by TeamUp</p>
+    </footer>
   );
 }
 
