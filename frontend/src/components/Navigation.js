@@ -12,17 +12,12 @@ function Navigation() {
   var signout = <></>;
   var myRecipes = <></>;
   var addRecipe = <></>;
-  const viewRecipe = (recipeId) => {
-    const url = "/viewRecipe/" + recipeId
-    console.log("url = ", url)
-    return <NavLink className="nav-link" to={url}>View Recipe</NavLink>
-  }
-
+  var bg = "navbar navbar-expand-lg navbar-light";
   const { auth } = useAuth();
   if (auth?.user) {
     loginButton = <SignOutButton />;
     myRecipes = (
-      <NavLink className="nav-link" to="/home">
+      <NavLink className="nav-link" to="/myRecipes">
         My Recipes
       </NavLink>
     );
@@ -82,14 +77,6 @@ function Navigation() {
               {home}
               {myRecipes}
             </li>
-
-          <li className="nav-item navBarLinks">
-            {viewRecipe("632f1b833a62c0aeca7e6c27")}
-          </li>
-          
-          <li className="nav-item navBarLinks">
-            {signin}
-          </li>
 
             <li className="nav-item navBarLinks">
               {about}

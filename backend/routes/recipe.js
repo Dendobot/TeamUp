@@ -17,15 +17,23 @@ router.use(verifyJWT);
 // @route   GET /recipe/viewRecipes
 // @access  Private
 router.get("/viewRecipes", async (req, res) => {
-  const { user } = req.body;
+  const cookies = req.cookies;
+  if (!cookies?.jwt) return res.sendStatus(401);
+  const refreshToken = cookies.jwt;
+  const foundUser = await User.findOne({ refreshToken }).exec();
+  if (!foundUser) return res.sendStatus(403); //Forbidden
 
-  User.findOne({ username: user }).exec(async (err, user) => {
+  var user_requested = foundUser.username;
+ 
+  User.findOne({ username: user_requested }).exec(async (err, user) => {
     if (user) {
       console.log("user who requested the recipes is: ", user);
       const recipeInfo = [];
       try {
+        console.log("user recipes",user.recipes)
         for (const recipeId of user.recipes) {
-          const recipe = await Recipe.findOne({ id: recipeId }).exec();
+          const recipe = await Recipe.findOne({ _id: recipeId }).exec();
+          console.log("recipe",recipe)
           recipeInfo.push({
             recipeId: recipe._id,
             recipeName: recipe.recipeName,
@@ -34,8 +42,9 @@ router.get("/viewRecipes", async (req, res) => {
         }
 
         const response = {
-          recipeInfo,
+          recipeInfo
         };
+
 
         var responseJSON = JSON.stringify(response, {
           headers: { "Content-Type": "application/json" },
@@ -59,7 +68,7 @@ router.get('/viewRecipe/:id', async (req, res) => {
   console.log("id = ", id)
 
   try {
-    const recipe = await Recipe.findOne({ id: id }).exec();
+    const recipe = await Recipe.findOne({ _id: id }).exec();
     if (recipe) {
 
       var responseJSON = JSON.stringify(recipe, {
@@ -70,6 +79,8 @@ router.get('/viewRecipe/:id', async (req, res) => {
     } else {
       res.status(404).json({ message: "recipe does not exist" });
     }
+
+    
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -159,7 +170,7 @@ router.post('/deleteRecipe', async (req, res) => {
   try {
     const foundUser = await User.findOneAndUpdate({ username: user }, { $pull: { recipes: id } }).exec();
     console.log("user found " + foundUser.username);
-    Recipe.deleteOne({ _id: id }).then(function () {
+    Recipe.deleteOne({ id: id }).then(function () {
       console.log("Data deleted"); // Success
       res.status(201).json({ 'success': ` ${id} deleted` });
     }).catch(function (error) {
