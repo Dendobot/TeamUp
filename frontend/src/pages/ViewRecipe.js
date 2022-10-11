@@ -58,7 +58,7 @@ function ViewRecipe() {
           top: "517px",
         }}
       >
-        Cooking Time (in minutes): 5
+        Cooking Time (in minutes): {recipeInfo?.cookingTime}
       </h5>
       <h5
         className="ingredients"
@@ -83,10 +83,10 @@ function ViewRecipe() {
           left: "88px",
           top: "219px",
         }}
-      ></div>
-      <div className="white-box"></div>
+      > {recipeInfo?.photo}</div>
+      <div className="white-box"> {recipeInfo?.note} </div>
 
-      <div className="steps-box"></div>
+      <div className="steps-box"> {recipeInfo?.method} </div>
     </div>
   );
 }
