@@ -116,7 +116,7 @@ export default ViewRecipe; */
                     display: "block",
                     marginBottom: "10px"
                 }}> 
-                  <h6 className = "tag-font" style={{paddingLeft: "20px", paddingTop: "20px"}}>{recipeInfo.ingredients[i]}</h6>
+                  <h6 className = "ingredients-font" style={{paddingLeft: "20px", paddingTop: "30px", alignItems:"center"}}>{recipeInfo.ingredients[i]}</h6>
                 </div>
               ))}
             </div>
@@ -128,7 +128,26 @@ export default ViewRecipe; */
           </ul>
         </div>
       </div>
-      <h5 className="steps" style={{position: "absolute", width: "133px", height: "22px", left: "1071px", top: "184px",}}>Steps</h5>
+      <div>
+        <h5 className="steps" style={{position: "absolute", width: "133px", height: "22px", left: "1071px", top: "184px",}}>Steps</h5>
+        <ul>
+          {recipeInfo?.method?.length ? (
+            <div> {(recipeInfo?.method).map((step, i) => (
+              <div 
+                className = "ingredients-box"
+                style={{
+                  left: "1059px",
+                  top: "220px",
+                  display: "block",
+                  marginBottom: "10px"
+                }}>
+                  <h6 className = "ingredients-font" style={{alignItems: "center", paddingLeft: "20px", paddingTop: "30px"}}>{recipeInfo.method[i]}</h6>
+              </div>
+            ))}
+            </div>
+          ) : ( <p> No steps</p>)}
+        </ul>
+      </div>
       <h5
         className="ingredients"
         style={{
@@ -185,7 +204,7 @@ export default ViewRecipe; */
                   marginTop: "20px",
                   display: "inline-block"
                 }}>
-                  <h6 className = "tag-font">{recipeInfo.tags[i]}</h6>
+                  <h6 className = "tag-font" style={{alignItems:"center", textAlign:"center"}}>{recipeInfo.tags[i]}</h6>
                 </div>
               ))}
               </div>
@@ -207,15 +226,8 @@ export default ViewRecipe; */
             position: "absolute",
             left: "88px",
             top: "601px"
-        }}> {recipeInfo?.note} </div>
+        }}> <h6 className = "ingredients-font" style={{marginLeft:"20px", marginTop:"20px"}}>{recipeInfo?.note}</h6> </div>
 
-      <div 
-        className="steps-box"
-        style={{
-            position: "absolute",
-            left: "1059px",
-            top: "220px"
-        }}> {recipeInfo?.method} </div>
 
 
 
