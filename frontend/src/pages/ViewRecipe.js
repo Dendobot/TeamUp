@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation";
 //import BottomBar from "../components/BottomBar";
-import { Button } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useParams } from "react-router-dom";
@@ -94,7 +94,7 @@ function ViewRecipe() {
 export default ViewRecipe; */
 
   return (
-    <div>
+    <div className="secondary-color vh-100 overflow">
       <Navigation />
       <div className="secondary-color">
         <div className="recipe-title"> {recipeInfo?.recipeName} </div>
@@ -103,7 +103,7 @@ export default ViewRecipe; */
         <Button variant="contained">Edit Recipe</Button>
       </div>
       <div>
-        <h5 className="ingredients" style={{position:"absolute", left:"564px", top:"184px"}}>Ingredients</h5>
+        <h5 className="ingredients" style={{position:"absolute", left:"564px", top:"184px", color: "#0671B7",}}>Ingredients</h5>
         <div>
           <ul>
             {recipeInfo?.ingredients?.length ? (
@@ -111,8 +111,8 @@ export default ViewRecipe; */
                 <div 
                   className="ingredients-box"
                   style={{
-                    left: "540px",
-                    top: "223px",
+                    left: "0px",
+                    top: "0px",
                     display: "block",
                     marginBottom: "10px"
                 }}> 
@@ -129,15 +129,23 @@ export default ViewRecipe; */
         </div>
       </div>
       <div>
-        <h5 className="steps" style={{position: "absolute", width: "133px", height: "22px", left: "1071px", top: "184px",}}>Steps</h5>
+        <h5 className="steps" 
+          style={{
+            position: "absolute", 
+            width: "133px", 
+            height: "22px", 
+            left: "1071px", 
+            top: "184px", 
+            color: "#0671B7",}}>Steps</h5>
         <ul>
           {recipeInfo?.method?.length ? (
             <div> {(recipeInfo?.method).map((step, i) => (
               <div 
-                className = "ingredients-box"
+                className = "method-box"
                 style={{
-                  left: "1059px",
-                  top: "220px",
+                  position: "relative",
+                  left: "0px",
+                  top: "0px",
                   display: "block",
                   marginBottom: "10px"
                 }}>
@@ -156,6 +164,8 @@ export default ViewRecipe; */
           height: "27px",
           left: "294px",
           top: "517px",
+          color: "#0671B7",
+          fontStyle: "normal"
         }}
       >
         Cooking Time (in minutes): {recipeInfo?.cookingTime}
