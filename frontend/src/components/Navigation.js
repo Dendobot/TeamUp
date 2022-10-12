@@ -11,8 +11,6 @@ function Navigation() {
   var signin = <></>;
   var signout = <></>;
   var myRecipes = <></>;
-  var addRecipe = <></>;
-  var bg = "navbar navbar-expand-lg navbar-light";
   const { auth } = useAuth();
   if (auth?.user) {
     loginButton = <SignOutButton />;
@@ -21,11 +19,7 @@ function Navigation() {
         My Recipes
       </NavLink>
     );
-    addRecipe = (
-      <NavLink className="nav-link" to="/addRecipe">
-        Add Recipe
-      </NavLink>
-    );
+    
   } else {
     loginButton = <></>;
     home = (
@@ -80,7 +74,7 @@ function Navigation() {
 
             <li className="nav-item navBarLinks">
               {about}
-              {addRecipe}
+              
             </li>
             <li className="nav-item navBarLinks">{signin}</li>
 

@@ -87,37 +87,38 @@ function MyRecipes() {
     }
   };
 
-  const handleEdit = async (index) => {};
+  const handleEdit = async (index) => { navigate("/editRecipe".concat(recipeIDs[index.index]));};
 
   const handleView = async (index) => {
     navigate("/viewRecipe".concat(recipeIDs[index.index]));
   };
   console.log("user:        ", useAuth().auth.user)
   return (
-    <div className="secondary-color vh-100">
+    <div className="secondary-color ">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
       />
       <Navigation />
-      <h6 className="center-horiz welcome-parts1">Hey {useAuth().auth.user}!</h6>
-        <h3 className="center-horiz welcome-parts2">Here are your recipes</h3>
       <Link to="../addRecipe">
-
-        <IconButton
+      <div className="addRecipeButton">
+        <IconButton 
           aria-label="add"
           sx={{
             fontSize: 80,
-            float: "right",
-            left: 1480,
-            top: 700,
-            position: "fixed",
+            
+
           }}
           color="primary"
         >
+          
           <AddCircleIcon fontSize="inherit">add_circle</AddCircleIcon>
+          
         </IconButton>
+        </div>
       </Link>
+      <h6 className="center-horiz welcome-parts1">Hey {useAuth().auth.user}!</h6>
+        <h3 className="center-horiz welcome-parts2">Here are your recipes</h3>
       <div className="center-horiz graph-parts">
         {recipeNames?.length ? (
           <div>
@@ -140,6 +141,9 @@ function MyRecipes() {
           <p>You have not added any recipes</p>
         )}
       </div>
+      
+      
+      
     </div>
   );
 }

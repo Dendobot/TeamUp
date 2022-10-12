@@ -120,6 +120,7 @@ a:hover {
   background-color: var(--lightBlue);
 }
 
+
 .lets-get-text {
   color: var(--primaryBlue);
   font-size: 50px;
@@ -204,7 +205,7 @@ a:hover {
   background-color: var(--lightBlue);
 }
 
-  .box{
+.box{
         align-items: center;
         justify-content: center;
         overflow:auto;
@@ -213,7 +214,7 @@ a:hover {
         margin-left: 7rem;
         border-radius: 25px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-  }
+}
 
   .recipe-img{
     min-height: 299;
@@ -238,6 +239,7 @@ a:hover {
     max-width: 1700px;
     margin-left: 6rem;
     margin-right: 6rem;
+    margin-bottom: 6rem;
   }
 
   .right-table{
@@ -296,10 +298,16 @@ a:hover {
   max-width: 1700px;
   margin-left: 15rem;
   margin-right: 6rem;
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 .welcome-parts2 {
   max-width: 1700px;
   margin-left: 15rem;
   margin-right: 6rem;
+}
+
+.addRecipeButton{
+  margin-left: 90vw;
+  margin-top: 40vw;
+  position: fixed;
 }
