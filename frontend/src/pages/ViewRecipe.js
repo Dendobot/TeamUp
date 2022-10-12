@@ -139,8 +139,41 @@ export default ViewRecipe; */
           left: "88px",
           top: "219px",
         }}
-      > 
-      
+      > <img src={recipeInfo?.photo_url}  style={{
+        borderRadius: 25, 
+        width: "346px",
+        height: "289px",
+        left: "88px",
+        top: "219px",
+        }}  ></img> 
+
+          <div>
+            <ul>
+            {recipeInfo?.tags?.length ? (
+              <div> {(recipeInfo?.tags).map((tag, i) => (
+                <div className = "tags" style={{
+                  width: "67px",
+                  height: "24px",
+                  left: "92px",
+                  top: "520px",
+                  marginRight: "20px",
+                  marginTop: "20px",
+                  display: "inline-block"
+                }}>
+                  <h6 className = "tag-font">{recipeInfo.tags[i]}</h6>
+                </div>
+              ))}
+              </div>
+            ) : (<p 
+                  style={{
+                    position: "absolute",
+                    width: "67px",
+                    height: "24px",
+                    left: "92px",
+                    top: "520px",
+                  }}>No tags</p>)}
+            </ul>
+        </div>
       </div>
       
       <div 
