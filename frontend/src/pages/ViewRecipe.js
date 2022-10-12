@@ -102,7 +102,32 @@ export default ViewRecipe; */
       <div className="edit-recipe-button" style= {{position: "absolute", left: "83.86%", right: "5.69%", top: "14.56%", bottom: "81.26%",}}>
         <Button variant="contained">Edit Recipe</Button>
       </div>
-      <h5 className="ingredients" style={{position:"absolute", left:"564px", top:"184px"}}>Ingredients</h5>
+      <div>
+        <h5 className="ingredients" style={{position:"absolute", left:"564px", top:"184px"}}>Ingredients</h5>
+        <div>
+          <ul>
+            {recipeInfo?.ingredients?.length ? (
+              <div> {(recipeInfo?.tags).map((ingredient, i) => (
+                <div 
+                  className="ingredients-box"
+                  style={{
+                    left: "540px",
+                    top: "223px",
+                    display: "block",
+                    marginBottom: "10px"
+                }}> 
+                  <h6 className = "tag-font" style={{paddingLeft: "20px", paddingTop: "20px"}}>{recipeInfo.ingredients[i]}</h6>
+                </div>
+              ))}
+            </div>
+            ) : ( <p 
+                    style={{
+                      position: "absolute",
+                      left: "540px",
+                      top: "223px"}}> No ingredients</p>)}
+          </ul>
+        </div>
+      </div>
       <h5 className="steps" style={{position: "absolute", width: "133px", height: "22px", left: "1071px", top: "184px",}}>Steps</h5>
       <h5
         className="ingredients"
