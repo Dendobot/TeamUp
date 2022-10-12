@@ -97,12 +97,12 @@ export default ViewRecipe; */
     <div>
       <Navigation />
       <div className="secondary-color">
-        <div className="recipe-header"> {recipeInfo?.recipeName} </div>
+        <div className="recipe-title"> {recipeInfo?.recipeName} </div>
       </div>
       <div className="edit-recipe-button" style= {{position: "absolute", left: "83.86%", right: "5.69%", top: "14.56%", bottom: "81.26%",}}>
         <Button variant="contained">Edit Recipe</Button>
       </div>
-      <h5 className="ingredients">Ingredients</h5>
+      <h5 className="ingredients" style={{position:"absolute", left:"564px", top:"184px"}}>Ingredients</h5>
       <h5 className="steps" style={{position: "absolute", width: "133px", height: "22px", left: "1071px", top: "184px",}}>Steps</h5>
       <h5
         className="ingredients"
@@ -139,10 +139,28 @@ export default ViewRecipe; */
           left: "88px",
           top: "219px",
         }}
-      > {recipeInfo?.photo}</div>
-      <div className="white-box"> {recipeInfo?.note} </div>
+      > 
+      
+      </div>
+      
+      <div 
+        className="white-box" 
+        style={{
+            position: "absolute",
+            left: "88px",
+            top: "601px"
+        }}> {recipeInfo?.note} </div>
 
-      <div className="steps-box"> {recipeInfo?.method} </div>
+      <div 
+        className="steps-box"
+        style={{
+            position: "absolute",
+            left: "1059px",
+            top: "220px"
+        }}> {recipeInfo?.method} </div>
+
+
+
     </div>
   );
   }
