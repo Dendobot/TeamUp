@@ -135,8 +135,7 @@ function EditRecipe() {
           name !== " " &&
           Number.isInteger(+time)
         ) {
-          var url =
-            "https://res.cloudinary.com/dyhv1equv/image/upload/v1665228999/60817ec5354dde0018c06960_yqcup6.jpg";
+          var url = recipeInfo.photo_url;
           if (selectedImage !== "hello") {
             const formData = new FormData();
             formData.append("file", selectedImage);
