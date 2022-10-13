@@ -168,6 +168,7 @@ function EditRecipe() {
               headers: { "Content-Type": "application/json" },
             }
           );
+          alert("Success");
           setSuccess(true);
           console.log(response?.data);
           console.log(response?.accessToken);
@@ -330,7 +331,7 @@ function EditRecipe() {
                         type="file"
                         onChange={(event) => {
                           setSelectedImage(
-                            JSON.stringify(event.target.files[0])
+                            URL.createObjectURL(event.target.files[0])
                           );
                         }}
                       />
