@@ -74,14 +74,14 @@ function EditRecipe() {
       setrecipeInfo(obj);
       console.log("recipe name = ", obj["recipeName"]);
       console.log("recipe info", obj["recipeName"]);
-      console.log("recipe ingredient = ", obj["photo_url"]);
       console.log("recipe url = ", obj["photo_url"]);
       console.log("recipe cookingTime = ", obj["cookingTime"]);
       setName(obj["recipeName"]);
       setIngredientList(obj["ingredients"]);
       setStepsList(obj["method"]);
       if (obj["photo_url"]) {
-        setSelectedImage(obj["photo_url"]);
+        setSelectedImage("hello");
+        console.log("selected image = ", selectedImage);
       }
       if (obj["tags"]) {
         setTagsList(obj["tags"]);
@@ -137,7 +137,7 @@ function EditRecipe() {
         ) {
           var url =
             "https://res.cloudinary.com/dyhv1equv/image/upload/v1665228999/60817ec5354dde0018c06960_yqcup6.jpg";
-          if (selectedImage && (selectedImage !== recipeInfo?.photo_url)) {
+          if (selectedImage !== "hello") {
             const formData = new FormData();
             formData.append("file", selectedImage);
             formData.append("upload_preset", "default");
@@ -172,11 +172,10 @@ function EditRecipe() {
           console.log(response?.accessToken);
           console.log(JSON.stringify(response));
           setTimeout(() => {
-            navigate("/myRecipes");
+            navigate("/viewRecipe".concat(id));
             setSuccess(false);
           }, 2000);
         } else {
-          alert("ERROR");
           if (stepsList.length === 0) {
             formik.errors.method = "Method is required";
           }
@@ -329,9 +328,7 @@ function EditRecipe() {
                         accept="image/*"
                         type="file"
                         onChange={(event) => {
-                          setSelectedImage(
-                            URL.createObjectURL(event.target.files[0])
-                          );
+                          setSelectedImage(event.target.files[0]);
                         }}
                       />
                       <PhotoCamera />
@@ -347,7 +344,7 @@ function EditRecipe() {
                           height: "173px",
                           marginBottom: "10px",
                         }}
-                        src={selectedImage}
+                        src={selectedImage==="hello" ? recipeInfo.photo_url: URL.createObjectURL(selectedImage)}
                         alt="Live from space album cover"
                       />
                       <div class=" d-flex justify-content-center">
