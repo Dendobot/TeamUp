@@ -60,12 +60,11 @@ router.get("/viewRecipes", async (req, res) => {
   });
 });
 
-router.get('/viewRecipe/:id', async (req, res) => {
-  console.log("I got called!")
-  const url = req.url;
-  const urlSplit = url.split("/")
-  const id = urlSplit[urlSplit.length - 1]
-  console.log("id = ", id)
+// @desc    get one recipe detailed info for a user
+// @route   GET /recipe/viewRecipe
+// @access  Private
+router.get('/viewRecipe', async (req, res) => {
+  var id = req.query.id;
 
   try {
     const recipe = await Recipe.findOne({ _id: id }).exec();
