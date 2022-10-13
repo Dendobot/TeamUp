@@ -72,23 +72,26 @@ function EditRecipe() {
       const obj = await JSON.parse(response.data);
       console.log("response obj = ", obj);
       setrecipeInfo(obj);
-      console.log("recipe name = ",obj['recipeName']);
-      console.log("recipe info", obj['recipeName']);
-      console.log("recipe ingredient = ", obj['photo_url']);
-      console.log("recipe url = ", obj['photo_url']);
-      console.log("recipe cookingTime = ", obj['cookingTime']);
-        setName(obj['recipeName']);
-        setIngredientList(obj['ingredients']);
-        setStepsList(obj['method']);
-        if(obj['photo_url']) {
-        setSelectedImage(obj['photo_url']);}
-        if (obj['tags']) {
-        setTagsList(obj['tags']);}
-        if(obj['cookingTime']) {
-        setTime(obj['cookingTime']);}
-        if(obj['note']) {
-          setNotes(obj['note']);
-        }
+      console.log("recipe name = ", obj["recipeName"]);
+      console.log("recipe info", obj["recipeName"]);
+      console.log("recipe ingredient = ", obj["photo_url"]);
+      console.log("recipe url = ", obj["photo_url"]);
+      console.log("recipe cookingTime = ", obj["cookingTime"]);
+      setName(obj["recipeName"]);
+      setIngredientList(obj["ingredients"]);
+      setStepsList(obj["method"]);
+      if (obj["photo_url"]) {
+        setSelectedImage(obj["photo_url"]);
+      }
+      if (obj["tags"]) {
+        setTagsList(obj["tags"]);
+      }
+      if (obj["cookingTime"] || obj["cookingTime"] === 0) {
+        setTime(obj["cookingTime"]);
+      }
+      if (obj["note"]) {
+        setNotes(obj["note"]);
+      }
     } catch (err) {
       console.log(err);
       alert("Failed to get recipe");
@@ -152,6 +155,7 @@ function EditRecipe() {
             CREATE_URL,
             JSON.stringify({
               user: auth.user,
+              id: id,
               recipeName: name,
               note: notes,
               ingredients: ingredientList,
@@ -193,13 +197,14 @@ function EditRecipe() {
       }
       //axios to back end
       console.log("you clicked the submit button");
+      console.log("id = ", id);
       console.log(" recipe name = ", name);
       console.log("Tags = ", tagsList);
       console.log("note = ", notes);
       console.log("method = ", stepsList);
       console.log("ingredients = ", ingredientList);
       console.log("cooking time = ", +time);
-      console.log("url = ", url)
+      console.log("url = ", url);
     },
   });
 
@@ -324,7 +329,9 @@ function EditRecipe() {
                         accept="image/*"
                         type="file"
                         onChange={(event) => {
-                          setSelectedImage(JSON.stringify(event.target.files[0]));
+                          setSelectedImage(
+                            JSON.stringify(event.target.files[0])
+                          );
                         }}
                       />
                       <PhotoCamera />
@@ -387,7 +394,7 @@ function EditRecipe() {
                 <p className="recipeTitle">Add Tags</p>
                 {tagsList.map((tags, i) => (
                   <Chip
-                    key = {tags + i}
+                    key={tags + i}
                     label={`${tags}`}
                     onDelete={(e) => removeTag(i)}
                     sx={{ marginBottom: "5px", marginRight: "5px" }}
@@ -435,7 +442,7 @@ function EditRecipe() {
                   minRows={"7"}
                   sx={{ width: "346px", marginBottom: "40px" }}
                   name="note"
-                  onChange= {({ target }) => {
+                  onChange={({ target }) => {
                     setNotes(target.value);
                   }}
                   value={notes}
