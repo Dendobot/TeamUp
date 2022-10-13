@@ -298,7 +298,7 @@ a:hover {
   max-width: 1700px;
   margin-left: 15rem;
   margin-right: 6rem;
-  margin-top: 4rem;
+  
 }
 .welcome-parts2 {
   max-width: 1700px;
@@ -307,7 +307,8 @@ a:hover {
 }
 
 .addRecipeButton{
-  margin-left: 85vw;
   margin-top: 4rem;
-  position: fixed;
+  display: grid;
+  grid-template-columns:85% 50%;
+  grid-template-rows: 20vh;
 }

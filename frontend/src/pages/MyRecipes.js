@@ -94,14 +94,18 @@ function MyRecipes() {
   };
   console.log("user:        ", useAuth().auth.user)
   return (
-    <div className="secondary-color ">
+    <div className="secondary-color">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
       />
       <Navigation />
-      <Link to="../addRecipe">
       <div className="addRecipeButton">
+        <div>
+      <h6 className="center-horiz welcome-parts1">Hey {useAuth().auth.user}!</h6>
+        <h3 className="center-horiz welcome-parts2">Here are your recipes</h3>
+        </div>
+        <Link to="../addRecipe">
         <IconButton 
           aria-label="add"
           sx={{
@@ -109,16 +113,11 @@ function MyRecipes() {
             
 
           }}
-          color="primary"
-        >
-          
-          <AddCircleIcon fontSize="inherit">add_circle</AddCircleIcon>
-          
+          color="primary">
+          <AddCircleIcon fontSize="inherit">add_circle</AddCircleIcon> 
         </IconButton>
-        </div>
       </Link>
-      <h6 className="center-horiz welcome-parts1">Hey {useAuth().auth.user}!</h6>
-        <h3 className="center-horiz welcome-parts2">Here are your recipes</h3>
+      </div>
       <div className="center-horiz graph-parts">
         {recipeNames?.length ? (
           <div>
