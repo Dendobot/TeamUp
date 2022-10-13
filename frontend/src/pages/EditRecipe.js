@@ -288,7 +288,7 @@ function EditRecipe() {
           >
             <Grid className="setGridMargin" xs={3.7}>
               <div className="left">
-                <h2 className="common-font-color">Add a recipe</h2>
+                <h2 className="common-font-color">Edit Recipe</h2>
                 <p className="recipeTitle"> Recipe Title </p>
                 <TextField
                   size="small"
