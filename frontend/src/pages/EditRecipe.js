@@ -131,13 +131,13 @@ function EditRecipe() {
         if (
           ingredientList.length > 0 &&
           stepsList.length > 0 &&
-          values.recipeName !== "" &&
-          values.recipeName !== " " &&
-          Number.isInteger(+values.cookingTime)
+          name !== "" &&
+          name !== " " &&
+          Number.isInteger(+time)
         ) {
           var url =
             "https://res.cloudinary.com/dyhv1equv/image/upload/v1665228999/60817ec5354dde0018c06960_yqcup6.jpg";
-          if (selectedImage) {
+          if (selectedImage && (selectedImage !== recipeInfo?.photo_url)) {
             const formData = new FormData();
             formData.append("file", selectedImage);
             formData.append("upload_preset", "default");
@@ -154,7 +154,6 @@ function EditRecipe() {
           const response = await axiosPrivate.post(
             CREATE_URL,
             JSON.stringify({
-              user: auth.user,
               id: id,
               recipeName: name,
               note: notes,
@@ -168,7 +167,6 @@ function EditRecipe() {
               headers: { "Content-Type": "application/json" },
             }
           );
-          alert("Success");
           setSuccess(true);
           console.log(response?.data);
           console.log(response?.accessToken);
@@ -178,6 +176,7 @@ function EditRecipe() {
             setSuccess(false);
           }, 2000);
         } else {
+          alert("ERROR");
           if (stepsList.length === 0) {
             formik.errors.method = "Method is required";
           }
