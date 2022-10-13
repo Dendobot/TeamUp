@@ -541,10 +541,3 @@ const UploadAndDisplayImage = () => {
 };
 
 export default UploadAndDisplayImage;
-
-/*<ListItem size="small" key={steps + i}>
-<ListItemText size="small" primary={`${steps}`} />
-<IconButton onClick={(e) => handleDeleteSteps(i)}>
-  <DeleteIcon />
-</IconButton>
-</ListItem>*/
