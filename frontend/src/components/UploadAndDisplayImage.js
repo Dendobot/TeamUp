@@ -122,7 +122,7 @@ const UploadAndDisplayImage = () => {
           console.log(response?.accessToken);
           console.log(JSON.stringify(response));
           setTimeout(() => {
-            navigate("/home");
+            navigate("/myRecipes");
             setSuccess(false);
           }, 2000);
         } else {
