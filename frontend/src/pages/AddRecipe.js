@@ -4,16 +4,13 @@ import Navigation from "../components/Navigation";
 import UploadAndDisplayImage from "../components/UploadAndDisplayImage";
 function AddRecipe() {
   return (
-        <Box
-          sx={{
-            width: 1600,
-          }}
+        <div className="secondary-color vh-100 overflow"
         >
           <Navigation />
           <div>
             <UploadAndDisplayImage />
           </div>
-        </Box>
+        </div>
   );
 }
 

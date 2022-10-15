@@ -87,7 +87,9 @@ function MyRecipes() {
     }
   };
 
-  const handleEdit = async (index) => { navigate("/editRecipe".concat(recipeIDs[index.index]));};
+  const handleEdit = async (index) => {
+     navigate("/editRecipe".concat(recipeIDs[index.index]));
+    };
 
   const handleView = async (index) => {
     navigate("/viewRecipe".concat(recipeIDs[index.index]));

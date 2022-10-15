@@ -85,7 +85,7 @@ const UploadAndDisplayImage = () => {
           values.recipeName !== " " &&
           Number.isInteger(+values.cookingTime)
         ) {
-          var url = "https://res.cloudinary.com/dyhv1equv/image/upload/v1665228999/60817ec5354dde0018c06960_yqcup6.jpg";
+          var url = "https://res.cloudinary.com/dyhv1equv/image/upload/v1665651239/no_image_uploaded-253x190_id5eas.gif";
           if (selectedImage) {
             const formData = new FormData();
             formData.append("file", selectedImage);
@@ -220,7 +220,7 @@ const UploadAndDisplayImage = () => {
   }
 
   return (
-    <div className="blue-background">
+    <div className="secondary-color vh-100 overflow">
       <form
         onKeyPress={(e) => {
           e.which === 13 && e.preventDefault();
@@ -541,10 +541,3 @@ const UploadAndDisplayImage = () => {
 };
 
 export default UploadAndDisplayImage;
-
-/*<ListItem size="small" key={steps + i}>
-<ListItemText size="small" primary={`${steps}`} />
-<IconButton onClick={(e) => handleDeleteSteps(i)}>
-  <DeleteIcon />
-</IconButton>
-</ListItem>*/
