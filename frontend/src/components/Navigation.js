@@ -11,6 +11,7 @@ function Navigation() {
   var signin = <></>;
   var signout = <></>;
   var myRecipes = <></>;
+  var cheffie = <></>;
   const { auth } = useAuth();
   if (auth?.user) {
     loginButton = <SignOutButton />;
@@ -19,9 +20,19 @@ function Navigation() {
         My Recipes
       </NavLink>
     );
-    
+
+    cheffie = (
+      <NavLink className="nav-link" to="/myRecipes">
+        Cheffie
+      </NavLink>
+    );
   } else {
     loginButton = <></>;
+    cheffie = (
+      <NavLink className="nav-link" to="/landingPage">
+        Cheffie
+      </NavLink>
+    );
     home = (
       <NavLink className="nav-link " to="/landingPage">
         Home<span className="sr-only">(current)</span>
@@ -52,7 +63,7 @@ function Navigation() {
     >
       <nav class="navbar navbar-expand-lg navbar-light col-sm-12 col-md-10 col-xl-8">
         <h1>
-          <a href="/landingPage">Cheffie </a>
+          {cheffie}
         </h1>
         <button
           className="navbar-toggler collapsed"
@@ -72,10 +83,7 @@ function Navigation() {
               {myRecipes}
             </li>
 
-            <li className="nav-item navBarLinks">
-              {about}
-              
-            </li>
+            <li className="nav-item navBarLinks">{about}</li>
             <li className="nav-item navBarLinks">{signin}</li>
 
             <li className="nav-item navBarLinks">{signout}</li>
