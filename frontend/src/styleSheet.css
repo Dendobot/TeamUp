@@ -230,6 +230,29 @@ a:hover {
     
     border-radius: 25px;
     background: #FFFFFF;
+    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
+  }
+
+  .notes-box{
+    width: 346px;
+    height: fit-content;
+    display: flex;
+    border-radius: 25px;
+    background: #FFFFFF;
+    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
+    word-wrap: break-word;
+    margin-left: 20;
+    padding-top: 20;
+  }
+
+  .recipe-title{
+    width: 411px;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 125.29%;
+    letter-spacing: 0.0120588em;
+    color: #0671B7;
+
   }
 
   
@@ -306,9 +329,102 @@ a:hover {
   margin-right: 6rem;
 }
 
+
+.tags{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  padding: 2px 12px;
+  gap: 6px;
+  background: #E5FDF6;
+  border-radius: 12px;
+}
+
+.tag-font{
+  height: 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  color: #0671B7;
+}
+
+.ingredients-font{
+  width: 335px;
+  height: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.5px;
+  color: #0671B7;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.notes-font{
+  width: 304px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: #0671B7;
+  word-wrap: break-word;
+}
+
+.ingredients-box{
+  display: block;
+  width: 346px;
+  height: 62px;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  background: #FFFFFF;
+  box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
+  border-radius: 25px;
+}
+
+.method-box{
+  display: block;
+  width: 346px;
+  height: 62px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  background: #FFFFFF;
+  box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.06);
+  border-radius: 25px;
+}
 .addRecipeButton{
   margin-top: 4rem;
   display: grid;
   grid-template-columns:85% 50%;
   grid-template-rows: 20vh;
+}
+
+.edit-recipe-grid{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto auto;
+}
+
+.ingredient-grid{
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: auto;
+  justify-items: end;
+  align-items: start;
+}
+
+.steps-grid{
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: auto;
+  justify-items: end;
+  align-items: start;
 }
