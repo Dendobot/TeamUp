@@ -42,17 +42,22 @@ function ViewRecipe() {
 
 
   return (
-    <div className="secondary-color vh-100">
+    <div className="secondary-color vh-100 overflow">
       <Navigation />
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <div className="secondary-color">
-            <div className="recipe-title"> {recipeInfo?.recipeName} </div>
+            <div className="recipe-title"
+                 style={{
+                  marginTop:"100px",
+                  marginLeft: "80px"
+                 }}
+            > {recipeInfo?.recipeName} </div>
           </div>
 
           <div
             className="white-box"
-            style={{marginTop:"160px", marginLeft:"80px"}}> 
+            style={{marginLeft:"80px"}}> 
             <img src={recipeInfo?.photo_url}  
             style={{
               borderRadius: 25, 
@@ -93,7 +98,7 @@ function ViewRecipe() {
             <h5
               className="ingredients"
               style={{
-                width: "125px",
+
                 height: "27px",
                 color: "#0671B7",
                 marginLeft: "80px"
@@ -106,17 +111,21 @@ function ViewRecipe() {
                 width: "133px",
                 height: "22px",
                 marginLeft: "80px",
-                marginTop: "60px"
+                marginTop: "30px"
               }}>Notes
             </h5>
             <div 
               className="white-box" 
-              style={{marginLeft:"80px"
+              style={{
+                marginLeft:"80px",
+                marginBottom:"20px"
               }}> <h6 
-                    className = "ingredients-font" 
+                    className = "notes-font" 
                     style={{
+                      wordWrap: "break-word",
                       marginLeft:"20px", 
-                      marginTop:"20px", paddingTop:"40px"}}>{recipeInfo?.note}</h6> 
+                      marginTop:"20px", 
+                      paddingTop:"20px"}}>{recipeInfo?.note}</h6> 
             </div>
 
 
