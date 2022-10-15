@@ -24,16 +24,23 @@ router.get("/viewRecipes", async (req, res) => {
   if (!foundUser) return res.sendStatus(403); //Forbidden
 
   var user_requested = foundUser.username;
- 
+
+  //clean up recipes
+  try {
+    await cleanRecipes(user_requested);
+  } catch (err) {
+    throw (err);
+  }
+
   User.findOne({ username: user_requested }).exec(async (err, user) => {
     if (user) {
       console.log("user who requested the recipes is: ", user);
       const recipeInfo = [];
       try {
-        console.log("user recipes",user.recipes)
+        console.log("user recipes", user.recipes);
         for (const recipeId of user.recipes) {
           const recipe = await Recipe.findOne({ _id: recipeId }).exec();
-          console.log("recipe",recipe)
+          console.log("recipe", recipe);
           recipeInfo.push({
             recipeId: recipe._id,
             recipeName: recipe.recipeName,
@@ -60,30 +67,59 @@ router.get("/viewRecipes", async (req, res) => {
   });
 });
 
+
+const cleanRecipes = async (user_requested) => {
+  User.findOne({ username: user_requested }).exec(async (err, user) => {
+    var functionalRecipes = [];
+    for (const recipeId of user.recipes) {
+      const recipe = await Recipe.findOne({ _id: recipeId }).exec();
+      console.log("recipe", recipe);
+      if (recipe) {
+        functionalRecipes.push(recipe._id);
+      }
+    }
+    user.recipes = functionalRecipes;
+    user.save()
+      .then((value) => {
+        return false;
+      }).catch(value => {
+        return true;
+      });
+  });
+};
+
+
+
+
+
+
 // @desc    get one recipe detailed info for a user
 // @route   GET /recipe/viewRecipe
 // @access  Private
 router.get('/viewRecipe', async (req, res) => {
   var id = req.query.id;
+  console.log("id: " + id);
+  if (id) {
+    try {
+      const recipe = await Recipe.findOne({ _id: id }).exec();
+      if (recipe) {
 
-  try {
-    const recipe = await Recipe.findOne({ _id: id }).exec();
-    if (recipe) {
+        var responseJSON = JSON.stringify(recipe, {
+          headers: { "Content-Type": "application/json" },
+        });
 
-      var responseJSON = JSON.stringify(recipe, {
-        headers: { "Content-Type": "application/json" },
-      });
+        res.json(responseJSON);
+      } else {
+        res.status(404).json({ message: "recipe does not exist" });
+      }
 
-      res.json(responseJSON);
-    } else {
-      res.status(404).json({ message: "recipe does not exist" });
+
+    } catch (err) {
+      res.status(500).json({ message: err.message });
     }
-
-    
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } else {
+    res.status(500).json({ message: "recipe does not exist" });
   }
-
 });
 
 // @desc    create one recipe for a user
@@ -165,11 +201,11 @@ router.post('/editRecipe', async (req, res) => {
 router.post('/deleteRecipe', async (req, res) => {
 
   const { id, user } = req.body;
-
+  var _id = mongoose.mongo.ObjectId(id);
   try {
-    const foundUser = await User.findOneAndUpdate({ username: user }, { $pull: { recipes: id } }).exec();
+    const foundUser = await User.findOneAndUpdate({ username: user }, { $pull: { recipes: _id } }).exec();
     console.log("user found " + foundUser.username);
-    Recipe.deleteOne({ id: id }).then(function () {
+    await Recipe.deleteOne({ _id: _id }).then(function () {
       console.log("Data deleted"); // Success
       res.status(201).json({ 'success': ` ${id} deleted` });
     }).catch(function (error) {

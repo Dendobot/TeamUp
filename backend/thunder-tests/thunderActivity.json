@@ -4,13 +4,18 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3500/admin",
-    "url": "localhost:3500/admin",
+    "url": "localhost:3500/recipe/viewRecipe",
     "method": "GET",
     "sortNum": 0,
     "created": "2022-09-07T11:28:06.250Z",
-    "modified": "2022-09-07T12:10:12.768Z",
+    "modified": "2022-10-15T07:33:13.776Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\"id\":\"6329ccfa9b06c32262f6ee67\"}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -91,7 +96,7 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-09-07T15:39:43.478Z",
-    "modified": "2022-09-24T14:29:11.962Z",
+    "modified": "2022-10-15T07:38:39.078Z",
     "headers": [],
     "params": [],
     "body": {
@@ -265,7 +270,7 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-09-24T14:21:06.166Z",
-    "modified": "2022-09-24T14:22:10.270Z",
+    "modified": "2022-10-15T07:35:49.076Z",
     "headers": [],
     "params": [],
     "body": {
@@ -284,19 +289,14 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-10-03T09:49:28.423Z",
-    "modified": "2022-10-03T09:50:11.449Z",
+    "modified": "2022-10-15T07:37:02.573Z",
     "headers": [
       {
         "name": "Cookie",
-        "value": "jwt=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2NjQ3ODUzOTEsImV4cCI6MTY2NDg3MTc5MX0.8Camnl31JL9FAwdyzxvcGAuyDLiJVa2Kwn1ESdDAMN8\""
+        "value": "jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJhaml2IiwiaWF0IjoxNjY1ODE4ODAwLCJleHAiOjE2NjU5MDUyMDB9.muL3gZRU2_KV2vNARM-PA6ADiZSMTkdCBybBR3HAdbQ"
       }
     ],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"user\": \"test\"\n}",
-      "form": []
-    },
     "tests": []
   },
   {
@@ -352,13 +352,18 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3500/recipe/viewRecipe",
-    "url": "http://localhost:3500/recipe/viewRecipe",
-    "method": "GET",
+    "url": "localhost:3500/recipe/deleteRecipe",
+    "method": "POST",
     "sortNum": 0,
     "created": "2022-10-04T13:15:46.854Z",
-    "modified": "2022-10-04T13:16:15.432Z",
+    "modified": "2022-10-15T08:30:46.842Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\"user\":\"test\",\n  \"id\":\"634a6f4456231aa4fffaade6\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]
