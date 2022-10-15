@@ -207,11 +207,7 @@ function ViewRecipe() {
               </div>
             ) : ( <p> No steps</p>)}
           </ul>
-
-                
         </Grid>
-      
-
       </Grid>
     </div>
   );
