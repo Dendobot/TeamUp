@@ -137,7 +137,7 @@ function MyRecipes() {
           </ul>
           </div>
         ) : (
-          <p>You have not added any recipes</p>
+          <p className="center-horiz welcome-parts2">You have not added any recipes</p>
         )}
       </div>
       
