@@ -124,7 +124,7 @@ function MyRecipes() {
         {recipeNames?.length ? (
           <div>
 
-          <ul>
+          <ul>  
             {recipeNames.map((users, i) => (
               <RecipeBox
                 key={i}

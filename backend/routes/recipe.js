@@ -10,7 +10,7 @@ const verifyJWT = require("../config/verifyJWT");
 router.use(bodyParser.json()); //Handles JSON requests
 router.use(bodyParser.urlencoded({ extended: false }));
 //verify token before give access to route
-//router.use(verifyJWT);
+router.use(verifyJWT);
 
 
 // @desc    get all recipes (id, name and photo) for a user
