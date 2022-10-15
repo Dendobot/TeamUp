@@ -4,7 +4,8 @@ import Navigation from "../components/Navigation";
 import { Button, Stack, Grid } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const VIEW_RECIPE_URL = "/recipe/viewRecipe?id=";
 
@@ -13,6 +14,7 @@ function ViewRecipe() {
   const { id } = useParams();
   console.log("id = ", id)
   const [recipeInfo, setrecipeInfo] = useState();
+  const navigate = useNavigate();
 
   const getRecipe = async () => {
     const url = VIEW_RECIPE_URL + id
@@ -39,6 +41,10 @@ function ViewRecipe() {
   useEffect(() => {
     getRecipe();
   }, [axiosPrivate]);
+
+  const handleEdit = async (index) => {
+    navigate("/editRecipe".concat(id));
+  };
 
 
   return (
@@ -175,7 +181,7 @@ function ViewRecipe() {
         <Grid item xs={4}>
           <div 
             className="edit-recipe-button">
-            <Button variant="contained" sx={{marginTop: "20px", marginLeft:"145px"}}>Edit Recipe</Button>
+            <Button variant="contained" sx={{marginTop: "20px", marginLeft:"145px"}} onClick={handleEdit}>Edit Recipe</Button>
           </div>
           <h5 className="steps" 
               style={{
