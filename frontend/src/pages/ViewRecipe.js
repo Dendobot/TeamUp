@@ -48,7 +48,7 @@ function ViewRecipe() {
 
 
   return (
-    <div className="secondary-color vh-100 overflow">
+    <div className="secondary-color min-vh-100 overflow">
       <Navigation />
       <Grid container spacing={2}>
         <Grid item xs={4}>
