@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation";
 //import BottomBar from "../components/BottomBar";
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Grid } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useParams } from "react-router-dom";
@@ -44,140 +44,24 @@ function ViewRecipe() {
   return (
     <div className="secondary-color vh-100">
       <Navigation />
-      <div className="secondary-color">
-        <div className="recipe-title"> {recipeInfo?.recipeName} </div>
-      </div>
-      <div 
-        className="edit-recipe-button" 
-        style= {{
-          position: "absolute", 
-          left: "83.86%", 
-          right: "5.69%", 
-          top: "14.56%", 
-          bottom: "81.26%",}}>
-        <Button variant="contained">Edit Recipe</Button>
-      </div>
-      <div>
-        <h5 
-          className="ingredients" 
-          style={{
-            position:"absolute", 
-            left:"564px", 
-            top:"184px", 
-            color: "#0671B7",}}>Ingredients</h5>
-        <div>
-          <ul>
-            {recipeInfo?.ingredients?.length ? (
-              <div> {(recipeInfo?.tags).map((ingredient, i) => (
-                <Stack spacing={2} alignItems="center" >
-                  <div 
-                    className="ingredients-box"
-                    style={{
-                      position: "relative",
-                      right: "10px",
-                      top: "160px",
-                      display: "block",
-                      marginBottom: "10px"
-                  }}> 
-                    <h6 
-                      className = "ingredients-font" 
-                      style={{
-                        paddingLeft: "20px", 
-                        paddingTop: "30px", 
-                        alignItems:"center"}}>{recipeInfo.ingredients[i]}</h6>
-                  </div>
-                </Stack>
-              ))}
-              </div>
-            ) : ( <p 
-                    style={{
-                      position: "absolute",
-                      left: "540px",
-                      top: "223px"}}> No ingredients</p>)}
-            </ul>
-        </div>
-      </div>
-      <div>
-        <h5 className="steps" 
-          style={{
-            position: "absolute", 
-            width: "133px", 
-            height: "22px", 
-            left: "1071px", 
-            top: "184px", 
-            color: "#0671B7",}}>Steps</h5>
-        <ul>
-          {recipeInfo?.method?.length ? (
-            <div> {(recipeInfo?.method).map((step, i) => (
-              <Stack spacing={2} alignItems="center" >
-                <div 
-                  className = "method-box"
-                  style={{
-                    position: "relative",
-                    left: "500px",
-                    top: "0px",
-                    display: "block",
-                    marginBottom: "10px"
-                  }}>
-                    <h6 
-                      className = "ingredients-font" 
-                      style={{
-                        alignItems: "center", 
-                        paddingLeft: "20px", 
-                        paddingTop: "30px"}}>{recipeInfo.method[i]}</h6>
-                  </div>
-              </Stack>
-            ))}
-            </div>
-          ) : ( <p> No steps</p>)}
-        </ul>
-      </div>
-      <h5
-        className="ingredients"
-        style={{
-          position: "absolute",
-          width: "125px",
-          height: "27px",
-          left: "294px",
-          top: "517px",
-          color: "#0671B7",
-          fontStyle: "normal"
-        }}
-      >
-        Cooking Time (in minutes): {recipeInfo?.cookingTime}
-      </h5>
-      <h5
-        className="ingredients"
-        style={{
-          color: "#0671B7",
-          position: "absolute",
-          width: "133px",
-          height: "22px",
-          left: "103px",
-          top: "571px",
-        }}
-      >
-        {" "}
-        Notes{" "}
-      </h5>
-      <div
-        className="white-box"
-        style={{
-          position: "absolute",
-          width: "346px",
-          height: "289px",
-          left: "88px",
-          top: "219px",
-        }}
-      > <img src={recipeInfo?.photo_url}  style={{
-        borderRadius: 25, 
-        width: "346px",
-        height: "289px",
-        left: "88px",
-        top: "219px",
-        }}></img> 
-          <div>
-            <ul>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <div className="secondary-color">
+            <div className="recipe-title"> {recipeInfo?.recipeName} </div>
+          </div>
+
+          <div
+            className="white-box"
+            style={{marginTop:"160px", marginLeft:"80px"}}> 
+            <img src={recipeInfo?.photo_url}  
+            style={{
+              borderRadius: 25, 
+              width: "346px",
+              height: "295px",
+              }}></img> 
+          </div>
+          
+          <ul style={{marginLeft:"40px"}}>
             {recipeInfo?.tags?.length ? (
               <div> {(recipeInfo?.tags).map((tag, i) => (
                 <div 
@@ -185,8 +69,6 @@ function ViewRecipe() {
                   style={{
                     width: "67px",
                     height: "24px",
-                    left: "92px",
-                    top: "520px",
                     marginRight: "20px",
                     marginTop: "20px",
                     display: "inline-block"
@@ -204,25 +86,122 @@ function ViewRecipe() {
                     position: "absolute",
                     width: "67px",
                     height: "24px",
-                    left: "92px",
-                    top: "520px",
-                  }}>No tags</p>)}
+                    marginTop:"20px",
+                  }}></p>)}
             </ul>
-        </div>
-      </div>
-      
-      <div 
-        className="white-box" 
-        style={{
-            position: "absolute",
-            left: "88px",
-            top: "601px"
-        }}> <h6 
-              className = "ingredients-font" 
+
+            <h5
+              className="ingredients"
               style={{
-                marginLeft:"20px", 
-                marginTop:"20px"}}>{recipeInfo?.note}</h6> 
-      </div>
+                width: "125px",
+                height: "27px",
+                color: "#0671B7",
+                marginLeft: "80px"
+              }} >Cooking Time (in minutes): {recipeInfo?.cookingTime}
+            </h5>
+            <h5
+              className="ingredients"
+              style={{
+                color: "#0671B7",
+                width: "133px",
+                height: "22px",
+                marginLeft: "80px",
+                marginTop: "60px"
+              }}>Notes
+            </h5>
+            <div 
+              className="white-box" 
+              style={{marginLeft:"80px"
+              }}> <h6 
+                    className = "ingredients-font" 
+                    style={{
+                      marginLeft:"20px", 
+                      marginTop:"20px", paddingTop:"40px"}}>{recipeInfo?.note}</h6> 
+            </div>
+
+
+
+        </Grid>
+
+        <Grid item xs={4}>
+          <div>
+            <h5 
+              className="ingredients" 
+              style={{
+                marginTop:"120px", 
+                marginLeft:"30px",
+                color: "#0671B7",}}>Ingredients</h5>
+            <ul>
+              {recipeInfo?.ingredients?.length ? (
+                <div> {(recipeInfo?.tags).map((ingredient, i) => (
+                  <Stack spacing={2} alignItems="center" >
+                    <div 
+                      className="ingredients-box"
+                      style={{
+                        display: "block",
+                        marginBottom: "10px",
+                        marginRight: "80px"
+                    }}> 
+                      <h6 
+                        className = "ingredients-font" 
+                        style={{
+                          paddingLeft: "20px", 
+                          paddingTop: "30px", 
+                          alignItems:"center"}}>{recipeInfo.ingredients[i]}</h6>
+                    </div>
+                  </Stack>
+                ))}
+                </div>
+              ) : ( <p 
+                      style={{
+                        position: "absolute",
+                        left: "540px",
+                        top: "223px"}}> No ingredients</p>)}
+            </ul>
+          </div>
+        </Grid>
+
+        <Grid item xs={4}>
+          <div 
+            className="edit-recipe-button">
+            <Button variant="contained" sx={{marginTop: "20px", marginLeft:"145px"}}>Edit Recipe</Button>
+          </div>
+          <h5 className="steps" 
+              style={{
+                marginTop:"60px", 
+                marginLeft:"30px",
+                width: "133px", 
+                height: "22px", 
+                color: "#0671B7",}}>Steps</h5>
+          <ul>
+            {recipeInfo?.method?.length ? (
+              <div> {(recipeInfo?.method).map((step, i) => (
+                <Stack spacing={2} alignItems="center" >
+                  <div 
+                    className = "method-box"
+                    style={{
+                      display: "block",
+                      marginBottom: "10px",
+                      marginRight:"80px",
+                    }}>
+                      <h6 
+                        className = "ingredients-font" 
+                        style={{
+                          alignItems: "center", 
+                          paddingLeft: "20px", 
+                          paddingTop: "30px"}}>{recipeInfo.method[i]}</h6>
+                    </div>
+                </Stack>
+              ))}
+              </div>
+            ) : ( <p> No steps</p>)}
+          </ul>
+
+                
+        </Grid>
+      
+
+      </Grid>
     </div>
   );
   }
