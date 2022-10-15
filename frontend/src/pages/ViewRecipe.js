@@ -144,7 +144,7 @@ function ViewRecipe() {
                 color: "#0671B7",}}>Ingredients</h5>
             <ul>
               {recipeInfo?.ingredients?.length ? (
-                <div> {(recipeInfo?.tags).map((ingredient, i) => (
+                <div> {(recipeInfo?.ingredients).map((ingredient, i) => (
                   <Stack spacing={2} alignItems="center" >
                     <div 
                       className="ingredients-box"
