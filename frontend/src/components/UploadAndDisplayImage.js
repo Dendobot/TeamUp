@@ -220,7 +220,7 @@ const UploadAndDisplayImage = () => {
   }
 
   return (
-    <div className="blue-background">
+    <div className="secondary-color vh-100 overflow">
       <form
         onKeyPress={(e) => {
           e.which === 13 && e.preventDefault();

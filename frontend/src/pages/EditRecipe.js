@@ -272,7 +272,7 @@ function EditRecipe() {
   }
 
   return (
-    <div className="secondary-color">
+    <div className="secondary-color vh-100 overflow">
       <Navigation />
       <div className="blue-background">
         <form
