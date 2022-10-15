@@ -96,7 +96,7 @@ function MyRecipes() {
   };
   console.log("user:        ", useAuth().auth.user)
   return (
-    <div className="secondary-color">
+    <div className="secondary-color vh-100">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -139,7 +139,7 @@ function MyRecipes() {
           </ul>
           </div>
         ) : (
-          <p className="center-horiz welcome-parts2">You have not added any recipes</p>
+          <p className="no-recipes-txt">You have not added any recipes</p>
         )}
       </div>
       

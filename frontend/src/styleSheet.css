@@ -428,3 +428,7 @@ a:hover {
   justify-items: end;
   align-items: start;
 }
+
+.no-recipes-txt{
+  margin-left: 9rem;
+}
