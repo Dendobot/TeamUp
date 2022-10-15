@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useParams, useNavigate } from "react-router-dom";
@@ -272,7 +272,7 @@ function EditRecipe() {
   }
 
   return (
-    <div className="secondary-color vh-100 overflow">
+    <div className="secondary-color min-vh-100 overflow">
       <Navigation />
       <div className="blue-background">
         <form
@@ -343,7 +343,11 @@ function EditRecipe() {
                           height: "173px",
                           marginBottom: "10px",
                         }}
-                        src={selectedImage==="hello" ? recipeInfo.photo_url: URL.createObjectURL(selectedImage)}
+                        src={
+                          selectedImage === "hello"
+                            ? recipeInfo.photo_url
+                            : URL.createObjectURL(selectedImage)
+                        }
                         alt="Live from space album cover"
                       />
                       <div class=" d-flex justify-content-center">
