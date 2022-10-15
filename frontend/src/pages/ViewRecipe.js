@@ -197,16 +197,14 @@ function ViewRecipe() {
                   <div 
                     className = "method-box"
                     style={{
-                      display: "block",
                       marginBottom: "10px",
                       marginRight:"80px",
                     }}>
                       <h6 
-                        className = "ingredients-font" 
+                        className = "method-font" 
                         style={{
-                          alignItems: "center", 
                           paddingLeft: "20px", 
-                          paddingTop: "30px"}}>{recipeInfo.method[i]}</h6>
+                          marginTop: "10px", marginBottom: "10px"}}>{recipeInfo.method[i]}</h6>
                     </div>
                 </Stack>
               ))}
