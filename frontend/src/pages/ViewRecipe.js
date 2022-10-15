@@ -50,7 +50,9 @@ function ViewRecipe() {
             <div className="recipe-title"
                  style={{
                   marginTop:"100px",
-                  marginLeft: "80px"
+                  marginLeft: "80px",
+                  marginBottom: "20px",
+                  wordWrap: "break-word"
                  }}
             > {recipeInfo?.recipeName} </div>
           </div>
@@ -72,17 +74,19 @@ function ViewRecipe() {
                 <div 
                   className = "tags" 
                   style={{
-                    width: "67px",
                     height: "24px",
                     marginRight: "20px",
                     marginTop: "20px",
-                    display: "inline-block"
+                    display: "inline-flex",
+                    flexGrow:"1",
+                    alignSelf: "flex-start"
                 }}>
                   <h6 
                     className = "tag-font" 
                       style={{
                         alignItems:"center", 
-                        textAlign:"center"}}>{recipeInfo.tags[i]}</h6>
+                        textAlign:"center",
+                        display: "flex"}}>{recipeInfo.tags[i]}</h6>
                 </div>
               ))}
               </div>
@@ -115,16 +119,14 @@ function ViewRecipe() {
               }}>Notes
             </h5>
             <div 
-              className="white-box" 
+              className="notes-box" 
               style={{
                 marginLeft:"80px",
                 marginBottom:"20px"
               }}> <h6 
                     className = "notes-font" 
                     style={{
-                      wordWrap: "break-word",
-                      marginLeft:"20px", 
-                      marginTop:"20px", 
+                      marginLeft: "20px",
                       paddingTop:"20px"}}>{recipeInfo?.note}</h6> 
             </div>
 
