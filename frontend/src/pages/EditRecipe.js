@@ -59,6 +59,8 @@ function EditRecipe() {
   const [name, setName] = useState("");
   const [time, setTime] = useState("");
   const [notes, setNotes] = useState("");
+  let duplicate_tag = false;
+  let duplicate_ingredient = false;
 
   const getEditRecipe = async () => {
     const url = EDIT_RECIPE_URL + id;
@@ -207,15 +209,28 @@ function EditRecipe() {
   });
 
   const handleTag = () => {
-    if (tags !== "" && tagValue !== "" && tags !== " ") {
+    for (let i = 0; i < tagsList.length; i++) {
+      if (tags === tagsList[i]) {
+        duplicate_tag = true;
+      }
+    }
+
+    if (!duplicate_tag && tags !== "" && tagValue !== "" && tags !== " ") {
       setTagsList((tagsList) => tagsList.concat(tags));
+      
     }
     setTags("");
     setTagValue("");
   };
 
   const handleIngredient = () => {
-    if (ingredients !== "" && value !== "" && ingredients !== " ") {
+    for (let i = 0; i < ingredientList.length; i++) {
+      if (ingredients === ingredientList[i]) {
+        duplicate_ingredient = true;
+      }
+    }
+
+    if (!duplicate_ingredient && ingredients !== "" && value !== "" && ingredients !== " ") {
       setIngredientList((ingredientList) => ingredientList.concat(ingredients));
       formik.errors.ingredients = "";
     }
