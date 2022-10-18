@@ -97,7 +97,7 @@ function MyRecipes() {
   };
   console.log("user:        ", useAuth().auth.user);
   return (
-    <div className="secondary-color vh-100">
+    <div className="secondary-color min-vh-100 overflow">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
