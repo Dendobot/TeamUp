@@ -49,11 +49,12 @@ Currently, the website is deskptop compatible but we are aiming for it to be on 
 │   │   └── components
 │   │   │   ├── BottomBar.js
 │   │   │   ├── Footer.js
-│   │   │   ├── LoggedInNavBar.js
-│   │   │   ├── Navigation.js
-│   │   │   ├── UploadAndDisplayImage.js
 │   │   │   ├── index.js
-│   │   │   └──placeholder.js
+│   │   │   ├── Navigation.js
+│   │   │   ├── RecipeBox.js
+│   │   │   ├── RequiredAuth.js
+│   │   │   ├── SignOutButton.js
+│   │   │   └── UploadAndDisplayImage.js
 │   │   └── context
 │   │   │   └── AuthProvider.js
 │   │   └── hooks
@@ -63,10 +64,13 @@ Currently, the website is deskptop compatible but we are aiming for it to be on 
 │   │   └── pages
 │   │   │   ├── About.js
 │   │   │   ├── AddRecipe.js
+│   │   │   ├── EditRecipe.js
 │   │   │   ├── Landing.js
+│   │   │   ├── MyRecipes.js
+│   │   │   ├── Recipes.js
 │   │   │   ├── SignIn.js
 │   │   │   ├──SignUp.js
-│   │   │   └── placeholder.js
+│   │   │   └── ViewRecipe.js
 │   │   └── services
 │   │   │   └── placeholder.js
 │   │   ├── App.js
@@ -86,12 +90,12 @@ Currently, the website is deskptop compatible but we are aiming for it to be on 
 
   1. Sign up on website (Has been implemented)
   2. Login in on Website (Has been implemented)
-  3. View saved recipes (Yet to implement)
-  4. Edit existing recipes (Yet to implement)
-  5. Add new recipes (Yet to implement)
+  3. View saved recipes (Has been implemented)
+  4. Edit existing recipes (Has been implemented)
+  5. Add new recipes (Has been implemented)
       - Can upload images of the food
       - Can tag recipes as vegetarian, gluten-free etc. 
-  6. Delete recipes (Yet to implement)
+  6. Delete recipes (Has been implemented)
 
 ## Documentation 
 We are storing all the documentation related to this project on our confluence page, which you can find [here](https://comp30022-teamup.atlassian.net/l/cp/GpTEtpdV)
