@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation";
-//import BottomBar from "../components/BottomBar";
 import { Button, Stack, Grid } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { Navigate, useParams } from "react-router-dom";
-import { useNavigate, Link } from "react-router-dom";
+import {useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const VIEW_RECIPE_URL = "/recipe/viewRecipe?id=";
 

@@ -1,1 +1,0 @@
-// place to store pages, which are combinations of components
