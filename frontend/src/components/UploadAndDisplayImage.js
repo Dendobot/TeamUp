@@ -30,9 +30,8 @@ import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 
 const CREATE_URL = "/recipe/createRecipe";
-const PHOTO_CLOUD_URL = "https://api.cloudinary.com/v1_1/dyhv1equv/image/upload";
-
-
+const PHOTO_CLOUD_URL =
+  "https://api.cloudinary.com/v1_1/dyhv1equv/image/upload";
 
 const UploadAndDisplayImage = () => {
   const [ingredientList, setIngredientList] = useState([]);
@@ -85,7 +84,8 @@ const UploadAndDisplayImage = () => {
           values.recipeName !== " " &&
           Number.isInteger(+values.cookingTime)
         ) {
-          var url = "https://res.cloudinary.com/dyhv1equv/image/upload/v1665651239/no_image_uploaded-253x190_id5eas.gif";
+          var url =
+            "https://res.cloudinary.com/dyhv1equv/image/upload/v1665651239/no_image_uploaded-253x190_id5eas.gif";
           if (selectedImage) {
             const formData = new FormData();
             formData.append("file", selectedImage);
@@ -95,8 +95,7 @@ const UploadAndDisplayImage = () => {
               console.log("photo Submit Success");
               console.log(res.data.url);
               url = res.data.url;
-            }
-            catch {
+            } catch {
               console.log("photo Submit failed");
             }
           }
@@ -198,21 +197,21 @@ const UploadAndDisplayImage = () => {
     }
   };
 
-  function handleDeleteSteps (e) {
+  function handleDeleteSteps(e) {
     console.log(stepsList);
     const m = stepsList.filter((steps, index) => index !== e);
     setStepsList(m);
     console.log(m);
   }
 
-  function handleDelete (e) {
+  function handleDelete(e) {
     console.log(ingredientList);
     const s = ingredientList.filter((ingredients, i) => i !== e);
     setIngredientList(s);
     console.log(s);
   }
 
-  function removeTag (e) {
+  function removeTag(e) {
     console.log(tagsList);
     const t = tagsList.filter((tags, i) => i !== e);
     setTagsList(t);
@@ -292,8 +291,7 @@ const UploadAndDisplayImage = () => {
                         onClick={() => {
                           setSelectedImage(null);
                           document.getElementById("photoInput").value = null;
-                        }
-                        }
+                        }}
                       >
                         Remove
                       </Button>
@@ -396,7 +394,15 @@ const UploadAndDisplayImage = () => {
                 {ingredientList.map((ingredients, i) => (
                   <div>
                     <ListItem size="small" key={ingredients + i}>
-                      <ListItemText size="small" primary={`${ingredients}`} />
+                      <TextareaAutosize
+                        defaultValue={`${ingredients}`}
+                        style={{
+                          width: 200,
+                          border: "none",
+                          resize: "none",
+                          borderStyle: "none",
+                        }}
+                      />
                       <IconButton onClick={(e) => handleDelete(i)}>
                         <DeleteIcon />
                       </IconButton>
@@ -454,14 +460,14 @@ const UploadAndDisplayImage = () => {
                 sx={{
                   bgcolor: "background.paper",
                   boxShadow: 1,
-                  borderRadius: 0,
+                  borderRadius: 2,
                   maxWidth: 270,
                   marginBottom: "10px",
                 }}
               >
                 {stepsList.map((steps, index) => (
-                  <ListItem size="small" key={steps + index}>
-                    <Stack direction="row" alignItems="center" spacing={2}>
+                  <div>
+                    <ListItem size="small" key={steps + index}>
                       <TextareaAutosize
                         defaultValue={`${index + 1}.${steps}`}
                         style={{
@@ -474,9 +480,9 @@ const UploadAndDisplayImage = () => {
                       <IconButton onClick={(e) => handleDeleteSteps(index)}>
                         <DeleteIcon />
                       </IconButton>
-                    </Stack>
+                    </ListItem>
                     <Divider />
-                  </ListItem>
+                  </div>
                 ))}
               </Box>
               <div>

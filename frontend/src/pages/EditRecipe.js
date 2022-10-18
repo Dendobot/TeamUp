@@ -465,7 +465,15 @@ function EditRecipe() {
                   {ingredientList.map((ingredients, i) => (
                     <div>
                       <ListItem size="small" key={ingredients + i}>
-                        <ListItemText size="small" primary={`${ingredients}`} />
+                        <TextareaAutosize
+                          defaultValue={`${ingredients}`}
+                          style={{
+                            width: 200,
+                            border: "none",
+                            resize: "none",
+                            borderStyle: "none",
+                          }}
+                        />
                         <IconButton onClick={(e) => handleDelete(i)}>
                           <DeleteIcon />
                         </IconButton>
@@ -523,14 +531,14 @@ function EditRecipe() {
                   sx={{
                     bgcolor: "background.paper",
                     boxShadow: 1,
-                    borderRadius: 0,
+                    borderRadius: 2,
                     maxWidth: 270,
                     marginBottom: "10px",
                   }}
                 >
                   {stepsList.map((steps, index) => (
-                    <ListItem size="small" key={steps + index}>
-                      <Stack direction="row" alignItems="center" spacing={2}>
+                    <div>
+                      <ListItem size="small" key={steps + index}>
                         <TextareaAutosize
                           defaultValue={`${index + 1}.${steps}`}
                           style={{
@@ -543,9 +551,9 @@ function EditRecipe() {
                         <IconButton onClick={(e) => handleDeleteSteps(index)}>
                           <DeleteIcon />
                         </IconButton>
-                      </Stack>
+                      </ListItem>
                       <Divider />
-                    </ListItem>
+                    </div>
                   ))}
                 </Box>
                 <div>
