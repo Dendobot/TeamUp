@@ -38,11 +38,6 @@ function Navigation() {
         Home<span className="sr-only">(current)</span>
       </NavLink>
     );
-    about = (
-      <NavLink className="nav-link" to="/about">
-        About
-      </NavLink>
-    );
     signin = (
       <NavLink className="nav-link" to="/signin">
         Sign in
@@ -62,9 +57,7 @@ function Navigation() {
       }`}
     >
       <nav class="navbar navbar-expand-lg navbar-light col-sm-12 col-md-10 col-xl-8">
-        <h1>
-          {cheffie}
-        </h1>
+        <h1>{cheffie}</h1>
         <button
           className="navbar-toggler collapsed"
           type="button"
@@ -83,9 +76,7 @@ function Navigation() {
               {myRecipes}
             </li>
 
-            <li className="nav-item navBarLinks">{about}</li>
             <li className="nav-item navBarLinks">{signin}</li>
-
             <li className="nav-item navBarLinks">{signout}</li>
             <li className="nav-item navBarLinks">{loginButton}</li>
           </ul>

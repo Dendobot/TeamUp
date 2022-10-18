@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { useFormik } from "formik";
+import { FormikConsumer, useFormik } from "formik";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
@@ -48,6 +48,8 @@ const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(true);
+  let duplicate_tag = false;
+  let duplicate_ingredient = false;
 
   const handleClose = (event = React.SyntheticEvent | Event, reason) => {
     if (reason === "clickaway") {
@@ -154,15 +156,28 @@ const UploadAndDisplayImage = () => {
   });
 
   const handleTag = () => {
-    if (tags !== "" && tagValue !== "" && tags !== " ") {
+    for (let i = 0; i < tagsList.length; i++) {
+      if (tags === tagsList[i]) {
+        duplicate_tag = true;
+      }
+    }
+
+    if (!duplicate_tag && tags !== "" && tagValue !== "" && tags !== " ") {
       setTagsList((tagsList) => tagsList.concat(tags));
+      
     }
     setTags("");
     setTagValue("");
   };
 
   const handleIngredient = () => {
-    if (ingredients !== "" && value !== "" && ingredients !== " ") {
+    for (let i = 0; i < ingredientList.length; i++) {
+      if (ingredients === ingredientList[i]) {
+        duplicate_ingredient = true;
+      }
+    }
+
+    if (!duplicate_ingredient && ingredients !== "" && value !== "" && ingredients !== " ") {
       setIngredientList((ingredientList) => ingredientList.concat(ingredients));
       formik.errors.ingredients = "";
     }
@@ -359,7 +374,15 @@ const UploadAndDisplayImage = () => {
                     ),
                   }}
                   sx={{ marginTop: "5px" }}
+                  error={formik.touched.tags && Boolean(formik.errors.tags)}
                 />
+
+                {Boolean(formik.errors.tags) &&
+                  formik.touched.tags && (
+                    <div style={{ color: "#d32f2f" }}>
+                      {formik.errors.tags}
+                    </div>
+                  )}
               </div>
 
               <p className="recipeTitle"> Note</p>

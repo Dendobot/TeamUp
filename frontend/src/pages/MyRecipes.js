@@ -7,6 +7,7 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { useNavigate, Link } from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
 
 function MyRecipes() {
   const axiosPrivate = useAxiosPrivate();
@@ -88,13 +89,13 @@ function MyRecipes() {
   };
 
   const handleEdit = async (index) => {
-     navigate("/editRecipe".concat(recipeIDs[index.index]));
-    };
+    navigate("/editRecipe".concat(recipeIDs[index.index]));
+  };
 
   const handleView = async (index) => {
     navigate("/viewRecipe".concat(recipeIDs[index.index]));
   };
-  console.log("user:        ", useAuth().auth.user)
+  console.log("user:        ", useAuth().auth.user);
   return (
     <div className="secondary-color vh-100">
       <link
@@ -104,47 +105,46 @@ function MyRecipes() {
       <Navigation />
       <div className="addRecipeButton">
         <div>
-      <h6 className="center-horiz welcome-parts1">Hey {useAuth().auth.user}!</h6>
-        <h3 className="center-horiz welcome-parts2">Here are your recipes</h3>
+          <h6 className="center-horiz welcome-parts1">
+            Hey {useAuth().auth.user}!
+          </h6>
+          <h3 className="center-horiz welcome-parts2">Here are your recipes</h3>
         </div>
         <Link to="../addRecipe">
-        <IconButton 
-          aria-label="add"
-          sx={{
-            fontSize: 80,
-            
-
-          }}
-          color="primary">
-          <AddCircleIcon fontSize="inherit">add_circle</AddCircleIcon> 
-        </IconButton>
-      </Link>
+          <Tooltip disableFocusListener title="Add a Recipe">
+            <IconButton
+              aria-label="add"
+              sx={{
+                fontSize: 80,
+              }}
+              color="primary"
+            >
+              <AddCircleIcon fontSize="inherit">add_circle</AddCircleIcon>
+            </IconButton>
+          </Tooltip>
+        </Link>
       </div>
       <div className="center-horiz graph-parts">
         {recipeNames?.length ? (
           <div>
-
-          <ul>
-            {recipeNames.map((users, i) => (
-              <RecipeBox
-                key={i}
-                recipeName={recipeNames[i]}
-                imgsrc={recipePhoto[i]}
-                onDelete={handleDelete}
-                index={i}
-                onEdit={handleEdit}
-                onView={handleView}
-              />
-            ))}
-          </ul>
+            <ul>
+              {recipeNames.map((users, i) => (
+                <RecipeBox
+                  key={i}
+                  recipeName={recipeNames[i]}
+                  imgsrc={recipePhoto[i]}
+                  onDelete={handleDelete}
+                  index={i}
+                  onEdit={handleEdit}
+                  onView={handleView}
+                />
+              ))}
+            </ul>
           </div>
         ) : (
           <p className="no-recipes-txt">You have not added any recipes</p>
         )}
       </div>
-      
-      
-      
     </div>
   );
 }
