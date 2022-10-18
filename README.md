@@ -105,3 +105,7 @@ We are storing all the documentation related to this project on our confluence p
 For instructions on how to run the frontend of the website, please look at the readme file in the [frontend](https://github.com/Dendobot/TeamUp/tree/main/frontend) folder. You will have to go ***cd*** into the frontend folder for testing this aspect.
 For instructions on how to run the backend of the website, please look at the readme file in the [backend](https://github.com/Dendobot/TeamUp/tree/main/backend) folder.You will have to go ***cd*** into the backend folder for testing this aspect.
 
+## Deployment
+
+The Website has been deployed onto the heroku platform so you no longer need to compile the frontend and backend folders in order to run the website. Here is the link to the [website](https://cheffie.herokuapp.com/). 
+
