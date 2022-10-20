@@ -569,12 +569,12 @@ const UploadAndDisplayImage = () => {
                   </Alert>
                 </Snackbar>
               )}
-              <div className="center">
+              <div className="d-flex justify-content-center">
                 <Button
                   variant="contained"
                   size="small"
                   type="submit"
-                  sx={{ marginTop: "10px" }}
+                  sx={{ marginTop: "10px"}}
                 >
                   Save Changes
                 </Button>
