@@ -303,8 +303,8 @@ const UploadAndDisplayImage = () => {
                     <CardMedia
                       component="img"
                       sx={{
-                        width: "300px",
-                        height: "173px",
+                        width: "100%",
+                        height: "200px",
                         marginBottom: "10px",
                       }}
                       src={URL.createObjectURL(selectedImage)}
@@ -361,7 +361,7 @@ const UploadAndDisplayImage = () => {
                 <TextField
                   fullWidth
                   size="small"
-                  label="Add Tag"
+                  label=" "
                   type="text"
                   className="bg-color"
                   id="tags"
@@ -373,6 +373,7 @@ const UploadAndDisplayImage = () => {
                   }}
                   onKeyDown={handleKeyDown}
                   value={tagValue}
+                  InputLabelProps={{ shrink: false }}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -447,7 +448,7 @@ const UploadAndDisplayImage = () => {
                 <TextField
                   fullWidth
                   size = "small"
-                  label="Add Ingredient"
+                  label=" "
                   type="text"
                   className="bg-color"
                   id="ingredients"
@@ -461,6 +462,7 @@ const UploadAndDisplayImage = () => {
                   }}
                   onKeyDown={handleIngredientKey}
                   value={value}
+                  InputLabelProps={{ shrink: false }}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
@@ -523,7 +525,7 @@ const UploadAndDisplayImage = () => {
                 <TextField
                   fullWidth
                   size="small"
-                  label="Add Steps"
+                  label=" "
                   type="text"
                   className="bg-color"
                   id="method"
@@ -535,6 +537,7 @@ const UploadAndDisplayImage = () => {
                   }}
                   onKeyDown={handleStepsKey}
                   value={valueStep}
+                  InputLabelProps={{ shrink: false }}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
