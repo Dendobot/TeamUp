@@ -164,7 +164,6 @@ const UploadAndDisplayImage = () => {
 
     if (!duplicate_tag && tags !== "" && tagValue !== "" && tags !== " ") {
       setTagsList((tagsList) => tagsList.concat(tags));
-      
     }
     setTags("");
     setTagValue("");
@@ -177,7 +176,12 @@ const UploadAndDisplayImage = () => {
       }
     }
 
-    if (!duplicate_ingredient && ingredients !== "" && value !== "" && ingredients !== " ") {
+    if (
+      !duplicate_ingredient &&
+      ingredients !== "" &&
+      value !== "" &&
+      ingredients !== " "
+    ) {
       setIngredientList((ingredientList) => ingredientList.concat(ingredients));
       formik.errors.ingredients = "";
     }
@@ -241,12 +245,19 @@ const UploadAndDisplayImage = () => {
         }}
         onSubmit={formik.handleSubmit}
       >
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
-          <Grid className="setGridMargin" xs={3.7}>
-            <div className="left">
+        <Grid container rowSpacing={0} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
+          <Grid
+            item
+            className="setGridMargin"
+            xs={12}
+            md={4}
+            justifyItems="center"
+          >
+            <div className="center">
               <h2 className="common-font-color">Add a recipe</h2>
               <p className="recipeTitle"> Recipe Title</p>
               <TextField
+                fullWidth
                 id="recipeName"
                 name="recipeName"
                 size="small"
@@ -348,6 +359,7 @@ const UploadAndDisplayImage = () => {
               ))}
               <div>
                 <TextField
+                  fullWidth
                   label="Add Tag"
                   type="text"
                   className="bg-color"
@@ -377,24 +389,20 @@ const UploadAndDisplayImage = () => {
                   error={formik.touched.tags && Boolean(formik.errors.tags)}
                 />
 
-                {Boolean(formik.errors.tags) &&
-                  formik.touched.tags && (
-                    <div style={{ color: "#d32f2f" }}>
-                      {formik.errors.tags}
-                    </div>
-                  )}
+                {Boolean(formik.errors.tags) && formik.touched.tags && (
+                  <div style={{ color: "#d32f2f" }}>{formik.errors.tags}</div>
+                )}
               </div>
 
               <p className="recipeTitle"> Note</p>
               <TextField
+                fullWidth
                 className="bg-color"
                 id="note"
                 label=" "
                 variant="outlined"
-                size="small"
                 multiline
                 minRows={"7"}
-                sx={{ width: "346px", marginBottom: "40px" }}
                 name="note"
                 value={formik.values.note}
                 onChange={formik.handleChange}
@@ -402,8 +410,8 @@ const UploadAndDisplayImage = () => {
               />
             </div>
           </Grid>
-          <Grid className="setGridMargin" xs={3.7}>
-            <div className="left">
+          <Grid item className="setGridMargin" xs={12} md={4}>
+            <div className="center">
               <p className="OtherTitle">Ingredients</p>
               <Box
                 sx={{
@@ -436,6 +444,7 @@ const UploadAndDisplayImage = () => {
               </Box>
               <div>
                 <TextField
+                  fullWidth
                   label="Add Ingredient"
                   type="text"
                   className="bg-color"
@@ -476,8 +485,8 @@ const UploadAndDisplayImage = () => {
               </div>
             </div>
           </Grid>
-          <Grid className="setGridMargin" xs={3.7}>
-            <div className="left">
+          <Grid item className="setGridMargin" xs={12} md={4}>
+            <div className="center">
               <p className="OtherTitle"> Add Steps</p>
               <Box
                 sx={{
@@ -510,6 +519,7 @@ const UploadAndDisplayImage = () => {
               </Box>
               <div>
                 <TextField
+                  fullWidth
                   label="Add Steps"
                   type="text"
                   className="bg-color"
@@ -553,14 +563,16 @@ const UploadAndDisplayImage = () => {
                   </Alert>
                 </Snackbar>
               )}
-              <Button
-                variant="contained"
-                size="small"
-                type="submit"
-                sx={{ marginTop: "10px", marginLeft: "145px" }}
-              >
-                Save Changes
-              </Button>
+              <div className="center">
+                <Button
+                  variant="contained"
+                  size="small"
+                  type="submit"
+                  sx={{ marginTop: "10px" }}
+                >
+                  Save Changes
+                </Button>
+              </div>
             </div>
           </Grid>
         </Grid>
