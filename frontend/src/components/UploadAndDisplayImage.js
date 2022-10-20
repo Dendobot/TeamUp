@@ -238,7 +238,7 @@ const UploadAndDisplayImage = () => {
   }
 
   return (
-    <div className="secondary-color vh-100 overflow">
+    <div className="secondary-color min-vh-100 overflow">
       <form
         onKeyPress={(e) => {
           e.which === 13 && e.preventDefault();
@@ -258,9 +258,9 @@ const UploadAndDisplayImage = () => {
               <p className="recipeTitle"> Recipe Title</p>
               <TextField
                 fullWidth
+                size="small"
                 id="recipeName"
                 name="recipeName"
-                size="small"
                 className="bg-color"
                 label=" "
                 variant="outlined"
@@ -303,7 +303,7 @@ const UploadAndDisplayImage = () => {
                     <CardMedia
                       component="img"
                       sx={{
-                        width: "346px",
+                        width: "300px",
                         height: "173px",
                         marginBottom: "10px",
                       }}
@@ -328,9 +328,9 @@ const UploadAndDisplayImage = () => {
               <p className="recipeTitle"> Cooking Time (In Minutes)</p>
               <TextField
                 className="bg-color"
+                size = "small"
                 label=" "
                 variant="outlined"
-                size="small"
                 sx={{ width: "120px" }}
                 id="cookingTime"
                 name="cookingTime"
@@ -360,12 +360,12 @@ const UploadAndDisplayImage = () => {
               <div>
                 <TextField
                   fullWidth
+                  size="small"
                   label="Add Tag"
                   type="text"
                   className="bg-color"
                   id="tags"
                   name="tags"
-                  size="small"
                   variant="outlined"
                   onChange={({ target }) => {
                     setTags(target.value);
@@ -397,6 +397,7 @@ const UploadAndDisplayImage = () => {
               <p className="recipeTitle"> Note</p>
               <TextField
                 fullWidth
+                size="small"
                 className="bg-color"
                 id="note"
                 label=" "
@@ -418,7 +419,7 @@ const UploadAndDisplayImage = () => {
                   bgcolor: "background.paper",
                   boxShadow: 1,
                   borderRadius: 2,
-                  maxWidth: 270,
+                  maxWidth: '100%',
                   marginBottom: "10px",
                 }}
               >
@@ -428,7 +429,7 @@ const UploadAndDisplayImage = () => {
                       <TextareaAutosize
                         defaultValue={`${ingredients}`}
                         style={{
-                          width: 200,
+                          width: '100%',
                           border: "none",
                           resize: "none",
                           borderStyle: "none",
@@ -445,6 +446,7 @@ const UploadAndDisplayImage = () => {
               <div>
                 <TextField
                   fullWidth
+                  size = "small"
                   label="Add Ingredient"
                   type="text"
                   className="bg-color"
@@ -493,7 +495,7 @@ const UploadAndDisplayImage = () => {
                   bgcolor: "background.paper",
                   boxShadow: 1,
                   borderRadius: 2,
-                  maxWidth: 270,
+                  maxWidth: '100%',
                   marginBottom: "10px",
                 }}
               >
@@ -503,7 +505,7 @@ const UploadAndDisplayImage = () => {
                       <TextareaAutosize
                         defaultValue={`${index + 1}.${steps}`}
                         style={{
-                          width: 200,
+                          width: '100%',
                           border: "none",
                           resize: "none",
                           borderStyle: "none",
@@ -520,6 +522,7 @@ const UploadAndDisplayImage = () => {
               <div>
                 <TextField
                   fullWidth
+                  size="small"
                   label="Add Steps"
                   type="text"
                   className="bg-color"
