@@ -6,7 +6,6 @@ import {
   Grid,
   IconButton,
   ListItem,
-  ListItemText,
   Chip,
   Box,
   Stack,
@@ -15,10 +14,11 @@ import {
   Alert,
   AlertTitle,
   Divider,
+  Tooltip,
 } from "@mui/material";
 
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { FormikConsumer, useFormik } from "formik";
+import { useFormik } from "formik";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
@@ -328,7 +328,7 @@ const UploadAndDisplayImage = () => {
               <p className="recipeTitle"> Cooking Time (In Minutes)</p>
               <TextField
                 className="bg-color"
-                size = "small"
+                size="small"
                 label=" "
                 variant="outlined"
                 sx={{ width: "120px" }}
@@ -376,13 +376,15 @@ const UploadAndDisplayImage = () => {
                   InputLabelProps={{ shrink: false }}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="start">
-                        <IconButton
-                          onClick={handleTag}
-                          aria-label="add to tags list"
-                        >
-                          <AddCircleRoundedIcon color="primary" />
-                        </IconButton>
+                      <InputAdornment position="end">
+                        <Tooltip disableFocusListener title="Add a Tag">
+                          <IconButton
+                            onClick={handleTag}
+                            aria-label="add to tags list"
+                          >
+                            <AddCircleRoundedIcon color="primary" />
+                          </IconButton>
+                        </Tooltip>
                       </InputAdornment>
                     ),
                   }}
@@ -420,7 +422,7 @@ const UploadAndDisplayImage = () => {
                   bgcolor: "background.paper",
                   boxShadow: 1,
                   borderRadius: 2,
-                  maxWidth: '100%',
+                  maxWidth: "100%",
                   marginBottom: "10px",
                 }}
               >
@@ -430,15 +432,17 @@ const UploadAndDisplayImage = () => {
                       <TextareaAutosize
                         defaultValue={`${ingredients}`}
                         style={{
-                          width: '100%',
+                          width: "100%",
                           border: "none",
                           resize: "none",
                           borderStyle: "none",
                         }}
                       />
-                      <IconButton onClick={(e) => handleDelete(i)}>
-                        <DeleteIcon />
-                      </IconButton>
+                      <Tooltip disableFocusListener title="Delete Ingredeint">
+                        <IconButton onClick={(e) => handleDelete(i)}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </Tooltip>
                     </ListItem>
                     <Divider />
                   </div>
@@ -447,7 +451,7 @@ const UploadAndDisplayImage = () => {
               <div>
                 <TextField
                   fullWidth
-                  size = "small"
+                  size="small"
                   label=" "
                   type="text"
                   className="bg-color"
@@ -465,13 +469,15 @@ const UploadAndDisplayImage = () => {
                   InputLabelProps={{ shrink: false }}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="start">
-                        <IconButton
-                          onClick={handleIngredient}
-                          aria-label="add to ingredient list"
-                        >
-                          <AddCircleRoundedIcon color="primary" />
-                        </IconButton>
+                      <InputAdornment position="end">
+                        <Tooltip disableFocusListener title="Add an Ingredient">
+                          <IconButton
+                            onClick={handleIngredient}
+                            aria-label="add to ingredient list"
+                          >
+                            <AddCircleRoundedIcon color="primary" />
+                          </IconButton>
+                        </Tooltip>
                       </InputAdornment>
                     ),
                   }}
@@ -497,7 +503,7 @@ const UploadAndDisplayImage = () => {
                   bgcolor: "background.paper",
                   boxShadow: 1,
                   borderRadius: 2,
-                  maxWidth: '100%',
+                  maxWidth: "100%",
                   marginBottom: "10px",
                 }}
               >
@@ -507,15 +513,17 @@ const UploadAndDisplayImage = () => {
                       <TextareaAutosize
                         defaultValue={`${index + 1}.${steps}`}
                         style={{
-                          width: '100%',
+                          width: "100%",
                           border: "none",
                           resize: "none",
                           borderStyle: "none",
                         }}
                       />
-                      <IconButton onClick={(e) => handleDeleteSteps(index)}>
-                        <DeleteIcon />
-                      </IconButton>
+                      <Tooltip disableFocusListener title="Delete Step">
+                        <IconButton onClick={(e) => handleDeleteSteps(index)}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </Tooltip>
                     </ListItem>
                     <Divider />
                   </div>
@@ -540,13 +548,15 @@ const UploadAndDisplayImage = () => {
                   InputLabelProps={{ shrink: false }}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="start">
-                        <IconButton
-                          onClick={handleSteps}
-                          aria-label="add to steps list"
-                        >
-                          <AddCircleRoundedIcon color="primary" />
-                        </IconButton>
+                      <InputAdornment position="end">
+                        <Tooltip disableFocusListener title="Add a Step">
+                          <IconButton
+                            onClick={handleSteps}
+                            aria-label="add to steps list"
+                          >
+                            <AddCircleRoundedIcon color="primary" />
+                          </IconButton>
+                        </Tooltip>
                       </InputAdornment>
                     ),
                   }}
@@ -574,7 +584,7 @@ const UploadAndDisplayImage = () => {
                   variant="contained"
                   size="small"
                   type="submit"
-                  sx={{ marginTop: "10px"}}
+                  sx={{ marginTop: "10px" }}
                 >
                   Save Changes
                 </Button>
