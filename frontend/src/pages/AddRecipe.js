@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import React from "react";
 import Navigation from "../components/Navigation";
 import UploadAndDisplayImage from "../components/UploadAndDisplayImage";

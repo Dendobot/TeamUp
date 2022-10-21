@@ -109,7 +109,7 @@ a:hover {
 }
 
 .left {
-  margin-left: 8rem;
+  margin-left: 8em;
 }
 
 .right {
@@ -118,6 +118,12 @@ a:hover {
 
 .footer {
   background-color: var(--lightBlue);
+}
+
+.center {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
 }
 
 

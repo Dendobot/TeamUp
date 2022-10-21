@@ -6,7 +6,6 @@ import {
   Grid,
   IconButton,
   ListItem,
-  ListItemText,
   Chip,
   Box,
   Stack,
@@ -15,10 +14,11 @@ import {
   Alert,
   AlertTitle,
   Divider,
+  Tooltip,
 } from "@mui/material";
 
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { FormikConsumer, useFormik } from "formik";
+import { useFormik } from "formik";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
@@ -164,7 +164,6 @@ const UploadAndDisplayImage = () => {
 
     if (!duplicate_tag && tags !== "" && tagValue !== "" && tags !== " ") {
       setTagsList((tagsList) => tagsList.concat(tags));
-      
     }
     setTags("");
     setTagValue("");
@@ -177,7 +176,12 @@ const UploadAndDisplayImage = () => {
       }
     }
 
-    if (!duplicate_ingredient && ingredients !== "" && value !== "" && ingredients !== " ") {
+    if (
+      !duplicate_ingredient &&
+      ingredients !== "" &&
+      value !== "" &&
+      ingredients !== " "
+    ) {
       setIngredientList((ingredientList) => ingredientList.concat(ingredients));
       formik.errors.ingredients = "";
     }
@@ -234,22 +238,29 @@ const UploadAndDisplayImage = () => {
   }
 
   return (
-    <div className="secondary-color vh-100 overflow">
+    <div className="secondary-color min-vh-100 overflow">
       <form
         onKeyPress={(e) => {
           e.which === 13 && e.preventDefault();
         }}
         onSubmit={formik.handleSubmit}
       >
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
-          <Grid className="setGridMargin" xs={3.7}>
-            <div className="left">
+        <Grid container rowSpacing={0} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
+          <Grid
+            item
+            className="setGridMargin"
+            xs={12}
+            md={4}
+            justifyItems="center"
+          >
+            <div className="center">
               <h2 className="common-font-color">Add a recipe</h2>
               <p className="recipeTitle"> Recipe Title</p>
               <TextField
+                fullWidth
+                size="small"
                 id="recipeName"
                 name="recipeName"
-                size="small"
                 className="bg-color"
                 label=" "
                 variant="outlined"
@@ -292,8 +303,8 @@ const UploadAndDisplayImage = () => {
                     <CardMedia
                       component="img"
                       sx={{
-                        width: "346px",
-                        height: "173px",
+                        width: "100%",
+                        height: "200px",
                         marginBottom: "10px",
                       }}
                       src={URL.createObjectURL(selectedImage)}
@@ -317,9 +328,9 @@ const UploadAndDisplayImage = () => {
               <p className="recipeTitle"> Cooking Time (In Minutes)</p>
               <TextField
                 className="bg-color"
+                size="small"
                 label=" "
                 variant="outlined"
-                size="small"
                 sx={{ width: "120px" }}
                 id="cookingTime"
                 name="cookingTime"
@@ -348,12 +359,13 @@ const UploadAndDisplayImage = () => {
               ))}
               <div>
                 <TextField
-                  label="Add Tag"
+                  fullWidth
+                  size="small"
+                  label=" "
                   type="text"
                   className="bg-color"
                   id="tags"
                   name="tags"
-                  size="small"
                   variant="outlined"
                   onChange={({ target }) => {
                     setTags(target.value);
@@ -361,15 +373,18 @@ const UploadAndDisplayImage = () => {
                   }}
                   onKeyDown={handleKeyDown}
                   value={tagValue}
+                  InputLabelProps={{ shrink: false }}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="start">
-                        <IconButton
-                          onClick={handleTag}
-                          aria-label="add to tags list"
-                        >
-                          <AddCircleRoundedIcon color="primary" />
-                        </IconButton>
+                      <InputAdornment position="end">
+                        <Tooltip disableFocusListener title="Add a Tag">
+                          <IconButton
+                            onClick={handleTag}
+                            aria-label="add to tags list"
+                          >
+                            <AddCircleRoundedIcon color="primary" />
+                          </IconButton>
+                        </Tooltip>
                       </InputAdornment>
                     ),
                   }}
@@ -377,24 +392,21 @@ const UploadAndDisplayImage = () => {
                   error={formik.touched.tags && Boolean(formik.errors.tags)}
                 />
 
-                {Boolean(formik.errors.tags) &&
-                  formik.touched.tags && (
-                    <div style={{ color: "#d32f2f" }}>
-                      {formik.errors.tags}
-                    </div>
-                  )}
+                {Boolean(formik.errors.tags) && formik.touched.tags && (
+                  <div style={{ color: "#d32f2f" }}>{formik.errors.tags}</div>
+                )}
               </div>
 
               <p className="recipeTitle"> Note</p>
               <TextField
+                fullWidth
+                size="small"
                 className="bg-color"
                 id="note"
                 label=" "
                 variant="outlined"
-                size="small"
                 multiline
                 minRows={"7"}
-                sx={{ width: "346px", marginBottom: "40px" }}
                 name="note"
                 value={formik.values.note}
                 onChange={formik.handleChange}
@@ -402,15 +414,15 @@ const UploadAndDisplayImage = () => {
               />
             </div>
           </Grid>
-          <Grid className="setGridMargin" xs={3.7}>
-            <div className="left">
+          <Grid item className="setGridMargin" xs={12} md={4}>
+            <div className="center">
               <p className="OtherTitle">Ingredients</p>
               <Box
                 sx={{
                   bgcolor: "background.paper",
                   boxShadow: 1,
                   borderRadius: 2,
-                  maxWidth: 270,
+                  maxWidth: "100%",
                   marginBottom: "10px",
                 }}
               >
@@ -420,15 +432,17 @@ const UploadAndDisplayImage = () => {
                       <TextareaAutosize
                         defaultValue={`${ingredients}`}
                         style={{
-                          width: 200,
+                          width: "100%",
                           border: "none",
                           resize: "none",
                           borderStyle: "none",
                         }}
                       />
-                      <IconButton onClick={(e) => handleDelete(i)}>
-                        <DeleteIcon />
-                      </IconButton>
+                      <Tooltip disableFocusListener title="Delete Ingredeint">
+                        <IconButton onClick={(e) => handleDelete(i)}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </Tooltip>
                     </ListItem>
                     <Divider />
                   </div>
@@ -436,7 +450,9 @@ const UploadAndDisplayImage = () => {
               </Box>
               <div>
                 <TextField
-                  label="Add Ingredient"
+                  fullWidth
+                  size="small"
+                  label=" "
                   type="text"
                   className="bg-color"
                   id="ingredients"
@@ -450,15 +466,18 @@ const UploadAndDisplayImage = () => {
                   }}
                   onKeyDown={handleIngredientKey}
                   value={value}
+                  InputLabelProps={{ shrink: false }}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="start">
-                        <IconButton
-                          onClick={handleIngredient}
-                          aria-label="add to ingredient list"
-                        >
-                          <AddCircleRoundedIcon color="primary" />
-                        </IconButton>
+                      <InputAdornment position="end">
+                        <Tooltip disableFocusListener title="Add an Ingredient">
+                          <IconButton
+                            onClick={handleIngredient}
+                            aria-label="add to ingredient list"
+                          >
+                            <AddCircleRoundedIcon color="primary" />
+                          </IconButton>
+                        </Tooltip>
                       </InputAdornment>
                     ),
                   }}
@@ -476,15 +495,15 @@ const UploadAndDisplayImage = () => {
               </div>
             </div>
           </Grid>
-          <Grid className="setGridMargin" xs={3.7}>
-            <div className="left">
+          <Grid item className="setGridMargin" xs={12} md={4}>
+            <div className="center">
               <p className="OtherTitle"> Add Steps</p>
               <Box
                 sx={{
                   bgcolor: "background.paper",
                   boxShadow: 1,
                   borderRadius: 2,
-                  maxWidth: 270,
+                  maxWidth: "100%",
                   marginBottom: "10px",
                 }}
               >
@@ -494,15 +513,17 @@ const UploadAndDisplayImage = () => {
                       <TextareaAutosize
                         defaultValue={`${index + 1}.${steps}`}
                         style={{
-                          width: 200,
+                          width: "100%",
                           border: "none",
                           resize: "none",
                           borderStyle: "none",
                         }}
                       />
-                      <IconButton onClick={(e) => handleDeleteSteps(index)}>
-                        <DeleteIcon />
-                      </IconButton>
+                      <Tooltip disableFocusListener title="Delete Step">
+                        <IconButton onClick={(e) => handleDeleteSteps(index)}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </Tooltip>
                     </ListItem>
                     <Divider />
                   </div>
@@ -510,7 +531,9 @@ const UploadAndDisplayImage = () => {
               </Box>
               <div>
                 <TextField
-                  label="Add Steps"
+                  fullWidth
+                  size="small"
+                  label=" "
                   type="text"
                   className="bg-color"
                   id="method"
@@ -522,15 +545,18 @@ const UploadAndDisplayImage = () => {
                   }}
                   onKeyDown={handleStepsKey}
                   value={valueStep}
+                  InputLabelProps={{ shrink: false }}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="start">
-                        <IconButton
-                          onClick={handleSteps}
-                          aria-label="add to steps list"
-                        >
-                          <AddCircleRoundedIcon color="primary" />
-                        </IconButton>
+                      <InputAdornment position="end">
+                        <Tooltip disableFocusListener title="Add a Step">
+                          <IconButton
+                            onClick={handleSteps}
+                            aria-label="add to steps list"
+                          >
+                            <AddCircleRoundedIcon color="primary" />
+                          </IconButton>
+                        </Tooltip>
                       </InputAdornment>
                     ),
                   }}
@@ -553,14 +579,16 @@ const UploadAndDisplayImage = () => {
                   </Alert>
                 </Snackbar>
               )}
-              <Button
-                variant="contained"
-                size="small"
-                type="submit"
-                sx={{ marginTop: "10px", marginLeft: "145px" }}
-              >
-                Save Changes
-              </Button>
+              <div className="d-flex justify-content-center">
+                <Button
+                  variant="contained"
+                  size="small"
+                  type="submit"
+                  sx={{ marginTop: "10px" }}
+                >
+                  Save Changes
+                </Button>
+              </div>
             </div>
           </Grid>
         </Grid>
