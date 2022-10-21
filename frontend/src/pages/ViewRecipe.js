@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation";
-import {Stack, Grid, Fab } from "@mui/material";
+import { Stack, Grid, Fab, Tooltip } from "@mui/material";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -204,7 +204,6 @@ function ViewRecipe() {
                     top: "223px",
                   }}
                 >
-                  {" "}
                   No ingredients
                 </p>
               )}
@@ -221,9 +220,11 @@ function ViewRecipe() {
         >
           <div className="center">
             <div className="flex-end">
-              <Fab color="primary" aria-label="edit" onClick={handleEdit}>
-                <EditIcon />
-              </Fab>
+              <Tooltip disableFocusListener title="Edit recipe">
+                <Fab color="primary" aria-label="edit" onClick={handleEdit}>
+                  <EditIcon />
+                </Fab>
+              </Tooltip>
             </div>
             <h5
               className="steps"
