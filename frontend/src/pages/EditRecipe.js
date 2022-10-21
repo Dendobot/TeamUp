@@ -10,7 +10,6 @@ import {
   Grid,
   IconButton,
   ListItem,
-  ListItemText,
   Chip,
   Box,
   Stack,
@@ -19,6 +18,7 @@ import {
   Alert,
   AlertTitle,
   Divider,
+  Tooltip,
 } from "@mui/material";
 
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
@@ -239,7 +239,6 @@ function EditRecipe () {
 
     if (!duplicate_tag && tags !== "" && tagValue !== "" && tags !== " ") {
       setTagsList((tagsList) => tagsList.concat(tags));
-
     }
     setTags("");
     setTagValue("");
@@ -252,7 +251,12 @@ function EditRecipe () {
       }
     }
 
-    if (!duplicate_ingredient && ingredients !== "" && value !== "" && ingredients !== " ") {
+    if (
+      !duplicate_ingredient &&
+      ingredients !== "" &&
+      value !== "" &&
+      ingredients !== " "
+    ) {
       setIngredientList((ingredientList) => ingredientList.concat(ingredients));
       formik.errors.ingredients = "";
     }
@@ -323,14 +327,15 @@ function EditRecipe () {
         >
           <Grid
             container
-            rowSpacing={1}
+            rowSpacing={0}
             columnSpacing={{ xs: 0, sm: 0, md: 0 }}
           >
-            <Grid className="setGridMargin" xs={3.7}>
-              <div className="left">
+            <Grid item className="setGridMargin" xs={12} md={4}>
+              <div className="center">
                 <h2 className="common-font-color">Edit Recipe</h2>
                 <p className="recipeTitle"> Recipe Title </p>
                 <TextField
+                  fullWidth
                   size="small"
                   className="bg-color"
                   label=" "
@@ -381,8 +386,8 @@ function EditRecipe () {
                       <CardMedia
                         component="img"
                         sx={{
-                          width: "346px",
-                          height: "173px",
+                          width: "100%",
+                          height: "200px",
                           marginBottom: "10px",
                         }}
                         src={
@@ -445,7 +450,8 @@ function EditRecipe () {
                 ))}
                 <div>
                   <TextField
-                    label="Add Tag"
+                    fullWidth
+                    label=" "
                     type="text"
                     className="bg-color"
                     id="tags"
@@ -459,15 +465,18 @@ function EditRecipe () {
                     }}
                     onKeyDown={handleKeyDown}
                     value={tagValue}
+                    InputLabelProps={{ shrink: false }}
                     InputProps={{
                       endAdornment: (
-                        <InputAdornment position="start">
-                          <IconButton
-                            onClick={handleTag}
-                            aria-label="add to tags list"
-                          >
-                            <AddCircleRoundedIcon color="primary" />
-                          </IconButton>
+                        <InputAdornment position="end">
+                          <Tooltip disableFocusListener title="Add a Tag">
+                            <IconButton
+                              onClick={handleTag}
+                              aria-label="add to tags list"
+                            >
+                              <AddCircleRoundedIcon color="primary" />
+                            </IconButton>
+                          </Tooltip>
                         </InputAdornment>
                       ),
                     }}
@@ -477,6 +486,7 @@ function EditRecipe () {
 
                 <p className="recipeTitle"> Note</p>
                 <TextField
+                  fullWidth
                   className="bg-color"
                   id="note"
                   label=" "
@@ -484,7 +494,6 @@ function EditRecipe () {
                   size="small"
                   multiline
                   minRows={"7"}
-                  sx={{ width: "346px", marginBottom: "40px" }}
                   name="note"
                   onChange={({ target }) => {
                     setNotes(target.value);
@@ -495,15 +504,15 @@ function EditRecipe () {
                 />
               </div>
             </Grid>
-            <Grid className="setGridMargin" xs={3.7}>
-              <div className="left">
+            <Grid item className="setGridMargin" xs={12} md={4}>
+              <div className="center">
                 <p className="OtherTitle">Ingredients</p>
                 <Box
                   sx={{
                     bgcolor: "background.paper",
                     boxShadow: 1,
                     borderRadius: 2,
-                    maxWidth: 270,
+                    maxWidth: "100%",
                     marginBottom: "10px",
                   }}
                 >
@@ -513,15 +522,17 @@ function EditRecipe () {
                         <TextareaAutosize
                           defaultValue={`${ingredients}`}
                           style={{
-                            width: 200,
+                            width: "100%",
                             border: "none",
                             resize: "none",
                             borderStyle: "none",
                           }}
                         />
-                        <IconButton onClick={(e) => handleDelete(i)}>
-                          <DeleteIcon />
-                        </IconButton>
+                        <Tooltip disableFocusListener title="Delete Ingredeint">
+                          <IconButton onClick={(e) => handleDelete(i)}>
+                            <DeleteIcon />
+                          </IconButton>
+                        </Tooltip>
                       </ListItem>
                       <Divider />
                     </div>
@@ -529,7 +540,9 @@ function EditRecipe () {
                 </Box>
                 <div>
                   <TextField
-                    label="Add Ingredient"
+                    fullWidth
+                    label=" "
+                    size="small"
                     type="text"
                     className="bg-color"
                     id="ingredients"
@@ -544,15 +557,21 @@ function EditRecipe () {
                     }}
                     onKeyDown={handleIngredientKey}
                     value={value}
+                    InputLabelProps={{ shrink: false }}
                     InputProps={{
                       endAdornment: (
-                        <InputAdornment position="start">
-                          <IconButton
-                            onClick={handleIngredient}
-                            aria-label="add to ingredient list"
+                        <InputAdornment position="end">
+                          <Tooltip
+                            disableFocusListener
+                            title="Add an Ingredient"
                           >
-                            <AddCircleRoundedIcon color="primary" />
-                          </IconButton>
+                            <IconButton
+                              onClick={handleIngredient}
+                              aria-label="add to ingredient list"
+                            >
+                              <AddCircleRoundedIcon color="primary" />
+                            </IconButton>
+                          </Tooltip>
                         </InputAdornment>
                       ),
                     }}
@@ -570,15 +589,15 @@ function EditRecipe () {
                 </div>
               </div>
             </Grid>
-            <Grid className="setGridMargin" xs={3.7}>
-              <div className="left">
+            <Grid item className="setGridMargin" xs={12} md={4}>
+              <div className="center">
                 <p className="OtherTitle"> Add Steps</p>
                 <Box
                   sx={{
                     bgcolor: "background.paper",
                     boxShadow: 1,
                     borderRadius: 2,
-                    maxWidth: 270,
+                    maxWidth: "100%",
                     marginBottom: "10px",
                   }}
                 >
@@ -588,15 +607,17 @@ function EditRecipe () {
                         <TextareaAutosize
                           defaultValue={`${index + 1}.${steps}`}
                           style={{
-                            width: 200,
+                            width: "100%",
                             border: "none",
                             resize: "none",
                             borderStyle: "none",
                           }}
                         />
-                        <IconButton onClick={(e) => handleDeleteSteps(index)}>
-                          <DeleteIcon />
-                        </IconButton>
+                        <Tooltip disableFocusListener title="Delete Step">
+                          <IconButton onClick={(e) => handleDeleteSteps(index)}>
+                            <DeleteIcon />
+                          </IconButton>
+                        </Tooltip>
                       </ListItem>
                       <Divider />
                     </div>
@@ -604,7 +625,9 @@ function EditRecipe () {
                 </Box>
                 <div>
                   <TextField
-                    label="Add Steps"
+                    fullWidth
+                    label=" "
+                    size="small"
                     type="text"
                     className="bg-color"
                     id="method"
@@ -619,13 +642,15 @@ function EditRecipe () {
                     value={valueStep}
                     InputProps={{
                       endAdornment: (
-                        <InputAdornment position="start">
-                          <IconButton
-                            onClick={handleSteps}
-                            aria-label="add to steps list"
-                          >
-                            <AddCircleRoundedIcon color="primary" />
-                          </IconButton>
+                        <InputAdornment position="end">
+                          <Tooltip disableFocusListener title="Add a Step">
+                            <IconButton
+                              onClick={handleSteps}
+                              aria-label="add to steps list"
+                            >
+                              <AddCircleRoundedIcon color="primary" />
+                            </IconButton>
+                          </Tooltip>
                         </InputAdornment>
                       ),
                     }}
@@ -650,14 +675,16 @@ function EditRecipe () {
                     </Alert>
                   </Snackbar>
                 )}
-                <Button
-                  variant="contained"
-                  size="small"
-                  type="submit"
-                  sx={{ marginTop: "10px", marginLeft: "145px" }}
-                >
-                  Save Changes
-                </Button>
+                <div className="d-flex justify-content-center">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    type="submit"
+                    sx={{ marginTop: "10px"}}
+                  >
+                    Save Changes
+                  </Button>
+                </div>
               </div>
             </Grid>
           </Grid>
