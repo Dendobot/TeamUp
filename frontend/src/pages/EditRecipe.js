@@ -640,6 +640,7 @@ function EditRecipe () {
                     }}
                     onKeyDown={handleStepsKey}
                     value={valueStep}
+                    InputLabelProps={{ shrink: false }}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
