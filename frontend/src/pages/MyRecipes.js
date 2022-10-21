@@ -127,10 +127,10 @@ function MyRecipes() {
           <Grid
             container
             rowSpacing={0}
-            columnSpacing={{ xs: 0, sm: 2, md: 3 }}
+            columnSpacing={{ xs: 0, sm: 2, md: 3, lg: 4}}
           >
             {recipeNames.map((users, i) => (
-              <Grid item className="setGridMargin" xs={12} sm={6} md={4}>
+              <Grid item className="setGridMargin" xs={12} sm={6} md={6} lg = {4}>
                 <div className="center-horiz">
                   <RecipeBox
                     key={i}
