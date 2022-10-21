@@ -30,6 +30,8 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 //for backEnd
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
+import { WindowSharp } from "@mui/icons-material";
+import usePrompt from "../hooks/usePromt";
 
 const CREATE_URL = "/recipe/editRecipe";
 const PHOTO_CLOUD_URL =
@@ -37,7 +39,7 @@ const PHOTO_CLOUD_URL =
 
 const EDIT_RECIPE_URL = "/recipe/viewRecipe?id=";
 
-function EditRecipe() {
+function EditRecipe () {
   const axiosPrivate = useAxiosPrivate();
   const { id } = useParams();
   console.log("id = ", id);
@@ -59,6 +61,8 @@ function EditRecipe() {
   const [name, setName] = useState("");
   const [time, setTime] = useState("");
   const [notes, setNotes] = useState("");
+  const [changed, setChanged] = useState(false);
+
   let duplicate_tag = false;
   let duplicate_ingredient = false;
 
@@ -103,6 +107,22 @@ function EditRecipe() {
   useEffect(() => {
     getEditRecipe();
   }, [axiosPrivate]);
+
+  //unsaved changes
+  useEffect(() => {
+    const saveBeforeLeave = (e) => {
+      if (changed) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.returnValue = true;
+      }
+    };
+
+    window.addEventListener('beforeunload', saveBeforeLeave);
+    return () => window.removeEventListener('beforeunload', saveBeforeLeave);
+  }, [changed]);
+
+  usePrompt("you have some unsave changes, do you wish to continue?", changed);
 
   const handleClose = (event = React.SyntheticEvent | Event, reason) => {
     if (reason === "clickaway") {
@@ -205,6 +225,8 @@ function EditRecipe() {
       console.log("ingredients = ", ingredientList);
       console.log("cooking time = ", +time);
       console.log("url = ", url);
+
+      setChanged(false);
     },
   });
 
@@ -269,25 +291,28 @@ function EditRecipe() {
     }
   };
 
-  function handleDeleteSteps(e) {
+  function handleDeleteSteps (e) {
     console.log(stepsList);
     const m = stepsList.filter((steps, index) => index !== e);
     setStepsList(m);
     console.log(m);
+    setChanged(true);
   }
 
-  function handleDelete(e) {
+  function handleDelete (e) {
     console.log(ingredientList);
     const s = ingredientList.filter((ingredients, i) => i !== e);
     setIngredientList(s);
     console.log(s);
+    setChanged(true);
   }
 
-  function removeTag(e) {
+  function removeTag (e) {
     console.log(tagsList);
     const t = tagsList.filter((tags, i) => i !== e);
     setTagsList(t);
     console.log(t);
+    setChanged(true);
   }
 
   return (
@@ -319,6 +344,7 @@ function EditRecipe() {
                   name="recipeName"
                   onChange={({ target }) => {
                     setName(target.value);
+                    setChanged(true);
                   }}
                   value={name}
                   error={
@@ -348,6 +374,7 @@ function EditRecipe() {
                         type="file"
                         onChange={(event) => {
                           setSelectedImage(event.target.files[0]);
+                          setChanged(true);
                         }}
                       />
                       <PhotoCamera />
@@ -397,6 +424,7 @@ function EditRecipe() {
                   value={time}
                   onChange={({ target }) => {
                     setTime(target.value);
+                    setChanged(true);
                   }}
                   error={
                     formik.touched.cookingTime &&
@@ -433,6 +461,7 @@ function EditRecipe() {
                     onChange={({ target }) => {
                       setTags(target.value);
                       setTagValue(target.value);
+                      setChanged(true);
                     }}
                     onKeyDown={handleKeyDown}
                     value={tagValue}
@@ -468,6 +497,7 @@ function EditRecipe() {
                   name="note"
                   onChange={({ target }) => {
                     setNotes(target.value);
+                    setChanged(true);
                   }}
                   value={notes}
                   InputLabelProps={{ shrink: false }}
@@ -522,6 +552,7 @@ function EditRecipe() {
                       if (target.value.length <= 22) {
                         setIngredients(target.value);
                         setValue(target.value);
+                        setChanged(true);
                       }
                     }}
                     onKeyDown={handleIngredientKey}
@@ -605,6 +636,7 @@ function EditRecipe() {
                     onChange={({ target }) => {
                       setSteps(target.value);
                       setValueStep(target.value);
+                      setChanged(true);
                     }}
                     onKeyDown={handleStepsKey}
                     value={valueStep}

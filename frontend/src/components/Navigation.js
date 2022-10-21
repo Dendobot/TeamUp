@@ -1,9 +1,10 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import SignOutButton from "./SignOutButton";
 import useAuth from "../hooks/useAuth";
 
-function Navigation() {
+
+function Navigation () {
   //this signout button will only appear if you are logged in
   var loginButton = <></>;
   var home = <></>;
@@ -12,9 +13,14 @@ function Navigation() {
   var signout = <></>;
   var myRecipes = <></>;
   var cheffie = <></>;
+  const location = useLocation();
   const { auth } = useAuth();
   if (auth?.user) {
-    loginButton = <SignOutButton />;
+    console.log("location: " + location.pathname);
+    if (!location.pathname.includes("/editRecipe") && !location.pathname.includes("/addRecipe")) {
+      loginButton = <SignOutButton />;
+    }
+
     myRecipes = (
       <NavLink className="nav-link" to="/myRecipes">
         My Recipes
@@ -52,9 +58,8 @@ function Navigation() {
 
   return (
     <div
-      className={`row justify-content-center ${
-        auth?.user && "light-blue-background"
-      }`}
+      className={`row justify-content-center ${auth?.user && "light-blue-background"
+        }`}
     >
       <nav class="navbar navbar-expand-lg navbar-light col-sm-12 col-md-10 col-xl-8">
         <h1>{cheffie}</h1>
