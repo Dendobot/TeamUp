@@ -76,11 +76,8 @@ function Navigation () {
         </button>
         <div className="navbar-collapse collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item navBarLinks">
-              {home}
-              {myRecipes}
-            </li>
-
+            <li className="nav-item navBarLinks">{home}</li>
+            <li className="nav-item navBarLinks"> {myRecipes}</li>
             <li className="nav-item navBarLinks">{signin}</li>
             <li className="nav-item navBarLinks">{signout}</li>
             <li className="nav-item navBarLinks">{loginButton}</li>
