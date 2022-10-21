@@ -16,6 +16,9 @@ const SignOutButton = () => {
   const logout = async () => {
     // if used in more components, this should be in context 
     // axios to /logout endpoint 
+
+    try { (navigate('/signIn')); }
+    catch (err) { return; }
     console.log("logging out");
     try {
       const response = await axios.get(LOGOUT_URL, { withCredentials: true });
@@ -31,7 +34,7 @@ const SignOutButton = () => {
     }
 
     setAuth({});
-    navigate('/signIn');
+
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   InputAdornment,
@@ -29,6 +29,8 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 
+import usePrompt from "../hooks/usePromt";
+
 const CREATE_URL = "/recipe/createRecipe";
 const PHOTO_CLOUD_URL =
   "https://api.cloudinary.com/v1_1/dyhv1equv/image/upload";
@@ -48,8 +50,28 @@ const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(true);
+  const [name, setName] = useState("");
+  const [time, setTime] = useState("");
+  const [notes, setNotes] = useState("");
+  const [changed, setChanged] = useState(false);
+
   let duplicate_tag = false;
   let duplicate_ingredient = false;
+
+  useEffect(() => {
+    const saveBeforeLeave = (e) => {
+      if (changed) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.returnValue = true;
+      }
+    };
+
+    window.addEventListener('beforeunload', saveBeforeLeave);
+    return () => window.removeEventListener('beforeunload', saveBeforeLeave);
+  }, [changed]);
+
+  usePrompt("you have some unsave changes, do you wish to continue?", changed);
 
   const handleClose = (event = React.SyntheticEvent | Event, reason) => {
     if (reason === "clickaway") {
@@ -119,10 +141,12 @@ const UploadAndDisplayImage = () => {
             }
           );
           setSuccess(true);
+          setChanged(false);
           console.log(response?.data);
           console.log(response?.accessToken);
           console.log(JSON.stringify(response));
           setTimeout(() => {
+
             navigate("/myRecipes");
             setSuccess(false);
           }, 2000);
@@ -164,7 +188,7 @@ const UploadAndDisplayImage = () => {
 
     if (!duplicate_tag && tags !== "" && tagValue !== "" && tags !== " ") {
       setTagsList((tagsList) => tagsList.concat(tags));
-      
+
     }
     setTags("");
     setTagValue("");
@@ -212,25 +236,28 @@ const UploadAndDisplayImage = () => {
     }
   };
 
-  function handleDeleteSteps(e) {
+  function handleDeleteSteps (e) {
     console.log(stepsList);
     const m = stepsList.filter((steps, index) => index !== e);
     setStepsList(m);
     console.log(m);
+    setChanged(true);
   }
 
-  function handleDelete(e) {
+  function handleDelete (e) {
     console.log(ingredientList);
     const s = ingredientList.filter((ingredients, i) => i !== e);
     setIngredientList(s);
     console.log(s);
+    setChanged(true);
   }
 
-  function removeTag(e) {
+  function removeTag (e) {
     console.log(tagsList);
     const t = tagsList.filter((tags, i) => i !== e);
     setTagsList(t);
     console.log(t);
+    setChanged(true);
   }
 
   return (
@@ -254,7 +281,11 @@ const UploadAndDisplayImage = () => {
                 label=" "
                 variant="outlined"
                 value={formik.values.recipeName}
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                  setChanged(true);
+                }
+                }
                 error={
                   formik.touched.recipeName && Boolean(formik.errors.recipeName)
                 }
@@ -281,6 +312,7 @@ const UploadAndDisplayImage = () => {
                       type="file"
                       onChange={(event) => {
                         setSelectedImage(event.target.files[0]);
+                        setChanged(true);
                       }}
                     />
                     <PhotoCamera />
@@ -324,7 +356,11 @@ const UploadAndDisplayImage = () => {
                 id="cookingTime"
                 name="cookingTime"
                 value={formik.values.cookingTime}
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                  setChanged(true);
+                }
+                }
                 error={
                   formik.touched.cookingTime &&
                   Boolean(formik.errors.cookingTime)
@@ -358,6 +394,7 @@ const UploadAndDisplayImage = () => {
                   onChange={({ target }) => {
                     setTags(target.value);
                     setTagValue(target.value);
+                    setChanged(true);
                   }}
                   onKeyDown={handleKeyDown}
                   value={tagValue}
@@ -397,7 +434,11 @@ const UploadAndDisplayImage = () => {
                 sx={{ width: "346px", marginBottom: "40px" }}
                 name="note"
                 value={formik.values.note}
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                  setChanged(true);
+                }
+                }
                 InputLabelProps={{ shrink: false }}
               />
             </div>
@@ -446,6 +487,7 @@ const UploadAndDisplayImage = () => {
                     if (target.value.length <= 22) {
                       setIngredients(target.value);
                       setValue(target.value);
+                      setChanged(true);
                     }
                   }}
                   onKeyDown={handleIngredientKey}
@@ -519,6 +561,7 @@ const UploadAndDisplayImage = () => {
                   onChange={({ target }) => {
                     setSteps(target.value);
                     setValueStep(target.value);
+                    setChanged(true);
                   }}
                   onKeyDown={handleStepsKey}
                   value={valueStep}
