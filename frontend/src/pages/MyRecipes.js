@@ -1,8 +1,8 @@
 import React from "react";
 import Navigation from "../components/Navigation";
 import RecipeBox from "../components/RecipeBox";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { Grid, IconButton, Typography, Fab } from "@mui/material";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
@@ -92,55 +92,59 @@ function MyRecipes() {
     navigate("/editRecipe".concat(recipeIDs[index.index]));
   };
 
+  const handleAdd = async (index) => {
+    navigate("/addRecipe");
+  };
+
   const handleView = async (index) => {
     navigate("/viewRecipe".concat(recipeIDs[index.index]));
   };
   console.log("user:        ", useAuth().auth.user);
+
   return (
     <div className="secondary-color min-vh-100 overflow">
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      />
-      <Navigation />
-      <div className="addRecipeButton">
-        <div>
-          <h6 className="center-horiz welcome-parts1">
-            Hey {useAuth().auth.user}!
-          </h6>
-          <h3 className="center-horiz welcome-parts2">Here are your recipes</h3>
+      <div classname="center">
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
+        <Navigation />
+        <div className="addRecipeButton">
+          <Typography>
+            <h6 className="center-horiz">Hey {useAuth().auth.user}!</h6>
+            <h3 className="center-horiz">Here are your recipes</h3>
+          </Typography>
+
+            <Tooltip disableFocusListener title="Add a recipe">
+              <Fab size = "large" color="primary" aria-label="add" onClick={handleAdd}>
+                <AddIcon fontSize="large" />
+              </Fab>
+            </Tooltip>
         </div>
-        <Link to="../addRecipe">
-          <Tooltip disableFocusListener title="Add a Recipe">
-            <IconButton
-              aria-label="add"
-              sx={{
-                fontSize: 80,
-              }}
-              color="primary"
-            >
-              <AddCircleIcon fontSize="inherit">add_circle</AddCircleIcon>
-            </IconButton>
-          </Tooltip>
-        </Link>
       </div>
-      <div className="center-horiz graph-parts">
+      <div>
         {recipeNames?.length ? (
-          <div>
-            <ul>
-              {recipeNames.map((users, i) => (
-                <RecipeBox
-                  key={i}
-                  recipeName={recipeNames[i]}
-                  imgsrc={recipePhoto[i]}
-                  onDelete={handleDelete}
-                  index={i}
-                  onEdit={handleEdit}
-                  onView={handleView}
-                />
-              ))}
-            </ul>
-          </div>
+          <Grid
+            container
+            rowSpacing={0}
+            columnSpacing={{ xs: 0, sm: 2, md: 3 }}
+          >
+            {recipeNames.map((users, i) => (
+              <Grid item className="setGridMargin" xs={12} sm={6} md={4}>
+                <div className="center-horiz">
+                  <RecipeBox
+                    key={i}
+                    recipeName={recipeNames[i]}
+                    imgsrc={recipePhoto[i]}
+                    onDelete={handleDelete}
+                    index={i}
+                    onEdit={handleEdit}
+                    onView={handleView}
+                  />
+                </div>
+              </Grid>
+            ))}
+          </Grid>
         ) : (
           <p className="no-recipes-txt">You have not added any recipes</p>
         )}
