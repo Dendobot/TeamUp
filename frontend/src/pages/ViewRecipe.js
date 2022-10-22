@@ -204,7 +204,6 @@ function ViewRecipe() {
                     top: "223px",
                   }}
                 >
-                  No ingredients
                 </p>
               )}
             </ul>
