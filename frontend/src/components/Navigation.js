@@ -2,7 +2,12 @@ import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SignOutButton from "./SignOutButton";
 import useAuth from "../hooks/useAuth";
-import { Drawer, MenuItem, Box } from "@mui/material";
+import { Drawer, MenuItem, ListItemIcon } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import LoginIcon from "@mui/icons-material/Login";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 function Navigation() {
   //this signout button will only appear if you are logged in
@@ -92,14 +97,39 @@ function Navigation() {
 
         {Boolean(auth?.user) === false ? (
           <Drawer anchor="right" open={open} onClose={handleClose}>
-            <MenuItem onClick={handleClose}>{home}</MenuItem>
-            <MenuItem onClick={handleClose}>{signin}</MenuItem>
-            <MenuItem onClick={handleClose}>{signout}</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              {home}
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <LoginIcon />
+              </ListItemIcon>
+              {signin}
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <AppRegistrationIcon />
+              </ListItemIcon>
+              {signout}
+            </MenuItem>
           </Drawer>
         ) : (
           <Drawer anchor="right" open={open} onClose={handleClose}>
-            <MenuItem onClick={handleClose}>{myRecipes}</MenuItem>
-            <MenuItem onClick={handleClose}>{loginButton}</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <MenuBookIcon />
+              </ListItemIcon>
+              {myRecipes}
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              {loginButton}
+            </MenuItem>
           </Drawer>
         )}
 

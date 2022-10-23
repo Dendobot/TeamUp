@@ -38,7 +38,7 @@ const SignOutButton = () => {
   };
 
   return (
-    <Button variant="contained" size="large" type="submit" onClick={logout}>
+    <Button variant="outlined" size="large" type="submit" onClick={logout}>
       Sign Out
     </Button>
   );
