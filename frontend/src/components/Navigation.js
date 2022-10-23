@@ -92,32 +92,14 @@ function Navigation() {
 
         {Boolean(auth?.user) === false ? (
           <Drawer anchor="right" open={open} onClose={handleClose}>
-            <Box
-              sx={{
-                width: 250,
-              }}
-              role="presentation"
-              onClick={handleClose}
-              onKeyDown={handleClose}
-            >
-              <MenuItem onClick={handleClose}>{home}</MenuItem>
-              <MenuItem onClick={handleClose}>{signin}</MenuItem>
-              <MenuItem onClick={handleClose}>{signout}</MenuItem>
-            </Box>
+            <MenuItem onClick={handleClose}>{home}</MenuItem>
+            <MenuItem onClick={handleClose}>{signin}</MenuItem>
+            <MenuItem onClick={handleClose}>{signout}</MenuItem>
           </Drawer>
         ) : (
           <Drawer anchor="right" open={open} onClose={handleClose}>
-            <Box
-              sx={{
-                width: 250,
-              }}
-              role="presentation"
-              onClick={handleClose}
-              onKeyDown={handleClose}
-            >
-              <MenuItem onClick={handleClose}>{myRecipes}</MenuItem>
-              <MenuItem onClick={handleClose}>{loginButton}</MenuItem>
-            </Box>
+            <MenuItem onClick={handleClose}>{myRecipes}</MenuItem>
+            <MenuItem onClick={handleClose}>{loginButton}</MenuItem>
           </Drawer>
         )}
 
