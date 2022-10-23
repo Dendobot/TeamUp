@@ -115,6 +115,7 @@ function SignIn() {
                     >
                       <span className="d-flex flex-column  mb-4">
                         <TextField
+                          fullWidth
                           className="secondary-color"
                           label="Email"
                           id="email"
@@ -134,6 +135,7 @@ function SignIn() {
 
                       <span className="d-flex flex-column  mb-4">
                         <TextField
+                          fullWidth
                           className="secondary-color"
                           id="password"
                           name="password"

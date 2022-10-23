@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SignOutButton from "./SignOutButton";
 import useAuth from "../hooks/useAuth";
-import { Divider, Drawer, Menu, MenuItem } from "@mui/material";
+import { Drawer, MenuItem, Box } from "@mui/material";
 
 function Navigation() {
   //this signout button will only appear if you are logged in
@@ -21,15 +21,6 @@ function Navigation() {
   };
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleListKeyDown = (event) => {
-    if (event.key === "Tab") {
-      setAnchorEl(null);
-    } else if (event.key === "Escape") {
-      anchorEl.focus();
-      setAnchorEl(null);
-    }
   };
 
   const location = useLocation();
@@ -100,23 +91,33 @@ function Navigation() {
         </button>
 
         {Boolean(auth?.user) === false ? (
-          <Drawer
-            anchor = 'right'
-            open={open}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>{home}</MenuItem>
-            <MenuItem onClick={handleClose}>{signin}</MenuItem>
-            <MenuItem onClick={handleClose}>{signout}</MenuItem>
+          <Drawer anchor="right" open={open} onClose={handleClose}>
+            <Box
+              sx={{
+                width: 250,
+              }}
+              role="presentation"
+              onClick={handleClose}
+              onKeyDown={handleClose}
+            >
+              <MenuItem onClick={handleClose}>{home}</MenuItem>
+              <MenuItem onClick={handleClose}>{signin}</MenuItem>
+              <MenuItem onClick={handleClose}>{signout}</MenuItem>
+            </Box>
           </Drawer>
         ) : (
-          <Drawer
-            anchor = 'right'
-            open={open}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>{myRecipes}</MenuItem>
-            <MenuItem onClick={handleClose}>{loginButton}</MenuItem>
+          <Drawer anchor="right" open={open} onClose={handleClose}>
+            <Box
+              sx={{
+                width: 250,
+              }}
+              role="presentation"
+              onClick={handleClose}
+              onKeyDown={handleClose}
+            >
+              <MenuItem onClick={handleClose}>{myRecipes}</MenuItem>
+              <MenuItem onClick={handleClose}>{loginButton}</MenuItem>
+            </Box>
           </Drawer>
         )}
 
