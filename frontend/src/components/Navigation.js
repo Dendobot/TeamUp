@@ -7,7 +7,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import LogoutIcon from "@mui/icons-material/Logout";
 
 function Navigation() {
   //this signout button will only appear if you are logged in
@@ -125,9 +124,6 @@ function Navigation() {
               {myRecipes}
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <LogoutIcon />
-              </ListItemIcon>
               {loginButton}
             </MenuItem>
           </Drawer>
