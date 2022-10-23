@@ -2,8 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 import axios from "../api/axios";
-import { Button, ListItemIcon } from "@mui/material";
-import LogoutIcon from "@mui/icons-material/Logout";
+import { Button} from "@mui/material";
 
 const LOGOUT_URL = "users/logout";
 
@@ -40,10 +39,7 @@ const SignOutButton = () => {
 
   return (
     <div>
-      <ListItemIcon>
-        <LogoutIcon />
-      </ListItemIcon>
-      <Button variant="outlined" size="large" type="submit" onClick={logout}>
+      <Button variant="contained" size="large" type="submit" onClick={logout}>
         Sign Out
       </Button>
     </div>
