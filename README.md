@@ -91,11 +91,12 @@ Currently, the website is deskptop compatible but we are aiming for it to be on 
   1. Sign up on website (Has been implemented)
   2. Login in on Website (Has been implemented)
   3. View saved recipes (Has been implemented)
-  4. Edit existing recipes (Has been implemented)
-  5. Add new recipes (Has been implemented)
+  4. View a particular recipe (Has been implemented)
+  5. Edit existing recipes (Has been implemented)
+  6. Add new recipes (Has been implemented)
       - Can upload images of the food
       - Can tag recipes as vegetarian, gluten-free etc. 
-  6. Delete recipes (Has been implemented)
+  7. Delete recipes (Has been implemented)
 
 ## Documentation 
 We are storing all the documentation related to this project on our confluence page, which you can find [here](https://comp30022-teamup.atlassian.net/l/cp/GpTEtpdV)
