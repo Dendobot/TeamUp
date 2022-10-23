@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SignOutButton from "./SignOutButton";
 import useAuth from "../hooks/useAuth";
-import { Divider, Menu, MenuItem } from "@mui/material";
+import { Divider, Drawer, Menu, MenuItem } from "@mui/material";
 
 function Navigation() {
   //this signout button will only appear if you are logged in
@@ -100,28 +100,24 @@ function Navigation() {
         </button>
 
         {Boolean(auth?.user) === false ? (
-          <Menu
-            id="demo-positioned-menu"
-            aria-labelledby="demo-positioned-button"
-            anchorEl={anchorEl}
+          <Drawer
+            anchor = 'right'
             open={open}
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>{home}</MenuItem>
             <MenuItem onClick={handleClose}>{signin}</MenuItem>
             <MenuItem onClick={handleClose}>{signout}</MenuItem>
-          </Menu>
+          </Drawer>
         ) : (
-          <Menu
-            id="menu-appbar"
-            aria-labelledby="demo-positioned-button"
-            anchorEl={anchorEl}
+          <Drawer
+            anchor = 'right'
             open={open}
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>{myRecipes}</MenuItem>
             <MenuItem onClick={handleClose}>{loginButton}</MenuItem>
-          </Menu>
+          </Drawer>
         )}
 
         <div className="navbar-collapse collapse" id="navbarNav">

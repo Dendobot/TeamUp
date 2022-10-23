@@ -116,7 +116,6 @@ function SignIn() {
                       <span className="d-flex flex-column  mb-4">
                         <TextField
                           className="secondary-color"
-                          fullWidth
                           label="Email"
                           id="email"
                           value={formik.values.email}
@@ -136,7 +135,6 @@ function SignIn() {
                       <span className="d-flex flex-column  mb-4">
                         <TextField
                           className="secondary-color"
-                          fullWidth
                           id="password"
                           name="password"
                           label="Password"
