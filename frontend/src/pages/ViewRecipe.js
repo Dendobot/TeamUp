@@ -67,6 +67,7 @@ function ViewRecipe() {
             <div className="white-box">
               <img
                 src={recipeInfo?.photo_url}
+                alt = "recipe"
                 style={{
                   borderRadius: 25,
                   width: "100%",
@@ -77,15 +78,17 @@ function ViewRecipe() {
 
             <div style={{ marginBottom: 20 }}>
               {recipeInfo?.tags?.length ? (
-                <Stack direction="row" alignItems="baseline">
+                <div>
                   {(recipeInfo?.tags).map((tag, i) => (
                     <div
                       className="tags"
                       style={{
                         height: "24px",
-                        display: "inline-flex",
                         marginRight: "20px",
                         marginTop: "20px",
+                        display: "inline-flex",
+                        flexGrow:"1",
+                        alignSelf: "flex-start"
                       }}
                     >
                       <h6
@@ -100,7 +103,7 @@ function ViewRecipe() {
                       </h6>
                     </div>
                   ))}
-                </Stack>
+                </div>
               ) : (
                 <p
                   style={{

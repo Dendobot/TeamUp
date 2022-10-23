@@ -30,7 +30,6 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 //for backEnd
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
-import { WindowSharp } from "@mui/icons-material";
 import usePrompt from "../hooks/usePromt";
 
 const CREATE_URL = "/recipe/editRecipe";

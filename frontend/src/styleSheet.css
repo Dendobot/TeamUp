@@ -235,7 +235,7 @@ a:hover {
 }
 
 .notes-box {
-  width: "100%";
+  width: "auto";
   height: fit-content;
   display: flex;
   border-radius: 25px;
@@ -332,8 +332,12 @@ a:hover {
 }
 
 .tags {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
   padding: 2px 12px;
-  background: #e5fdf6;
+  gap: 6px;
+  background: #E5FDF6;
   border-radius: 12px;
 }
 

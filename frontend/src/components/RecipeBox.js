@@ -34,6 +34,7 @@ function RecipeBox(props) {
       >
         <h4>{recipeName}</h4>
         <img
+        alt = "recipe"
           src={props.imgsrc}
           style={{ borderRadius: 25 }}
           width="300"

@@ -50,9 +50,6 @@ const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(true);
-  const [name, setName] = useState("");
-  const [time, setTime] = useState("");
-  const [notes, setNotes] = useState("");
   const [changed, setChanged] = useState(false);
 
   let duplicate_tag = false;

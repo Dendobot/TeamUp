@@ -1,5 +1,4 @@
 import React from "react";
-import BottomBar from "../components/BottomBar";
 import { Button } from "@mui/material";
 import Navigation from "../components/Navigation";
 function Landing() {
