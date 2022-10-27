@@ -18,6 +18,7 @@ function Navigation() {
   var signout = <></>;
   var myRecipes = <></>;
   var cheffie = <></>;
+  var about = <></>;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -60,6 +61,11 @@ function Navigation() {
     home = (
       <NavLink className="nav-link " to="/landingPage">
         Home<span className="sr-only">(current)</span>
+      </NavLink>
+    );
+    about = (
+      <NavLink className="nav-link " to="/about">
+        About<span className="sr-only">(current)</span>
       </NavLink>
     );
     signin = (
@@ -125,9 +131,7 @@ function Navigation() {
               {myRecipes}
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <ListItemIcon>
-               
-              </ListItemIcon>
+              <ListItemIcon></ListItemIcon>
               {loginButton}
             </MenuItem>
           </Drawer>
@@ -137,6 +141,7 @@ function Navigation() {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item navBarLinks">{home}</li>
             <li className="nav-item navBarLinks"> {myRecipes}</li>
+            <li className="nav-item navBarLinks">{about}</li>
             <li className="nav-item navBarLinks">{signin}</li>
             <li className="nav-item navBarLinks">{signout}</li>
             <li className="nav-item navBarLinks">{loginButton}</li>

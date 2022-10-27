@@ -5,7 +5,7 @@ function Landing() {
   return (
     <div className="min-vh-100 overflow">
       <Navigation />
-      <div className="row justify-content-center hero-mt  text-center text-md-left">
+      <div className="row justify-content-center custom-large-margin text-center text-md-left">
         <div className="col-sm-12 col-md-5 col-xl-4">
           <div className="d-flex flex-column justify-content-center h-100">
             <div>

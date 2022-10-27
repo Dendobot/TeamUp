@@ -28,13 +28,13 @@ a {
 }
 
 @media (min-width: 576px) {
-  .hero-mt {
+  .custom-large-margin {
     margin-top: 20px;
   }
 }
 
 @media (min-width: 768px) {
-  .hero-mt {
+  .custom-large-margin {
     margin-top: 150px;
   }
 }
@@ -337,7 +337,7 @@ a:hover {
   width: fit-content;
   padding: 2px 12px;
   gap: 6px;
-  background: #E5FDF6;
+  background: #e5fdf6;
   border-radius: 12px;
 }
 
@@ -443,4 +443,11 @@ a:hover {
 
 .no-recipes-txt {
   margin-left: 9rem;
+}
+
+.kitchen-img {
+  z-index: -1;
+  position: relative;
+  transform: translateY(-300px);
+  margin-bottom: -300px;
 }
