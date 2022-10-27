@@ -7,7 +7,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import LogoutIcon from "@mui/icons-material/Logout";
+import InfoIcon from '@mui/icons-material/Info';
 
 function Navigation() {
   //this signout button will only appear if you are logged in
@@ -108,6 +108,12 @@ function Navigation() {
                 <HomeIcon />
               </ListItemIcon>
               {home}
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
+                <InfoIcon />
+              </ListItemIcon>
+              {about}
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <ListItemIcon>
