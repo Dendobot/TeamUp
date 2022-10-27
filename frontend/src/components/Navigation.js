@@ -7,7 +7,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import LogoutIcon from "@mui/icons-material/Logout";
+import InfoIcon from '@mui/icons-material/Info';
 
 function Navigation() {
   //this signout button will only appear if you are logged in
@@ -18,6 +18,7 @@ function Navigation() {
   var signout = <></>;
   var myRecipes = <></>;
   var cheffie = <></>;
+  var about = <></>;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -60,6 +61,11 @@ function Navigation() {
     home = (
       <NavLink className="nav-link " to="/landingPage">
         Home<span className="sr-only">(current)</span>
+      </NavLink>
+    );
+    about = (
+      <NavLink className="nav-link " to="/about">
+        About<span className="sr-only">(current)</span>
       </NavLink>
     );
     signin = (
@@ -105,6 +111,12 @@ function Navigation() {
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <ListItemIcon>
+                <InfoIcon />
+              </ListItemIcon>
+              {about}
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
                 <LoginIcon />
               </ListItemIcon>
               {signin}
@@ -125,9 +137,7 @@ function Navigation() {
               {myRecipes}
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <ListItemIcon>
-               
-              </ListItemIcon>
+              <ListItemIcon></ListItemIcon>
               {loginButton}
             </MenuItem>
           </Drawer>
@@ -137,6 +147,7 @@ function Navigation() {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item navBarLinks">{home}</li>
             <li className="nav-item navBarLinks"> {myRecipes}</li>
+            <li className="nav-item navBarLinks">{about}</li>
             <li className="nav-item navBarLinks">{signin}</li>
             <li className="nav-item navBarLinks">{signout}</li>
             <li className="nav-item navBarLinks">{loginButton}</li>
