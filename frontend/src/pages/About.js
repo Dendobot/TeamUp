@@ -15,7 +15,7 @@ export const About = () => {
         <div className="col-sm-12 col-md-10 col-xl-8">
           <div className="d-flex flex-column justify-content-center h-100">
             <div className="col-sm-12 col-xl-8">
-              <h1 className="mb-5">About</h1>
+              <h1 className="mb-5 primary-bold-text">About</h1>
               <p className="h5 mb-4">
                 Cheffie was born as a project for the subject COMP30022 (IT
                 Project). The project was created by TeamUp in Semester 2, 2022.
@@ -39,7 +39,7 @@ export const About = () => {
       <div className="min-vh-100 row justify-content-center custom-large-margin text-center text-md-left">
         <div className="col-sm-12 col-md-10 col-xl-8">
           <div className="d-flex flex-column justify-content-center h-100">
-            <h1 className="mt-5">Website Walkthrough</h1>
+            <h1 className="mt-5 primary-bold-text">Website Walkthrough</h1>
             <p className="h5 mb-3">
               Below is a tutorial that TeamUp has put together for new users, to
               see how you can use Cheffie.

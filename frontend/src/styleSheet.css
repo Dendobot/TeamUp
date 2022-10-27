@@ -202,6 +202,11 @@ a:hover {
   text-align: center;
 }
 
+.primary-bold-text {
+  font-weight: bold;
+  color: var(--primaryBlue);
+}
+
 .blue-background {
   background-color: var(--secondaryBlue);
 }
