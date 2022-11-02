@@ -12,6 +12,7 @@ import {
 import { About } from "./pages/About";
 import RequiredAuth from "./components/RequiredAuth";
 import EditRecipe from "./pages/EditRecipe";
+import { Help } from "./pages/Help";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/signin" element={<SignIn />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/about" element={<About />}></Route>
+          <Route path="/help" element={<Help />}></Route>
 
           {/*protected routes*/}
           <Route element={<RequiredAuth />}>
