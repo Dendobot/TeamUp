@@ -7,13 +7,15 @@ import HomeIcon from "@mui/icons-material/Home";
 import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import InfoIcon from '@mui/icons-material/Info';
+import InfoIcon from "@mui/icons-material/Info";
+import HelpIcon from "@mui/icons-material/Help";
 
 function Navigation() {
   //this signout button will only appear if you are logged in
   var loginButton = <></>;
   var home = <></>;
   var about = <></>;
+  var help = <></>;
   var signin = <></>;
   var signout = <></>;
   var myRecipes = <></>;
@@ -68,6 +70,11 @@ function Navigation() {
         About<span className="sr-only">(current)</span>
       </NavLink>
     );
+    help = (
+      <NavLink className="nav-link " to="/help">
+        Help<span className="sr-only">(current)</span>
+      </NavLink>
+    );
     signin = (
       <NavLink className="nav-link" to="/signin">
         Sign in
@@ -117,6 +124,12 @@ function Navigation() {
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <ListItemIcon>
+                <HelpIcon />
+              </ListItemIcon>
+              {help}
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <ListItemIcon>
                 <LoginIcon />
               </ListItemIcon>
               {signin}
@@ -148,6 +161,7 @@ function Navigation() {
             <li className="nav-item navBarLinks">{home}</li>
             <li className="nav-item navBarLinks"> {myRecipes}</li>
             <li className="nav-item navBarLinks">{about}</li>
+            <li className="nav-item navBarLinks">{help}</li>
             <li className="nav-item navBarLinks">{signin}</li>
             <li className="nav-item navBarLinks">{signout}</li>
             <li className="nav-item navBarLinks">{loginButton}</li>
